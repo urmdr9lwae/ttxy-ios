@@ -21,6 +21,12 @@ static AppDelegate s_sharedApplication;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
 
+    // 国行 iPhone 第一次联网要弹“允许使用无线数据”授权框；游戏走的是 BSD socket，不一定能触发，
+    // 这里先用 NSURLSession 发一个无关紧要的请求（苹果自己的联网检测地址）把授权框弹出来
+    NSURL* probe = [NSURL URLWithString:@"http://captive.apple.com/hotspot-detect.html"];
+    [[[NSURLSession sharedSession] dataTaskWithURL:probe
+                                 completionHandler:^(NSData*, NSURLResponse*, NSError*) {}] resume];
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
     // 深度缓冲给 ccbi 里的 3D 翻转动画（CCOrbitCamera）用

@@ -227,6 +227,52 @@ def compile_args(tool, src, kind):
     return [cc] + base + ['-o', obj_path(src), src]
 
 
+def ar_members(path):
+    """解析 ar 静态库（BSD / GNU 两种成员名格式），返回 [(成员名, 内容)]，跳过符号表"""
+    data = open(path, 'rb').read()
+    if data[:8] != b'!<arch>\n':
+        raise ValueError('不是 ar 归档：' + path)
+    pos, out = 8, []
+    while pos + 60 <= len(data):
+        hdr = data[pos:pos + 60]
+        name = hdr[:16].decode('latin-1').strip()
+        size = int(hdr[48:58].decode('latin-1').strip())
+        body = data[pos + 60:pos + 60 + size]
+        pos += 60 + size + (size & 1)
+        if name.startswith('#1/'):                      # BSD：长名字放在内容开头
+            n = int(name[3:])
+            name, body = body[:n].rstrip(b'\0').decode('latin-1'), body[n:]
+        elif name.endswith('/') and name not in ('/', '//'):
+            name = name[:-1]
+        if name.startswith('__.SYMDEF') or name in ('', '/', '//'):
+            continue
+        out.append((name, body))
+    return out
+
+
+def realigned_lib(tool, src, name):
+    """引擎自带的老静态库（2014 年编的 libwebp.a）成员没有 8 字节对齐，新版 ld 直接拒绝。
+    取出 arm64 目标文件（同名成员加序号区分，避免 ar -x 互相覆盖），再用 libtool 重新打包。"""
+    work = os.path.join(OUT, name + '_fix')
+    shutil.rmtree(work, ignore_errors=True)
+    os.makedirs(work)
+    thin = os.path.join(work, 'thin.a')
+    p = subprocess.run(['xcrun', 'lipo', src, '-thin', 'arm64', '-output', thin], capture_output=True, text=True)
+    if p.returncode != 0:          # 不是多架构库，直接用
+        shutil.copy2(src, thin)
+    objs = []
+    for i, (mname, body) in enumerate(ar_members(thin)):
+        if body[:4] != b'\xcf\xfa\xed\xfe':               # 只要 64 位 Mach-O
+            continue
+        o = os.path.join(work, '%03d_%s' % (i, os.path.basename(mname)))
+        open(o, 'wb').write(body)
+        objs.append(o)
+    out = os.path.join(OUT, 'lib%s.a' % name)
+    subprocess.run(['xcrun', 'libtool', '-static', '-no_warning_for_no_symbols', '-o', out] + objs,
+                   check=True, capture_output=True)
+    return out, len(objs)
+
+
 def compile_one(tool, src, kind):
     o = obj_path(src)
     if os.path.exists(o) and os.path.getmtime(o) >= os.path.getmtime(src):
@@ -304,7 +350,9 @@ def main():
     shutil.rmtree(os.path.join(OUT, 'Payload'), ignore_errors=True)
     os.makedirs(app_dir)
     exe = os.path.join(app_dir, APP)
-    webp = os.path.join(ENG, 'cocos2dx', 'platform', 'third_party', 'ios', 'libraries', 'libwebp.a')
+    webp, n = realigned_lib(tool, os.path.join(ENG, 'cocos2dx', 'platform', 'third_party', 'ios', 'libraries',
+                                               'libwebp.a'), 'webp')
+    say('libwebp.a 重新打包：%d 个 arm64 目标文件' % n)
     args = [tool.cxx, '-arch', 'arm64', '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS,
             '-stdlib=libc++', '-ObjC', '-dead_strip', '-o', exe] + app_objs + libs + [webp, '-lz']
     for f in FRAMEWORKS:
@@ -312,7 +360,8 @@ def main():
     p = subprocess.run(args, capture_output=True, text=True)
     log.write('---- link\n' + p.stdout + p.stderr + '\n')
     if p.returncode != 0:
-        lines = [l for l in (p.stdout + p.stderr).splitlines() if 'error' in l or 'Undefined' in l or '"' in l]
+        # 新版 ld 的报错格式各不相同，直接保留全部输出（去掉纯警告行）
+        lines = [l for l in (p.stdout + p.stderr).splitlines() if l.strip() and not l.startswith('ld: warning')]
         errs.write('==== link\n' + '\n'.join(lines[:200]) + '\n')
         errs.close()
         say('链接失败：')
