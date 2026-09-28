@@ -15,12 +15,24 @@ static std::string WithSlash(NSString* s) {
 
 std::string PlatformResPath() { return WithSlash([[NSBundle mainBundle] resourcePath]); }
 
+static std::string EnsureDir(NSSearchPathDirectory which, NSString* sub) {
+    NSString* dir = [NSSearchPathForDirectoriesInDomains(which, NSUserDomainMask, YES) firstObject];
+    if (sub) dir = [dir stringByAppendingPathComponent:sub];
+    [[NSFileManager defaultManager] createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+    return WithSlash(dir);
+}
+
 std::string PlatformDocPath() {
-    // Documents：存档、热更新下载、日志（可在“文件”App 里看到，便于排查）
-    NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* doc = [dirs firstObject];
-    [[NSFileManager defaultManager] createDirectoryAtPath:doc withIntermediateDirectories:YES attributes:nil error:nil];
-    return WithSlash(doc);
+    // Library/Application Support/ttaxy：存档、设置、热更新下载。
+    // 不放 Documents——Documents 对“文件”App 开放，玩家能直接改存档或塞入改过的脚本。
+    static const std::string path = EnsureDir(NSApplicationSupportDirectory, @"ttaxy");
+    return path;
+}
+
+std::string PlatformLogDir() {
+    // Documents：只放 client.log，可在“文件”App → 天天爱西游 里查看，便于排查问题
+    static const std::string path = EnsureDir(NSDocumentDirectory, nil);
+    return path;
 }
 
 std::string PlatformDeviceName() {

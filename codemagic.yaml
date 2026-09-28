@@ -21,5 +21,6 @@ workflows:
         script: python3 tools/build_ios.py
     artifacts:
       - build/ios/TTAXY.ipa
+      - build/ios/TTAXY.unstripped
       - build/ios/build.log
       - build/ios/errors.txt

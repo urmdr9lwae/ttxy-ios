@@ -223,10 +223,12 @@ static NSFileManager* s_fileManager = [NSFileManager defaultManager];
 
 std::string CCFileUtilsIOS::getWritablePath()
 {
-    // save to document folder
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    std::string strRet = [documentsDirectory UTF8String];
+    // 天天爱西游：可写数据放 Library/Application Support/ttaxy（和 host::PlatformDocPath 一致），
+    // 不放 Documents——Documents 对“文件”App 开放，玩家能直接改存档或塞入改过的资源
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *dir = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"ttaxy"];
+    [s_fileManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+    std::string strRet = [dir UTF8String];
     strRet.append("/");
     return strRet;
 }

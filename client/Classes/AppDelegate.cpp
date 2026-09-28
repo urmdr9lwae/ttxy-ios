@@ -104,7 +104,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setDisplayStats(false);
 
     const std::string doc = host::PlatformDocPath();
-    host::SetLogFile(doc + "client.log");
+    host::SetLogFile(host::PlatformLogDir() + "client.log");
     host::Log("==== 启动 ====");
     host::SetFileReader(ReadViaCocos);
     std::string list;

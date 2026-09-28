@@ -369,6 +369,11 @@ def main():
         return 1
     say('链接完成，可执行文件 %.1f MB' % (os.path.getsize(exe) / 1048576))
 
+    # 去掉符号表（函数名、类名），增加逆向难度；保留一份未 strip 的，出崩溃时用来对照地址
+    shutil.copy2(exe, os.path.join(OUT, APP + '.unstripped'))
+    p = subprocess.run(['xcrun', 'strip', exe], capture_output=True, text=True)
+    say('strip rc=%d，剩 %.1f MB %s' % (p.returncode, os.path.getsize(exe) / 1048576, (p.stdout + p.stderr).strip()[:300]))
+
     # ---------------------------------------------------------------- 资源
     res = os.path.join(CLIENT, 'Resources')
     for name in os.listdir(res):

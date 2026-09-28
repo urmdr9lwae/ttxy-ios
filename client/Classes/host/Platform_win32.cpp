@@ -30,6 +30,8 @@ std::string PlatformDocPath() {
     return doc;
 }
 
+std::string PlatformLogDir() { return PlatformDocPath(); }
+
 std::string PlatformDeviceName() { return "Windows"; }
 
 std::string PlatformOSVersion() { return "10"; }
