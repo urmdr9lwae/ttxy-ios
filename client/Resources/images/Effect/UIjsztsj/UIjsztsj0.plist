@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/UIjsztsj/UIjsztsj1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{230,122}}</string>
+			<key>offset</key>
+			<string>{2,-2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{9,4},{230,122}}</string>
+			<key>sourceSize</key>
+			<string>{244,126}</string>
+		</dict>
+		<key>images/Effect/UIjsztsj/uizdsl1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,126},{206,203}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{206,203}}</string>
+			<key>sourceSize</key>
+			<string>{206,203}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>UIjsztsj0.png</string>
+		<key>size</key>
+		<string>{256,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:358966a9097ce2c07c94f2acc026c6f4:1/1$</string>
+		<key>textureFileName</key>
+		<string>UIjsztsj0.png</string>
+	</dict>
+</dict>
+</plist>

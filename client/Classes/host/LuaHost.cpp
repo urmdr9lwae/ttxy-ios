@@ -1,0 +1,333 @@
+#include "LuaHost.h"
+
+#include <cstdio>
+#include <cstring>
+#include <string>
+
+#include "cocos2d.h"
+#include "CCLuaEngine.h"
+#include "CCBProxy.h"
+#include "FrameMap.h"
+#include "HostFile.h"
+#include "HostLog.h"
+#include "LuaCall.h"
+#include "LuaDataBindings.h"
+#include "Net.h"
+#include "TableViewEx.h"
+#include "TextFieldEx.h"
+#include "AccountCrypto.h"
+
+extern "C" {
+#include "lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
+int luaopen_base64(lua_State* L);
+int luaopen_bit(lua_State* L);
+int luaopen_cjson(lua_State* L);
+int luaopen_LuaXML_lib(lua_State* L);
+int luaopen_lpeg(lua_State* L);
+int luaopen_mime_core(lua_State* L);
+int luaopen_socket_core(lua_State* L);
+int luaopen_struct(lua_State* L);
+}
+#include "Lua_extensions_CCB.h"
+
+USING_NS_CC;
+
+namespace host {
+namespace {
+
+// 与原版 CTwLua::Init 相同的搜索顺序；脚本导出为 script/<路径>.dat
+const char* kSearch[] = {
+    "script/?.lua",           "script/UI/?.lua",         "script/Logic/?.lua",
+    "script/Net/?.lua",       "script/Module/?/init.lua", "script/Module/?.lua",
+    "script/Assist/?.lua",    "script/common/?.lua",      "script/Stage/?.lua",
+    "script/base/?.lua",      "script/base/?/init.lua",   "script/base/UI/?.lua",
+    "script/base/dependencies/?.lua", "script/base/dependencies/?/init.lua",
+};
+
+std::string ReplaceAll(std::string s, const std::string& from, const std::string& to) {
+    size_t p = 0;
+    while ((p = s.find(from, p)) != std::string::npos) {
+        s.replace(p, from.size(), to);
+        p += to.size();
+    }
+    return s;
+}
+
+// package.loaders 里的自定义加载器：按搜索路径在资源里找 .dat（原版字节码）
+int ScriptLoader(lua_State* L) {
+    const std::string name = luaL_checkstring(L, 1);
+    const std::string path = ReplaceAll(name, ".", "/");
+    std::string tried;
+    for (const char* tpl : kSearch) {
+        std::string file = ReplaceAll(tpl, "?", path);
+        file = file.substr(0, file.size() - 4) + ".dat";
+        std::string data;
+        if (ReadResource(file, data)) {
+            if (luaL_loadbuffer(L, data.data(), data.size(), ("@" + file).c_str()) != 0) {
+                return luaL_error(L, "加载脚本 %s 失败：%s", file.c_str(), lua_tostring(L, -1));
+            }
+            return 1;
+        }
+        tried += "\n\tno resource '" + file + "'";
+    }
+    lua_pushstring(L, tried.c_str());
+    return 1;
+}
+
+void AddLoader(lua_State* L) {
+    lua_getglobal(L, "package");
+    lua_getfield(L, -1, "loaders");
+    // 插到第 2 位（preload 之后）
+    const int n = static_cast<int>(lua_objlen(L, -1));
+    for (int i = n; i >= 2; --i) {
+        lua_rawgeti(L, -1, i);
+        lua_rawseti(L, -2, i + 1);
+    }
+    lua_pushcfunction(L, ScriptLoader);
+    lua_rawseti(L, -2, 2);
+    lua_pop(L, 1);
+    std::string p;
+    for (const char* tpl : kSearch) p += std::string(p.empty() ? "" : ";") + tpl;
+    lua_pushstring(L, p.c_str());
+    lua_setfield(L, -2, "path");
+    lua_pop(L, 1);
+}
+
+void Preload(lua_State* L, const char* name, lua_CFunction f) {
+    lua_getglobal(L, "package");
+    lua_getfield(L, -1, "preload");
+    lua_pushcfunction(L, f);
+    lua_setfield(L, -2, name);
+    lua_pop(L, 2);
+}
+
+// 打开库；name 非空时把返回的模块表同时设为全局变量和 package.loaded[name]（lua-cjson 默认不设全局）
+void OpenLib(lua_State* L, lua_CFunction f, const char* name = nullptr) {
+    lua_pushcfunction(L, f);
+    lua_call(L, 0, 1);
+    if (name && lua_istable(L, -1)) {
+        lua_pushvalue(L, -1);
+        lua_setglobal(L, name);
+        lua_getglobal(L, "package");
+        lua_getfield(L, -1, "loaded");
+        lua_pushvalue(L, -3);
+        lua_setfield(L, -2, name);
+        lua_pop(L, 2);
+    }
+    lua_pop(L, 1);
+}
+
+bool RunString(lua_State* L, const char* code, const char* chunk) {
+    if (luaL_loadbuffer(L, code, strlen(code), chunk) != 0) {
+        Log("兼容脚本编译失败：%s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+        return false;
+    }
+    return PCall(L, 0, 0);
+}
+
+// 原版引擎（cocos2d-x 2.2.3 改版）有、2.2.6 没有的小接口，用 Lua 补齐
+const char* kCompat = R"LUA(
+fenv = { getfenv = getfenv, setfenv = setfenv }
+
+local rawExit = os.exit
+os.exit = function(...) WriteLog("os.exit 被调用\n" .. debug.traceback()) return rawExit(...) end
+
+local defFont, defSize = "Helvetica", 12
+CCLabelTTF.setDefaultFontName = function(_, name) defFont = name end
+CCLabelTTF.setDefaultFontSize = function(_, size) defSize = size end
+CCLabelTTF.getDefaultFontName = function() return defFont end
+CCLabelTTF.getDefaultFontSize = function() return defSize end
+local labelCreate = CCLabelTTF.create
+CCLabelTTF.create = function(cls, str, font, size, ...)
+    if str == nil then return labelCreate(cls, "", defFont, defSize) end
+    if font == nil or font == "" then font = defFont end
+    return labelCreate(cls, str, font, size or defSize, ...)
+end
+
+CCNode.getPositionLua = function(self) return ccp(self:getPositionX(), self:getPositionY()) end
+
+-- 纹理预加载：同步加载即可（预加载器按 textureForKey 判断完成）
+if CCTextureCache.addImageAsync == nil then
+    CCTextureCache.addImageAsync = function(self, path) return self:addImage(path) end
+end
+
+-- 原版引擎给 CCLabelTTF 加的描边/阴影样式
+kCCLabelTTFStyleSimple, kCCLabelTTFStyleShadow, kCCLabelTTFStyleOutline = 0, 1, 2
+local labelStyles = setmetatable({}, { __mode = "k" })
+CCLabelTTF.setStyle = function(self, style, ...)
+    labelStyles[self] = style
+    if style == kCCLabelTTFStyleOutline and self.enableStroke then
+        pcall(self.enableStroke, self, ccc3(0, 0, 0), 1, true)
+    elseif style == kCCLabelTTFStyleShadow and self.enableShadow then
+        pcall(self.enableShadow, self, CCSizeMake(1, -1), 1, 0, true)
+    end
+end
+CCLabelTTF.getStyle = function(self) return labelStyles[self] or kCCLabelTTFStyleSimple end
+
+-- 原版引擎把触摸事件类型导出成常量；2.2.6 的 CCLuaEngine 传给 Lua 的是字符串，常量取同样的值
+CCTOUCHBEGAN, CCTOUCHMOVED, CCTOUCHENDED, CCTOUCHCANCELLED = "began", "moved", "ended", "cancelled"
+)LUA";
+
+}  // namespace
+
+bool LuaHostStart(const EnvInfo& env) {
+    CCLuaEngine* engine = CCLuaEngine::defaultEngine();
+    CCScriptEngineManager::sharedManager()->setScriptEngine(engine);
+    lua_State* L = engine->getLuaStack()->getLuaState();
+    SetLuaState(L);
+
+    // 第三方库（原版 CTwLua::Setup）
+    OpenLib(L, luaopen_base64);
+    OpenLib(L, luaopen_bit);
+    OpenLib(L, luaopen_cjson, "cjson");
+    OpenLib(L, luaopen_LuaXML_lib);
+    OpenLib(L, luaopen_lpeg);
+    OpenLib(L, luaopen_struct);
+    Preload(L, "socket.core", luaopen_socket_core);
+    Preload(L, "mime.core", luaopen_mime_core);
+    lua_settop(L, 0);
+
+    // cocos2d-x 扩展与游戏自定义类
+    tolua_extensions_ccb_open(L);
+    RegisterCCBProxy(L);
+    RegisterTableViewEx(L);
+    RegisterTextFieldEx(L);
+    // 原生接口
+    RegisterDataBindings(L);
+    RegisterExportBindings(L, env);
+    lua_settop(L, 0);
+
+    AddLoader(L);
+    RunString(L, kCompat, "=host_compat");
+    RegisterAccountCrypto(L);
+
+    // 原版 Setup 里先 require objectlua
+    lua_getglobal(L, "require");
+    lua_pushstring(L, "objectlua");
+    if (!PCall(L, 1, 0)) return false;
+    lua_getglobal(L, "require");
+    lua_pushstring(L, "objectlua.Mixin");
+    if (!PCall(L, 1, 0)) return false;
+
+    lua_getglobal(L, "require");
+    lua_pushstring(L, "HostAdapter");
+    if (!PCall(L, 1, 0)) {
+        Log("require HostAdapter 失败");
+        return false;
+    }
+    Log("HostAdapter 已加载，调用 OnSysStartup");
+    const bool ok = CallGlobal("OnSysStartup");
+    Log("OnSysStartup 返回 %d", ok ? 1 : 0);
+    return ok;
+}
+
+namespace {
+
+// 调试：UserData/cmd.lua 出现时执行一次并改名为 cmd.done.lua（Windows 调试用，iOS 不启用）
+void RunDebugCommand(lua_State* L) {
+#if defined(_WIN32) && defined(_DEBUG)
+    static std::string path;
+    if (path.empty()) {
+        lua_getglobal(L, "CVariableSystem");
+        lua_pop(L, 1);
+        char buf[512] = {};
+        GetCurrentDirectoryA(sizeof(buf), buf);
+        std::string base = buf;
+        const size_t p = base.find_last_of("\\/");
+        path = (p == std::string::npos ? base : base.substr(0, p)) + "\\UserData\\cmd.lua";
+    }
+    FILE* f = fopen(path.c_str(), "rb");
+    if (!f) return;
+    std::string code;
+    char tmp[4096];
+    size_t n;
+    while ((n = fread(tmp, 1, sizeof(tmp), f)) > 0) code.append(tmp, n);
+    fclose(f);
+    const std::string done = path.substr(0, path.size() - 4) + ".done.lua";
+    remove(done.c_str());
+    rename(path.c_str(), done.c_str());
+    Log("执行调试脚本 cmd.lua（%u 字节）", static_cast<unsigned>(code.size()));
+    if (luaL_loadbuffer(L, code.data(), code.size(), "=cmd") != 0) {
+        Log("cmd.lua 编译失败：%s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+        return;
+    }
+    PCall(L, 0, 0);
+#else
+    (void)L;
+#endif
+}
+
+// 调试：模拟点击（设计分辨率坐标，左下角为原点）
+int l_DebugTap(lua_State* L) {
+    const float x = static_cast<float>(luaL_checknumber(L, 1));
+    const float y = static_cast<float>(luaL_checknumber(L, 2));
+    CCEGLView* view = CCEGLView::sharedOpenGLView();
+    // 设计坐标 -> 视图坐标（左上角原点、未缩放的窗口像素）
+    const CCRect vp = view->getViewPortRect();
+    const float sx = view->getScaleX(), sy = view->getScaleY();
+    const CCSize frame = view->getFrameSize();
+    float px = (x * sx + vp.origin.x);
+    float py = frame.height - (y * sy + vp.origin.y);
+    int id = 0;
+    view->handleTouchesBegin(1, &id, &px, &py);
+    view->handleTouchesEnd(1, &id, &px, &py);
+    Log("DebugTap(%.0f, %.0f) -> view(%.0f, %.0f)", x, y, px, py);
+    return 0;
+}
+
+// 调试：把字符串写入 client.log（游戏的 print 在发布版里不输出）
+int l_HostLog(lua_State* L) {
+    Log("[DBG] %s", luaL_checkstring(L, 1));
+    return 0;
+}
+
+}  // namespace
+
+namespace {
+volatile long g_heartbeat = 0;
+
+void TracebackHook(lua_State* L, lua_Debug*) {
+    lua_sethook(L, nullptr, 0, 0);
+    std::string tb = "主线程卡住时的 Lua 调用栈：";
+    lua_Debug ar;
+    for (int level = 0; level < 40 && lua_getstack(L, level, &ar); ++level) {
+        lua_getinfo(L, "Sln", &ar);
+        char line[512];
+        snprintf(line, sizeof(line), "\n\t%s:%d %s", ar.short_src, ar.currentline, ar.name ? ar.name : "?");
+        tb += line;
+    }
+    Log("%s", tb.c_str());
+}
+}  // namespace
+
+long LuaHostHeartbeat() { return g_heartbeat; }
+
+void LuaHostRequestTraceback() {
+    if (lua_State* L = GetLuaState()) lua_sethook(L, TracebackHook, LUA_MASKCOUNT, 1);
+}
+
+void LuaHostTick() {
+    ++g_heartbeat;
+    static int ticks = 0;
+    if (ticks < 3) Log("tick %d", ticks);
+    if (ticks == 0) {
+        lua_register(GetLuaState(), "DebugTap", l_DebugTap);
+        lua_register(GetLuaState(), "HostLog", l_HostLog);
+    }
+    ++ticks;
+    NetPoll();
+    CallGlobal("OnProcess");
+    if (ticks % 30 == 0) RunDebugCommand(GetLuaState());
+}
+
+void LuaHostShutdown() {
+    CallGlobal("OnSysShutdown");
+    SaveSystemVariables();
+    NetShutdown();
+}
+
+}  // namespace host

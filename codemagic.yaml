@@ -1,0 +1,25 @@
+# Codemagic 云编译：生成未签名的 iOS IPA（安装时用 Sideloadly + 自己的 Apple ID 签名）
+# 不需要在 Codemagic 里配置证书 / 描述文件。
+workflows:
+  ios-unsigned-ipa:
+    name: 天天爱西游 iOS（未签名 IPA）
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      vars:
+        # 需要换包名时在这里改（Sideloadly 免费账号一般保持默认即可）
+        TTAXY_BUNDLE_ID: com.twmobile.ttaxy
+    scripts:
+      - name: 环境信息
+        script: |
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
+          python3 --version
+          sysctl -n hw.ncpu
+      - name: 编译并打包 IPA
+        script: python3 tools/build_ios.py
+    artifacts:
+      - build/ios/TTAXY.ipa
+      - build/ios/build.log
+      - build/ios/errors.txt

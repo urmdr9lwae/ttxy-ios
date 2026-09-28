@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/UIfanpai/fanhou.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,102},{90,90}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{90,90}}</string>
+			<key>sourceSize</key>
+			<string>{90,90}</string>
+		</dict>
+		<key>images/Effect/UIfanpai/fanpai.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{98,98}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{1,0},{98,98}}</string>
+			<key>sourceSize</key>
+			<string>{100,98}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>UIfanpai0.png</string>
+		<key>size</key>
+		<string>{128,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:251b35a2ef3efffcc609a4d7d32deb1f:1/1$</string>
+		<key>textureFileName</key>
+		<string>UIfanpai0.png</string>
+	</dict>
+</dict>
+</plist>
