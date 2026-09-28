@@ -151,6 +151,33 @@ INCLUDES = [
 ]
 DEFINES = ['CC_TARGET_OS_IPHONE', 'USE_FILE32API', 'NDEBUG', 'COCOS2D_DEBUG=0', 'GLES_SILENCE_DEPRECATION']
 
+
+def headermap_dirs():
+    """模拟 Xcode 的 headermap：引擎源码里大量 #include "CCGeometry.h" 这种不带子目录的写法，
+    Xcode 会在整个工程的头文件里找。这里把 cocos2dx 下所有含头文件的目录加到 -idirafter（优先级最低，
+    不会盖掉前面的正常包含路径）。跳过其它平台和 wp8/winrt 的目录，避免拿到同名的错误头文件。"""
+    c = os.path.join(ENG, 'cocos2dx')
+    other = {'android', 'win32', 'linux', 'mac', 'blackberry', 'emscripten', 'nacl', 'tizen', 'winrt', 'wp8',
+             'wp8-xaml', 'marmalade', 'bada', 'qnx', 'third_party'}
+    dirs = []
+    for dp, dns, fns in os.walk(c):
+        r = os.path.relpath(dp, c).replace('\\', '/')
+        parts = r.split('/')
+        if parts[0].startswith('proj.') or parts[0] == 'kazmath' or 'precompiled' in parts or \
+                (parts[0] == 'platform' and len(parts) > 1 and parts[1] in other):
+            dns[:] = []
+            continue
+        dns.sort()
+        if any(f.endswith('.h') for f in fns):
+            dirs.append(dp)
+    return dirs
+
+
+HEADERMAP = headermap_dirs()
+# 相当于引擎 iOS 工程的 cocos2dx-Prefix.pch（Objective-C 文件默认带上 Foundation）
+PREFIX_HEADER = os.path.join(OUT, 'Prefix.pch')
+PREFIX_TEXT = '#ifdef __OBJC__\n#import <Foundation/Foundation.h>\n#endif\n'
+
 FRAMEWORKS = ['Foundation', 'UIKit', 'CoreGraphics', 'CoreText', 'QuartzCore', 'OpenGLES', 'AVFoundation',
               'AudioToolbox', 'CoreFoundation', 'Security']
 
@@ -178,7 +205,9 @@ def compile_args(tool, src, kind):
     ext = os.path.splitext(src)[1]
     base = ['-arch', 'arm64', '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS, '-O2', '-c',
             '-fno-objc-arc', '-fmessage-length=0', '-w']
-    base += ['-I' + i for i in INCLUDES] + ['-D' + d for d in DEFINES]
+    base += ['-I' + i for i in INCLUDES] + ['-idirafter' + i for i in HEADERMAP] + ['-D' + d for d in DEFINES]
+    if ext in ('.m', '.mm'):
+        base += ['-include', PREFIX_HEADER]
     if kind == 'mbedtls':
         base.append('-I' + os.path.join(TP, 'mbedtls', 'library'))
     if ext in ('.c', '.m'):
@@ -217,6 +246,7 @@ def main():
         return 0
 
     os.makedirs(OBJ, exist_ok=True)
+    open(PREFIX_HEADER, 'w').write(PREFIX_TEXT)
     log = open(os.path.join(OUT, 'build.log'), 'w', encoding='utf-8')
     errs = open(os.path.join(OUT, 'errors.txt'), 'w', encoding='utf-8')
 
