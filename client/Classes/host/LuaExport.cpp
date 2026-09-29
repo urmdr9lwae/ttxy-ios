@@ -36,6 +36,7 @@ extern "C" {
 #include "zlib.h"
 
 #include "cocos2d.h"
+#include "support/zip_support/unzip.h"
 #include "FrameMap.h"
 #include "HostFile.h"
 #include "HostLog.h"
@@ -472,11 +473,78 @@ int l_TimeGetTime(lua_State* L) {
     return 1;
 }
 
+// 把 zip 解到 dst 目录（热更新补丁包）；返回 0 表示成功，和原版 TwUnzip 一致
+int UnzipTo(const std::string& zip, std::string dst, int& count) {
+    count = 0;
+    if (!dst.empty() && dst.back() != '/' && dst.back() != '\\') dst += '/';
+    MakeDirs(dst);
+    unzFile uf = cocos2d::unzOpen(zip.c_str());
+    if (!uf) return 1;
+    int rc = 0;
+    std::vector<char> buf(64 * 1024);
+    for (int r = cocos2d::unzGoToFirstFile(uf); r == UNZ_OK; r = cocos2d::unzGoToNextFile(uf)) {
+        char name[1024] = {0};
+        cocos2d::unz_file_info info;
+        if (cocos2d::unzGetCurrentFileInfo(uf, &info, name, sizeof(name) - 1, nullptr, 0, nullptr, 0) != UNZ_OK) {
+            rc = 2;
+            break;
+        }
+        std::string rel = name;
+        std::replace(rel.begin(), rel.end(), '\\', '/');
+        // 不接受绝对路径和 ".."，防止补丁包把文件写到可写目录以外
+        if (rel.empty() || rel[0] == '/' || rel.find("..") != std::string::npos || rel.find(':') != std::string::npos) {
+            Log("TwUnzip: 跳过可疑路径 %s", rel.c_str());
+            continue;
+        }
+        const std::string out = dst + rel;
+        if (rel.back() == '/') {
+            MakeDirs(out);
+            continue;
+        }
+        const size_t slash = out.find_last_of('/');
+        if (slash != std::string::npos) MakeDirs(out.substr(0, slash));
+        if (cocos2d::unzOpenCurrentFile(uf) != UNZ_OK) {
+            rc = 3;
+            break;
+        }
+        FILE* f = std::fopen(out.c_str(), "wb");
+        if (!f) {
+            cocos2d::unzCloseCurrentFile(uf);
+            rc = 4;
+            break;
+        }
+        int n = 0;
+        while ((n = cocos2d::unzReadCurrentFile(uf, buf.data(), static_cast<unsigned>(buf.size()))) > 0)
+            std::fwrite(buf.data(), 1, static_cast<size_t>(n), f);
+        std::fclose(f);
+        if (cocos2d::unzCloseCurrentFile(uf) != UNZ_OK || n < 0) {  // 关闭时校验 CRC
+            rc = 5;
+            break;
+        }
+        ++count;
+    }
+    cocos2d::unzClose(uf);
+    return rc;
+}
+
 int l_TwUnzip(lua_State* L) {
-    // 只在下载资源补丁包时使用；私服版本号一致时不会走到
-    Log("TwUnzip(%s, %s) 未实现", ArgString(L, 1).c_str(), ArgString(L, 2).c_str());
-    lua_pushboolean(L, 0);
+    int count = 0;
+    const int rc = UnzipTo(ArgString(L, 1), ArgString(L, 2), count);
+    Log("TwUnzip(%s -> %s) = %d，%d 个文件", ArgString(L, 1).c_str(), ArgString(L, 2).c_str(), rc, count);
+    lua_pushinteger(L, rc);
     return 1;
+}
+
+// CEnvRoot:SetReloadAll()：热更新补丁装好后调用。原版会重启整个 Lua 虚拟机再从头走一遍自动更新。
+// 这里不重启虚拟机：清掉 CCFileUtils 的路径缓存（补丁目录在搜索路径最前面，之后加载的脚本/资源用补丁版本），
+// 下一帧让自动更新接着走“无更新”时的收尾流程（AutoPatch:done，进入选服）。已经加载过的模块要下次启动才换成新版。
+bool g_reloadPending = false;
+
+int l_SetReloadAll(lua_State*) {
+    CCFileUtils::sharedFileUtils()->purgeCachedEntries();
+    g_reloadPending = true;
+    Log("热更新补丁已安装，继续进入选服");
+    return 0;
 }
 
 int l_False(lua_State* L) {
@@ -661,11 +729,15 @@ int l_Md5GetResult(lua_State* L) {
 }
 
 int l_CMd5Call(lua_State* L) {
-    // CMd5(str) / CMd5(path, true) —— __call 的第一个参数是类表；第二种算资源文件内容的 MD5
+    // __call 的第一个参数是类表。三种用法（见 Login / AutoPatch 脚本）：
+    //   CMd5(str)          字符串的 MD5
+    //   CMd5(path, true)   资源包里文件内容的 MD5（db/describe.dat）
+    //   CMd5(path, false)  磁盘文件内容的 MD5（热更新下载的补丁包，绝对路径）
     std::string s = ArgString(L, 2);
-    if (lua_toboolean(L, 3)) {
+    if (lua_type(L, 3) == LUA_TBOOLEAN) {
         std::string data;
-        if (!ReadResource(s, data)) Log("CMd5: 读不到文件 %s", s.c_str());
+        const bool ok = lua_toboolean(L, 3) ? ReadResource(s, data) : ReadAny(s, data);
+        if (!ok) Log("CMd5: 读不到文件 %s", s.c_str());
         s.swap(data);
     }
     lua_createtable(L, 0, 2);
@@ -829,11 +901,35 @@ int l_FileStat(lua_State* L) {
 int l_DirStat(lua_State* L) { lua_pushboolean(L, IsDir(PathArg(L))); return 1; }
 int l_DelFile(lua_State* L) { lua_pushboolean(L, std::remove(PathArg(L).c_str()) == 0); return 1; }
 int l_ClrContent(lua_State* L) { RemoveTree(PathArg(L), true); lua_pushboolean(L, 1); return 1; }
+// 把目录 a 的内容合并进 b（同名文件覆盖），完成后删掉 a。
+// 热更新把新补丁解到 unzip_tmp/ 再“改名”到 patch/，合并才能保留以前的补丁
+bool MergeMove(const std::string& a, const std::string& b) {
+    if (!IsDir(a)) {
+        std::remove(b.c_str());
+        return std::rename(a.c_str(), b.c_str()) == 0;
+    }
+    if (!IsDir(b)) {
+        std::remove(b.c_str());
+        if (std::rename(a.c_str(), b.c_str()) == 0) return true;
+        MakeDirs(b);
+    }
+    std::vector<std::string> names;
+    ListDir(a, names);
+    bool ok = true;
+    for (auto& n : names) ok = MergeMove(a + "/" + n, b + "/" + n) && ok;
+#ifdef _WIN32
+    _rmdir(a.c_str());
+#else
+    rmdir(a.c_str());
+#endif
+    return ok;
+}
+
 int l_Rename(lua_State* L) {
     const std::string a = TrimSlash(PathArg(L)), b = TrimSlash(PathArg2(L));
-    if (IsDir(b)) RemoveTree(b, false);
-    std::remove(b.c_str());
-    lua_pushboolean(L, std::rename(a.c_str(), b.c_str()) == 0);
+    const bool ok = MergeMove(a, b);
+    if (!ok) Log("Rename %s -> %s 失败", a.c_str(), b.c_str());
+    lua_pushboolean(L, ok);
     return 1;
 }
 
@@ -873,11 +969,30 @@ void ReadPairs(lua_State* L, int idx, const char* k, std::vector<std::pair<std::
     lua_pop(L, 1);
 }
 
+// req.pBufferReader：热更新下载用。原版支持断点续传（GetInitFileSize 返回已下载的字节数，脚本据此加 Range 头），
+// 这里每次都从头下载（返回 0，下载时覆盖写文件），GetFileName 返回下载文件路径
+int l_BufGetInitFileSize(lua_State* L) {
+    lua_pushnumber(L, 0);
+    return 1;
+}
+int l_BufGetFileName(lua_State* L) {
+    lua_getfield(L, 1, "__file");
+    return 1;
+}
+
 int l_ReqSetDownloadFile(lua_State* L) {
     lua_pushvalue(L, 2);
     lua_setfield(L, 1, "__downloadFile");
     lua_pushboolean(L, 1);
     lua_setfield(L, 1, "bDownloadFile");
+    lua_createtable(L, 0, 3);
+    lua_pushvalue(L, 2);
+    lua_setfield(L, -2, "__file");
+    lua_pushcfunction(L, l_BufGetInitFileSize);
+    lua_setfield(L, -2, "GetInitFileSize");
+    lua_pushcfunction(L, l_BufGetFileName);
+    lua_setfield(L, -2, "GetFileName");
+    lua_setfield(L, 1, "pBufferReader");
     return 0;
 }
 
@@ -1053,6 +1168,20 @@ void CallableClass(lua_State* L, const char* name, lua_CFunction call) {
 
 void SaveSystemVariables() { SaveSys(); }
 
+void LuaExportTick(lua_State* L) {
+    if (!g_reloadPending || !L) return;
+    g_reloadPending = false;
+    static const char* kContinue =
+        "local ap = Logic and Logic:Get('AutoPatch')\n"
+        "if ap and ap.done then ap:done() end\n";
+    if (luaL_loadbuffer(L, kContinue, strlen(kContinue), "=reload") != 0) {
+        Log("热更新收尾脚本编译失败：%s", lua_tostring(L, -1));
+        lua_pop(L, 1);
+        return;
+    }
+    PCall(L, 0, 0);
+}
+
 void RegisterExportBindings(lua_State* L, const EnvInfo& env) {
     g_env = env;
     InitSysVars();
@@ -1156,7 +1285,7 @@ void RegisterExportBindings(lua_State* L, const EnvInfo& env) {
     Fn(L, "GetVersionName", l_GetVersionName);
     Fn(L, "GetIdfa", l_EmptyString);
     Fn(L, "GetPushUri", l_EmptyString);
-    Fn(L, "SetReloadAll", l_Noop);
+    Fn(L, "SetReloadAll", l_SetReloadAll);
     Fn(L, "IsReloading", l_False);
     lua_pop(L, 1);
     NoopClass(L, "CEnvInstanceMgr");

@@ -71,6 +71,63 @@ void SetTimeout(SockT s, int ms) {
 #endif
 }
 
+void SetBlocking(SockT s, bool blocking) {
+#ifdef _WIN32
+    u_long nb = blocking ? 0 : 1;
+    ioctlsocket(s, FIONBIO, &nb);
+#else
+    const int fl = fcntl(s, F_GETFL, 0);
+    fcntl(s, F_SETFL, blocking ? (fl & ~O_NONBLOCK) : (fl | O_NONBLOCK));
+#endif
+}
+
+int LastSockError() {
+#ifdef _WIN32
+    return WSAGetLastError();
+#else
+    return errno;
+#endif
+}
+
+// 带超时的 connect。iOS/macOS 上 SO_SNDTIMEO 管不到 connect，服务器不通或还没授权联网时
+// 阻塞 connect 要等 75 秒左右才失败，界面会一直停在“服务器检测中”，所以用非阻塞 connect + select。
+bool ConnectWithTimeout(SockT s, const sockaddr* addr, socklen_t len, int timeoutMs, int& sysErr) {
+    sysErr = 0;
+    if (timeoutMs <= 0) timeoutMs = 15000;
+    SetBlocking(s, false);
+    bool ok = ::connect(s, addr, len) == 0;
+    if (!ok) {
+        sysErr = LastSockError();
+#ifdef _WIN32
+        const bool pending = sysErr == WSAEWOULDBLOCK;
+#else
+        const bool pending = sysErr == EINPROGRESS;
+#endif
+        if (pending) {
+            fd_set wfds, efds;
+            FD_ZERO(&wfds);
+            FD_ZERO(&efds);
+            FD_SET(s, &wfds);
+            FD_SET(s, &efds);
+            timeval tv;
+            tv.tv_sec = timeoutMs / 1000;
+            tv.tv_usec = (timeoutMs % 1000) * 1000;
+            const int n = select(static_cast<int>(s) + 1, nullptr, &wfds, &efds, &tv);
+            if (n > 0 && FD_ISSET(s, &wfds)) {
+                int soErr = 0;
+                socklen_t l = sizeof(soErr);
+                getsockopt(s, SOL_SOCKET, SO_ERROR, reinterpret_cast<char*>(&soErr), &l);
+                ok = soErr == 0;
+                sysErr = soErr;
+            } else {
+                sysErr = n == 0 ? -1 : LastSockError();  // -1 表示超时
+            }
+        }
+    }
+    SetBlocking(s, true);
+    return ok;
+}
+
 // 解析并连接（支持 IPv4/IPv6，iOS 的 NAT64 网络需要走 getaddrinfo）；失败时 err 为 HttpError
 SockT ConnectTo(const std::string& hostName, int port, int timeoutMs, int& err) {
     InitSockets();
@@ -80,7 +137,9 @@ SockT ConnectTo(const std::string& hostName, int port, int timeoutMs, int& err) 
     hints.ai_socktype = SOCK_STREAM;
     addrinfo* res = nullptr;
     const std::string portStr = std::to_string(port);
-    if (getaddrinfo(hostName.c_str(), portStr.c_str(), &hints, &res) != 0 || !res) {
+    const int gai = getaddrinfo(hostName.c_str(), portStr.c_str(), &hints, &res);
+    if (gai != 0 || !res) {
+        Log("解析地址失败 %s:%d（getaddrinfo=%d）", hostName.c_str(), port, gai);
         err = HTTP_ERR_GETHOSTBYNAME;
         return SOCK_INVALID;
     }
@@ -93,10 +152,13 @@ SockT ConnectTo(const std::string& hostName, int port, int timeoutMs, int& err) 
             continue;
         }
         SetTimeout(s, timeoutMs);
-        if (::connect(s, ai->ai_addr, static_cast<int>(ai->ai_addrlen)) == 0) {
+        int sysErr = 0;
+        if (ConnectWithTimeout(s, ai->ai_addr, static_cast<socklen_t>(ai->ai_addrlen), timeoutMs, sysErr)) {
             err = HTTP_ERR_SUCC;
             break;
         }
+        Log("连接 %s:%d 失败（family=%d，%s %d）", hostName.c_str(), port, ai->ai_family,
+            sysErr == -1 ? "超时" : "errno", sysErr);
         CloseSock(s);
         s = SOCK_INVALID;
         err = HTTP_ERR_CONNECT;

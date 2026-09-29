@@ -50,7 +50,9 @@ bool ReadResource(const std::string& relPath, std::string& out) {
     const std::string p = NormalizePath(relPath);
     if (g_reader(p, out)) return true;
     const std::string real = ResolveCase(p);
-    return real != p && g_reader(real, out);
+    if (real != p && g_reader(real, out)) return true;
+    // iOS 的可写目录是 /var/mobile/... 这样的绝对路径，NormalizePath 去掉了开头的 '/'，按原路径再读一次
+    return !relPath.empty() && relPath[0] == '/' && g_reader(relPath, out);
 }
 
 }  // namespace host

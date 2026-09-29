@@ -24,4 +24,7 @@ void RegisterExportBindings(lua_State* L, const EnvInfo& env);
 // 保存系统变量（退出时调用）
 void SaveSystemVariables();
 
+// 每帧调用：处理热更新完成后的“重新加载”（CEnvRoot:SetReloadAll）
+void LuaExportTick(lua_State* L);
+
 }  // namespace host

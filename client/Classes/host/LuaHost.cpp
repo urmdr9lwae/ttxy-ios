@@ -320,6 +320,7 @@ void LuaHostTick() {
     }
     ++ticks;
     NetPoll();
+    LuaExportTick(GetLuaState());
     CallGlobal("OnProcess");
     if (ticks % 30 == 0) RunDebugCommand(GetLuaState());
 }

@@ -121,6 +121,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     env.resPath = host::PlatformResPath();
     env.docPath = doc;
     env.patchPath = doc + "patch/";
+    // 热更新补丁目录放在资源搜索路径最前面：补丁里的脚本、图片、ccbi 优先于包内原文件
+    {
+        CCFileUtils* fu = CCFileUtils::sharedFileUtils();
+        std::vector<std::string> paths = fu->getSearchPaths();
+        paths.insert(paths.begin(), env.patchPath);
+        fu->setSearchPaths(paths);
+    }
     env.operatorPath = kOperatorPath;
     env.version = kPackageVersion;
     env.versionName = kVersionName;
