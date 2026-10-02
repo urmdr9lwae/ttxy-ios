@@ -15,7 +15,7 @@ namespace {
 
 // 与原版一致的程序包版本（和服务器 version.xml 的 package 比较）
 const char* kPackageVersion = "52";
-const char* kVersionName = "1.0.6.2";
+const char* kVersionName = "1.0.8.1";
 const char* kOperatorPath = "sdk/mi/";
 
 // 资源读取：先判断存在，避免 CCFileUtils 对不存在的文件打印错误

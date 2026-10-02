@@ -33,7 +33,7 @@ OBJ = os.path.join(OUT, 'obj')
 APP = 'TTAXY'                                    # 可执行文件 / .app 名（英文，避免路径问题）
 BUNDLE_ID = os.environ.get('TTAXY_BUNDLE_ID', 'com.twmobile.ttaxy')
 DISPLAY_NAME = os.environ.get('TTAXY_DISPLAY_NAME', '天天爱西游')
-VERSION_NAME = '1.0.6.2'                         # 和 AppDelegate.cpp 的 kVersionName 一致
+VERSION_NAME = '1.0.8.1'                         # 和 AppDelegate.cpp 的 kVersionName 一致
 BUILD_NUMBER = '52'                              # 和 kPackageVersion 一致
 MIN_IOS = '12.0'
 
