@@ -22,10 +22,47 @@
  THE SOFTWARE.
  ****************************************************************************/
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <OpenGLES/EAGL.h>
 #import "CCDirectorCaller.h"
 #import "CCDirector.h"
 #import "EAGLView.h"
+
+@interface NSObject(HighFrameRate)
+- (void)setPreferredFramesPerSecond:(NSInteger)frames;
+@end
+
+static NSInteger ScreenMaxFPS(void)
+{
+    NSInteger fps = 60;
+    UIScreen *screen = [UIScreen mainScreen];
+    if ([screen respondsToSelector:@selector(maximumFramesPerSecond)]) {
+        fps = screen.maximumFramesPerSecond;
+    }
+    if (fps < 30 || fps > 240) {
+        fps = 60;
+    }
+    return fps;
+}
+
+int iosScreenMaxFPS(void)
+{
+    return (int)ScreenMaxFPS();
+}
+
+static void ApplyDisplayLinkRate(id link)
+{
+    NSInteger fps = ScreenMaxFPS();
+    if ([link respondsToSelector:@selector(setPreferredFramesPerSecond:)]) {
+        [link setPreferredFramesPerSecond:fps];
+        return;
+    }
+    NSInteger frameInterval = 60 / fps;
+    if (frameInterval < 1) {
+        frameInterval = 1;
+    }
+    [link setFrameInterval:(int)frameInterval];
+}
 
 static id s_sharedDirectorCaller;
 
@@ -74,20 +111,21 @@ static id s_sharedDirectorCaller;
         displayLink = nil;
         
         displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(doCaller:)];
-        [displayLink setFrameInterval: self.interval];
+        ApplyDisplayLinkRate(displayLink);
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 -(void) setAnimationInterval:(double)intervalNew
 {
         // CCDirector::setAnimationInterval() is called, we should invalidate it first
+        (void)intervalNew;
         [displayLink invalidate];
         displayLink = nil;
         
-        self.interval = 60.0 * intervalNew;
+        self.interval = 1;
         
         displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(doCaller:)];
-        [displayLink setFrameInterval: self.interval];
+        ApplyDisplayLinkRate(displayLink);
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
                       

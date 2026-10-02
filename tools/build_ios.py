@@ -35,8 +35,8 @@ BUNDLE_ID = os.environ.get('TTAXY_BUNDLE_ID', 'com.twmobile.ttaxy')
 DISPLAY_NAME = os.environ.get('TTAXY_DISPLAY_NAME', '哈基米西游')
 VERSION_NAME = '1.0.8.1'                         # 和 AppDelegate.cpp 的 kVersionName 一致
 BUILD_NUMBER = '52'                              # 和 kPackageVersion 一致
-ARCH = 'armv7'                                   # 32 位。iOS 11 起的手机装不上
-MIN_IOS = '10.0'                                  # 32 位能声明的最后系统版本
+ARCH = 'arm64'
+MIN_IOS = '12.0'
 
 
 def rel(p):
@@ -413,6 +413,7 @@ def main():
                                                   'UIInterfaceOrientationPortraitUpsideDown'],
         # 有启动屏配置才会按全面屏原生分辨率运行（否则是放大的兼容模式）
         'UILaunchScreen': {},
+        'CADisableMinimumFrameDurationOnPhone': True,
         'UIAppFonts': ['fonts/YaHei.ttf'],
         # 游戏用 HTTP 访问服务器
         'NSAppTransportSecurity': {'NSAllowsArbitraryLoads': True},
