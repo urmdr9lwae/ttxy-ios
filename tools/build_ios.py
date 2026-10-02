@@ -35,7 +35,8 @@ BUNDLE_ID = os.environ.get('TTAXY_BUNDLE_ID', 'com.twmobile.ttaxy')
 DISPLAY_NAME = os.environ.get('TTAXY_DISPLAY_NAME', '哈基米西游')
 VERSION_NAME = '1.0.8.1'                         # 和 AppDelegate.cpp 的 kVersionName 一致
 BUILD_NUMBER = '52'                              # 和 kPackageVersion 一致
-MIN_IOS = '12.0'
+ARCH = 'armv7'                                   # 32 位。iOS 11 起的手机装不上
+MIN_IOS = '10.0'                                  # 32 位能声明的最后系统版本
 
 
 def rel(p):
@@ -203,7 +204,7 @@ def obj_path(src):
 
 def compile_args(tool, src, kind):
     ext = os.path.splitext(src)[1]
-    base = ['-arch', 'arm64', '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS, '-O2', '-c',
+    base = ['-arch', ARCH, '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS, '-O2', '-c',
             '-fno-objc-arc', '-fmessage-length=0', '-w']
     base += ['-I' + i for i in INCLUDES] + ['-idirafter' + i for i in HEADERMAP] + ['-D' + d for d in DEFINES]
     if ext in ('.m', '.mm'):
@@ -252,17 +253,17 @@ def ar_members(path):
 
 def realigned_lib(tool, src, name):
     """引擎自带的老静态库（2014 年编的 libwebp.a）成员没有 8 字节对齐，新版 ld 直接拒绝。
-    取出 arm64 目标文件（同名成员加序号区分，避免 ar -x 互相覆盖），再用 libtool 重新打包。"""
+    取出 32 位目标文件（同名成员加序号区分，避免 ar -x 互相覆盖），再用 libtool 重新打包。"""
     work = os.path.join(OUT, name + '_fix')
     shutil.rmtree(work, ignore_errors=True)
     os.makedirs(work)
     thin = os.path.join(work, 'thin.a')
-    p = subprocess.run(['xcrun', 'lipo', src, '-thin', 'arm64', '-output', thin], capture_output=True, text=True)
+    p = subprocess.run(['xcrun', 'lipo', src, '-thin', ARCH, '-output', thin], capture_output=True, text=True)
     if p.returncode != 0:          # 不是多架构库，直接用
         shutil.copy2(src, thin)
     objs = []
     for i, (mname, body) in enumerate(ar_members(thin)):
-        if body[:4] != b'\xcf\xfa\xed\xfe':               # 只要 64 位 Mach-O
+        if body[:4] != b'\xce\xfa\xed\xfe':               # 只要 32 位 Mach-O
             continue
         o = os.path.join(work, '%03d_%s' % (i, os.path.basename(mname)))
         open(o, 'wb').write(body)
@@ -352,8 +353,8 @@ def main():
     exe = os.path.join(app_dir, APP)
     webp, n = realigned_lib(tool, os.path.join(ENG, 'cocos2dx', 'platform', 'third_party', 'ios', 'libraries',
                                                'libwebp.a'), 'webp')
-    say('libwebp.a 重新打包：%d 个 arm64 目标文件' % n)
-    args = [tool.cxx, '-arch', 'arm64', '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS,
+    say('libwebp.a 重新打包：%d 个 %s 目标文件' % (n, ARCH))
+    args = [tool.cxx, '-arch', ARCH, '-isysroot', tool.sdk, '-miphoneos-version-min=' + MIN_IOS,
             '-stdlib=libc++', '-ObjC', '-dead_strip', '-o', exe] + app_objs + libs + [webp, '-lz']
     for f in FRAMEWORKS:
         args += ['-framework', f]
@@ -403,7 +404,7 @@ def main():
         'LSRequiresIPhoneOS': True,
         'MinimumOSVersion': MIN_IOS,
         'UIDeviceFamily': [1, 2],
-        'UIRequiredDeviceCapabilities': ['arm64'],
+        'UIRequiredDeviceCapabilities': [ARCH],
         'UIRequiresFullScreen': True,
         'UIStatusBarHidden': True,
         'UIViewControllerBasedStatusBarAppearance': True,
