@@ -11,6 +11,8 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
+extern "C" int iosScreenMaxFPS(void);
+
 namespace {
 
 // 与原版一致的程序包版本（和服务器 version.xml 的 package 比较）
@@ -100,7 +102,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCFileUtils::sharedFileUtils()->setPopupNotify(false);
     // 原版设计分辨率 640x960（竖屏）；Lua（Tw.Controller:loadAsScene）按 min/max 缩放比例自行适配
     view->setDesignResolutionSize(640, 960, kResolutionNoBorder);
-    extern "C" int iosScreenMaxFPS(void);
     int fps = iosScreenMaxFPS();
     if (fps < 30) {
         fps = 60;
