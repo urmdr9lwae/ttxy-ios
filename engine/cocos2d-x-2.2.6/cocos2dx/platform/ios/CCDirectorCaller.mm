@@ -45,7 +45,7 @@ static NSInteger ScreenMaxFPS(void)
     return fps;
 }
 
-int iosScreenMaxFPS(void)
+extern "C" int iosScreenMaxFPS(void)
 {
     return (int)ScreenMaxFPS();
 }
