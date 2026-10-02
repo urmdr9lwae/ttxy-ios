@@ -253,7 +253,7 @@ def ar_members(path):
 
 def realigned_lib(tool, src, name):
     """引擎自带的老静态库（2014 年编的 libwebp.a）成员没有 8 字节对齐，新版 ld 直接拒绝。
-    取出 32 位目标文件（同名成员加序号区分，避免 ar -x 互相覆盖），再用 libtool 重新打包。"""
+    取出 64 位目标文件（同名成员加序号区分，避免 ar -x 互相覆盖），再用 libtool 重新打包。"""
     work = os.path.join(OUT, name + '_fix')
     shutil.rmtree(work, ignore_errors=True)
     os.makedirs(work)
@@ -263,7 +263,7 @@ def realigned_lib(tool, src, name):
         shutil.copy2(src, thin)
     objs = []
     for i, (mname, body) in enumerate(ar_members(thin)):
-        if body[:4] != b'\xce\xfa\xed\xfe':               # 只要 32 位 Mach-O
+        if body[:4] != b'\xcf\xfa\xed\xfe':               # 只要 64 位 Mach-O
             continue
         o = os.path.join(work, '%03d_%s' % (i, os.path.basename(mname)))
         open(o, 'wb').write(body)
