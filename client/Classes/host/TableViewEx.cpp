@@ -482,6 +482,9 @@ void RegisterTableViewEx(lua_State* L) {
     tolua_constant(L, "kCCScrollViewExDirectionHorizontal", kCCScrollViewDirectionHorizontal);
     tolua_constant(L, "kCCScrollViewExDirectionVertical", kCCScrollViewDirectionVertical);
     tolua_constant(L, "kCCScrollViewExDirectionBoth", kCCScrollViewDirectionBoth);
+    // 原程序和引擎自带的 Lua 绑定都有这两个常量。不注册的话，副本列表传入 nil 会报错。
+    tolua_constant(L, "kCCTableViewFillTopDown", kCCTableViewFillTopDown);
+    tolua_constant(L, "kCCTableViewFillBottomUp", kCCTableViewFillBottomUp);
 
     tolua_cclass(L, "CCTableViewProxy", "CCTableViewProxy", "CCObject", nullptr);
     tolua_beginmodule(L, "CCTableViewProxy");
