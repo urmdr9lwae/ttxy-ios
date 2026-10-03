@@ -88,13 +88,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>HYPK030.pvr.ccz</string>
+		<string>HYPK030.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:7e4ce8f95be00eb8ea906c0f03ea5dd6:1/1$</string>
 		<key>textureFileName</key>
-		<string>HYPK030.pvr.ccz</string>
+		<string>HYPK030.png</string>
 	</dict>
 </dict>
 </plist>

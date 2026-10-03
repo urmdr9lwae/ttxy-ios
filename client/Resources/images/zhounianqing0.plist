@@ -257,13 +257,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>zhounianqing0.pvr.ccz</string>
+		<string>zhounianqing0.png</string>
 		<key>size</key>
 		<string>{1024,2048}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:cfc3e62742959083f5a6051dc09aca1f:1/1$</string>
 		<key>textureFileName</key>
-		<string>zhounianqing0.pvr.ccz</string>
+		<string>zhounianqing0.png</string>
 	</dict>
 </dict>
 </plist>

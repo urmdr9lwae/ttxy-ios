@@ -400,13 +400,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>groupChase0.pvr.ccz</string>
+		<string>groupChase0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:ef6e48916e26aca410f52dbfcf555cf0:1/1$</string>
 		<key>textureFileName</key>
-		<string>groupChase0.pvr.ccz</string>
+		<string>groupChase0.png</string>
 	</dict>
 </dict>
 </plist>

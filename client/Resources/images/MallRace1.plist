@@ -101,13 +101,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>MallRace1.pvr.ccz</string>
+		<string>MallRace1.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:5b1436d40d3b4c16dfaa93eb50b33658:2/4$</string>
 		<key>textureFileName</key>
-		<string>MallRace1.pvr.ccz</string>
+		<string>MallRace1.png</string>
 	</dict>
 </dict>
 </plist>

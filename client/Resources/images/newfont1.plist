@@ -673,13 +673,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>newfont1.pvr.ccz</string>
+		<string>newfont1.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:c2d520c480c5221eaec1e470f841436d:2/2$</string>
 		<key>textureFileName</key>
-		<string>newfont1.pvr.ccz</string>
+		<string>newfont1.png</string>
 	</dict>
 </dict>
 </plist>

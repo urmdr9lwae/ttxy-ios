@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>TBswj030.pvr.ccz</string>
+		<string>TBswj030.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:40af169e84b8598860564fcd6cf925f0:1/1$</string>
 		<key>textureFileName</key>
-		<string>TBswj030.pvr.ccz</string>
+		<string>TBswj030.png</string>
 	</dict>
 </dict>
 </plist>

@@ -140,13 +140,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>NMW030.pvr.ccz</string>
+		<string>NMW030.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:7d3526eef39f239b77e51ea344c7f5fa:1/1$</string>
 		<key>textureFileName</key>
-		<string>NMW030.pvr.ccz</string>
+		<string>NMW030.png</string>
 	</dict>
 </dict>
 </plist>

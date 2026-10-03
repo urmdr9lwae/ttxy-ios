@@ -192,13 +192,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Egg0.pvr.ccz</string>
+		<string>Egg0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:d1fbca37796963dfd6479304b0504f25:1/1$</string>
 		<key>textureFileName</key>
-		<string>Egg0.pvr.ccz</string>
+		<string>Egg0.png</string>
 	</dict>
 </dict>
 </plist>

@@ -309,13 +309,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIbzzjtx30.pvr.ccz</string>
+		<string>UIbzzjtx30.png</string>
 		<key>size</key>
 		<string>{512,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:910fdc280b7e32b5d3f3642d91f823ff:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIbzzjtx30.pvr.ccz</string>
+		<string>UIbzzjtx30.png</string>
 	</dict>
 </dict>
 </plist>

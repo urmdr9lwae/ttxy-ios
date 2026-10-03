@@ -218,13 +218,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Mall0.pvr.ccz</string>
+		<string>Mall0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:a908f42ed45412a872107a3141f458a2:1/1$</string>
 		<key>textureFileName</key>
-		<string>Mall0.pvr.ccz</string>
+		<string>Mall0.png</string>
 	</dict>
 </dict>
 </plist>

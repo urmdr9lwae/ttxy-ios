@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIzdks0.pvr.ccz</string>
+		<string>UIzdks0.png</string>
 		<key>size</key>
 		<string>{256,256}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:070de48ef4277709903315f2b9a002c0:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIzdks0.pvr.ccz</string>
+		<string>UIzdks0.png</string>
 	</dict>
 </dict>
 </plist>

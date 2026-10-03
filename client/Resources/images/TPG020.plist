@@ -23,13 +23,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>TPG020.pvr.ccz</string>
+		<string>TPG020.png</string>
 		<key>size</key>
 		<string>{64,64}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:1c19d81f9cfa618a21a75abc1b9375c2:1/1$</string>
 		<key>textureFileName</key>
-		<string>TPG020.pvr.ccz</string>
+		<string>TPG020.png</string>
 	</dict>
 </dict>
 </plist>

@@ -114,13 +114,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>09kaizhan0.pvr.ccz</string>
+		<string>09kaizhan0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:2af450c92c24377ff9ec260f69d253a2:1/1$</string>
 		<key>textureFileName</key>
-		<string>09kaizhan0.pvr.ccz</string>
+		<string>09kaizhan0.png</string>
 	</dict>
 </dict>
 </plist>

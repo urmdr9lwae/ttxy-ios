@@ -179,13 +179,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Lineup0.pvr.ccz</string>
+		<string>Lineup0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:0d9035992999dc435340bba99e785bb4:1/1$</string>
 		<key>textureFileName</key>
-		<string>Lineup0.pvr.ccz</string>
+		<string>Lineup0.png</string>
 	</dict>
 </dict>
 </plist>

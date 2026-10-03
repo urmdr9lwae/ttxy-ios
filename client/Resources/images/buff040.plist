@@ -153,13 +153,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>buff040.pvr.ccz</string>
+		<string>buff040.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:2540fa65715939f958c280444a698322:1/1$</string>
 		<key>textureFileName</key>
-		<string>buff040.pvr.ccz</string>
+		<string>buff040.png</string>
 	</dict>
 </dict>
 </plist>

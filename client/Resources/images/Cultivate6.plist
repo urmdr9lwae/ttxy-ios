@@ -218,13 +218,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Cultivate6.pvr.ccz</string>
+		<string>Cultivate6.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:d1036144800837b5525a8b4e5d0ac074:7/7$</string>
 		<key>textureFileName</key>
-		<string>Cultivate6.pvr.ccz</string>
+		<string>Cultivate6.png</string>
 	</dict>
 </dict>
 </plist>

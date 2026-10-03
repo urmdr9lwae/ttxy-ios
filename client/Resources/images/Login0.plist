@@ -452,13 +452,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Login0.pvr.ccz</string>
+		<string>Login0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:31f33132a9ad0a0a17225a9823e9288c:1/1$</string>
 		<key>textureFileName</key>
-		<string>Login0.pvr.ccz</string>
+		<string>Login0.png</string>
 	</dict>
 </dict>
 </plist>

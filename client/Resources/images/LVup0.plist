@@ -127,13 +127,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>LVup0.pvr.ccz</string>
+		<string>LVup0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:94d75371e3b30cacc4f7a9adc693cb6d:1/1$</string>
 		<key>textureFileName</key>
-		<string>LVup0.pvr.ccz</string>
+		<string>LVup0.png</string>
 	</dict>
 </dict>
 </plist>

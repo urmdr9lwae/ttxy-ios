@@ -387,13 +387,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Fight0.pvr.ccz</string>
+		<string>Fight0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:3811cd9dec570e965de8fa7f784b7eb2:1/1$</string>
 		<key>textureFileName</key>
-		<string>Fight0.pvr.ccz</string>
+		<string>Fight0.png</string>
 	</dict>
 </dict>
 </plist>

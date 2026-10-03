@@ -36,13 +36,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Uichange0.pvr.ccz</string>
+		<string>Uichange0.png</string>
 		<key>size</key>
 		<string>{256,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:33f0307649db49010a195801ff43b99f:1/1$</string>
 		<key>textureFileName</key>
-		<string>Uichange0.pvr.ccz</string>
+		<string>Uichange0.png</string>
 	</dict>
 </dict>
 </plist>

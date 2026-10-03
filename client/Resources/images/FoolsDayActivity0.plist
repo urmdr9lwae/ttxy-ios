@@ -36,13 +36,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>FoolsDayActivity0.pvr.ccz</string>
+		<string>FoolsDayActivity0.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:e00ba1dc6387407bc292d81df1ba5b71:1/2$</string>
 		<key>textureFileName</key>
-		<string>FoolsDayActivity0.pvr.ccz</string>
+		<string>FoolsDayActivity0.png</string>
 	</dict>
 </dict>
 </plist>

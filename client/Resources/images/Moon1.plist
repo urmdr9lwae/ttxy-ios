@@ -75,13 +75,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Moon1.pvr.ccz</string>
+		<string>Moon1.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:1d9cec82da6c6d7e09fbb4604e385e09:2/3$</string>
 		<key>textureFileName</key>
-		<string>Moon1.pvr.ccz</string>
+		<string>Moon1.png</string>
 	</dict>
 </dict>
 </plist>

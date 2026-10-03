@@ -946,13 +946,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Equip0.pvr.ccz</string>
+		<string>Equip0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:43c7fb658d31658c5dfd122edcfb7ed4:1/3$</string>
 		<key>textureFileName</key>
-		<string>Equip0.pvr.ccz</string>
+		<string>Equip0.png</string>
 	</dict>
 </dict>
 </plist>

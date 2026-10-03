@@ -49,13 +49,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>TreasureRoom1.pvr.ccz</string>
+		<string>TreasureRoom1.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:768cd29555a2489709a4a5fcf9c526ce:2/2$</string>
 		<key>textureFileName</key>
-		<string>TreasureRoom1.pvr.ccz</string>
+		<string>TreasureRoom1.png</string>
 	</dict>
 </dict>
 </plist>

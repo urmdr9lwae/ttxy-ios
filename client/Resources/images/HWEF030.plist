@@ -127,13 +127,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>HWEF030.pvr.ccz</string>
+		<string>HWEF030.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:6b516f9988b251e22b4d05c8a743be02:1/1$</string>
 		<key>textureFileName</key>
-		<string>HWEF030.pvr.ccz</string>
+		<string>HWEF030.png</string>
 	</dict>
 </dict>
 </plist>

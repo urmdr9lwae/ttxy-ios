@@ -49,13 +49,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIts0.pvr.ccz</string>
+		<string>UIts0.png</string>
 		<key>size</key>
 		<string>{512,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:6fa88dc0b110a16c3f85a4a374e639ac:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIts0.pvr.ccz</string>
+		<string>UIts0.png</string>
 	</dict>
 </dict>
 </plist>

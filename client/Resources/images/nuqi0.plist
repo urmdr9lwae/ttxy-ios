@@ -140,13 +140,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>nuqi0.pvr.ccz</string>
+		<string>nuqi0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:4fbe6567180f1eb5bd3541dc73097e6d:1/1$</string>
 		<key>textureFileName</key>
-		<string>nuqi0.pvr.ccz</string>
+		<string>nuqi0.png</string>
 	</dict>
 </dict>
 </plist>

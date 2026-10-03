@@ -2051,13 +2051,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>font0.pvr.ccz</string>
+		<string>font0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:bf21e93d8ca872ecbc05994d04293d51:1/1$</string>
 		<key>textureFileName</key>
-		<string>font0.pvr.ccz</string>
+		<string>font0.png</string>
 	</dict>
 </dict>
 </plist>

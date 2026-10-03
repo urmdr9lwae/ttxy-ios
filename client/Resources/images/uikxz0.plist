@@ -205,13 +205,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>uikxz0.pvr.ccz</string>
+		<string>uikxz0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:a0d20e91687f9869490de5b81335d1fd:1/1$</string>
 		<key>textureFileName</key>
-		<string>uikxz0.pvr.ccz</string>
+		<string>uikxz0.png</string>
 	</dict>
 </dict>
 </plist>

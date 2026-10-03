@@ -205,13 +205,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Thanksgiving0.pvr.ccz</string>
+		<string>Thanksgiving0.png</string>
 		<key>size</key>
 		<string>{512,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:f296c9fbe83cbc0287e59afd4ca71524:1/1$</string>
 		<key>textureFileName</key>
-		<string>Thanksgiving0.pvr.ccz</string>
+		<string>Thanksgiving0.png</string>
 	</dict>
 </dict>
 </plist>

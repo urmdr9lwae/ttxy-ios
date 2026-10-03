@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>FireWorks1.pvr.ccz</string>
+		<string>FireWorks1.png</string>
 		<key>size</key>
 		<string>{128,256}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:9b2b53ba8b5494171eced7c2f4bdbb2e:2/2$</string>
 		<key>textureFileName</key>
-		<string>FireWorks1.pvr.ccz</string>
+		<string>FireWorks1.png</string>
 	</dict>
 </dict>
 </plist>

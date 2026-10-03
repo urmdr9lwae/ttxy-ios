@@ -49,13 +49,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Effect0.pvr.ccz</string>
+		<string>Effect0.png</string>
 		<key>size</key>
 		<string>{256,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:ff0849c56874848c2c3c6eac0079123d:1/1$</string>
 		<key>textureFileName</key>
-		<string>Effect0.pvr.ccz</string>
+		<string>Effect0.png</string>
 	</dict>
 </dict>
 </plist>

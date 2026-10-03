@@ -75,13 +75,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Rename0.pvr.ccz</string>
+		<string>Rename0.png</string>
 		<key>size</key>
 		<string>{128,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:afc1a9512650ba24b1839f8ebc5b8d69:1/1$</string>
 		<key>textureFileName</key>
-		<string>Rename0.pvr.ccz</string>
+		<string>Rename0.png</string>
 	</dict>
 </dict>
 </plist>

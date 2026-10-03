@@ -166,13 +166,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Daily0.pvr.ccz</string>
+		<string>Daily0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:ffb55551e68915c3e08d829a70206921:1/2$</string>
 		<key>textureFileName</key>
-		<string>Daily0.pvr.ccz</string>
+		<string>Daily0.png</string>
 	</dict>
 </dict>
 </plist>

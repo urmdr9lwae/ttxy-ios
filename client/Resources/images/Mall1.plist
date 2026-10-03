@@ -75,13 +75,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Mall1.pvr.ccz</string>
+		<string>Mall1.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:bdf95dd06f9c193a00e9d90da3bf5dc5:2/3$</string>
 		<key>textureFileName</key>
-		<string>Mall1.pvr.ccz</string>
+		<string>Mall1.png</string>
 	</dict>
 </dict>
 </plist>

@@ -283,13 +283,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>hit010.pvr.ccz</string>
+		<string>hit010.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:c3a3977f9fe327e24ceea8fae48bfb01:1/1$</string>
 		<key>textureFileName</key>
-		<string>hit010.pvr.ccz</string>
+		<string>hit010.png</string>
 	</dict>
 </dict>
 </plist>

@@ -23,13 +23,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>25AKals0.pvr.ccz</string>
+		<string>25AKals0.png</string>
 		<key>size</key>
 		<string>{128,128}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:080c505606bb00867e77528307608259:1/1$</string>
 		<key>textureFileName</key>
-		<string>25AKals0.pvr.ccz</string>
+		<string>25AKals0.png</string>
 	</dict>
 </dict>
 </plist>

@@ -569,6 +569,10 @@ void CCSprite::draw(void)
 
     CCAssert(!m_pobBatchNode, "If CCSprite is being rendered by CCSpriteBatchNode, CCSprite#draw SHOULD NOT be called");
 
+    // 图集没挂上时纹理是空的。这里直接画会空指针闪退，先跳过这一张。
+    if (!m_pobTexture)
+        return;
+
     CC_NODE_DRAW_SETUP();
 
     ccGLBlendFunc( m_sBlendFunc.src, m_sBlendFunc.dst );

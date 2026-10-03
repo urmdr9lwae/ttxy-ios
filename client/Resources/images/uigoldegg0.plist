@@ -231,13 +231,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>uigoldegg0.pvr.ccz</string>
+		<string>uigoldegg0.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:7b6797a28c8f7d91e3e808ba22fd810e:1/1$</string>
 		<key>textureFileName</key>
-		<string>uigoldegg0.pvr.ccz</string>
+		<string>uigoldegg0.png</string>
 	</dict>
 </dict>
 </plist>

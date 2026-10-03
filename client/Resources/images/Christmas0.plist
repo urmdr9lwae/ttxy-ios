@@ -309,13 +309,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Christmas0.pvr.ccz</string>
+		<string>Christmas0.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:9de597ee8c346323c3dcb58a537ba272:1/1$</string>
 		<key>textureFileName</key>
-		<string>Christmas0.pvr.ccz</string>
+		<string>Christmas0.png</string>
 	</dict>
 </dict>
 </plist>

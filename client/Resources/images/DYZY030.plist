@@ -101,13 +101,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>DYZY030.pvr.ccz</string>
+		<string>DYZY030.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:539b05676f505b51fd2590f272a4f83d:1/1$</string>
 		<key>textureFileName</key>
-		<string>DYZY030.pvr.ccz</string>
+		<string>DYZY030.png</string>
 	</dict>
 </dict>
 </plist>

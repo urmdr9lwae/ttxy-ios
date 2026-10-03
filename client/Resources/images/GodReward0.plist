@@ -179,13 +179,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>GodReward0.pvr.ccz</string>
+		<string>GodReward0.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:0f74cd14aac34743b5dcc6cd034aafda:1/1$</string>
 		<key>textureFileName</key>
-		<string>GodReward0.pvr.ccz</string>
+		<string>GodReward0.png</string>
 	</dict>
 </dict>
 </plist>

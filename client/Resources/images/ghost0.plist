@@ -257,13 +257,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>ghost0.pvr.ccz</string>
+		<string>ghost0.png</string>
 		<key>size</key>
 		<string>{512,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:f14d792d05d652f25a395ff9dd83788e:1/1$</string>
 		<key>textureFileName</key>
-		<string>ghost0.pvr.ccz</string>
+		<string>ghost0.png</string>
 	</dict>
 </dict>
 </plist>

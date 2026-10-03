@@ -309,13 +309,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>uipromotion0.pvr.ccz</string>
+		<string>uipromotion0.png</string>
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:dcecde752b4a9052c25b0ae77c86a980:1/1$</string>
 		<key>textureFileName</key>
-		<string>uipromotion0.pvr.ccz</string>
+		<string>uipromotion0.png</string>
 	</dict>
 </dict>
 </plist>

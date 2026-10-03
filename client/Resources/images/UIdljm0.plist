@@ -231,13 +231,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIdljm0.pvr.ccz</string>
+		<string>UIdljm0.png</string>
 		<key>size</key>
 		<string>{2048,2048}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:c9d218b4441eea6ddc693818398f8f3c:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIdljm0.pvr.ccz</string>
+		<string>UIdljm0.png</string>
 	</dict>
 </dict>
 </plist>

@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>Swap0.pvr.ccz</string>
+		<string>Swap0.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:b227f90eb2ff9edb631067a662cb9880:1/2$</string>
 		<key>textureFileName</key>
-		<string>Swap0.pvr.ccz</string>
+		<string>Swap0.png</string>
 	</dict>
 </dict>
 </plist>

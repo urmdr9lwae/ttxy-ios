@@ -179,13 +179,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>ESZZ010.pvr.ccz</string>
+		<string>ESZZ010.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:958361928cebe0455e7250edb6487f17:1/1$</string>
 		<key>textureFileName</key>
-		<string>ESZZ010.pvr.ccz</string>
+		<string>ESZZ010.png</string>
 	</dict>
 </dict>
 </plist>

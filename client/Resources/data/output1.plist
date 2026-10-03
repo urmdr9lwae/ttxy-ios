@@ -127,13 +127,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>output1.pvr.ccz</string>
+		<string>output1.png</string>
 		<key>size</key>
 		<string>{512,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:e22db2e09ac2996a04621f94f876f9ea:2/4$</string>
 		<key>textureFileName</key>
-		<string>output1.pvr.ccz</string>
+		<string>output1.png</string>
 	</dict>
 </dict>
 </plist>

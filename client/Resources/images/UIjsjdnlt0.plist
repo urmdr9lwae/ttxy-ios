@@ -75,13 +75,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIjsjdnlt0.pvr.ccz</string>
+		<string>UIjsjdnlt0.png</string>
 		<key>size</key>
 		<string>{256,512}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:fe231a304c6983221ec72afc71d6f591:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIjsjdnlt0.pvr.ccz</string>
+		<string>UIjsjdnlt0.png</string>
 	</dict>
 </dict>
 </plist>

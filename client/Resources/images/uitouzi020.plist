@@ -36,13 +36,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>uitouzi020.pvr.ccz</string>
+		<string>uitouzi020.png</string>
 		<key>size</key>
 		<string>{128,128}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:03442008ad84924d57b595c1767cfd31:1/1$</string>
 		<key>textureFileName</key>
-		<string>uitouzi020.pvr.ccz</string>
+		<string>uitouzi020.png</string>
 	</dict>
 </dict>
 </plist>

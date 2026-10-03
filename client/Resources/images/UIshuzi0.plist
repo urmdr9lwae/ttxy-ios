@@ -36,13 +36,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>UIshuzi0.pvr.ccz</string>
+		<string>UIshuzi0.png</string>
 		<key>size</key>
 		<string>{64,64}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:a3cfd03e2fa2342e850c1e65c5bb6505:1/1$</string>
 		<key>textureFileName</key>
-		<string>UIshuzi0.pvr.ccz</string>
+		<string>UIshuzi0.png</string>
 	</dict>
 </dict>
 </plist>

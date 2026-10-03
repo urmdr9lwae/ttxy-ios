@@ -62,13 +62,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>MiddleCard13.pvr.ccz</string>
+		<string>MiddleCard13.png</string>
 		<key>size</key>
 		<string>{256,256}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:6e00897d2f473e201cb1c7ba2811ab10:14/106$</string>
 		<key>textureFileName</key>
-		<string>MiddleCard13.pvr.ccz</string>
+		<string>MiddleCard13.png</string>
 	</dict>
 </dict>
 </plist>

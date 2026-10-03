@@ -23,13 +23,13 @@
 		<key>format</key>
 		<integer>2</integer>
 		<key>realTextureFileName</key>
-		<string>BigCard190.pvr.ccz</string>
+		<string>BigCard190.png</string>
 		<key>size</key>
 		<string>{256,256}</string>
 		<key>smartupdate</key>
 		<string>$TexturePacker:SmartUpdate:c28d4b5e6da773b091ebe6b30633b72c:191/402$</string>
 		<key>textureFileName</key>
-		<string>BigCard190.pvr.ccz</string>
+		<string>BigCard190.png</string>
 	</dict>
 </dict>
 </plist>
