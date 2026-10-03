@@ -100,9 +100,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setOpenGLView(view);
     director->setProjection(kCCDirectorProjection2D);
     CCFileUtils::sharedFileUtils()->setPopupNotify(false);
-    // 原版设计分辨率 640x960。按屏幕宽度适配后，高屏的设计高度会跟着变长，
-    // Lua（Tw.Controller:loadAsScene）里 scaleMin/scaleMax 就是 1，不会再把画面缩到左下角。
-    view->setDesignResolutionSize(640, 960, kResolutionFixedWidth);
+    // 原版程序就是 640x960、铺满屏幕不留黑边（kResolutionNoBorder）。
+    view->setDesignResolutionSize(640, 960, kResolutionNoBorder);
     int fps = iosScreenMaxFPS();
     if (fps < 30) {
         fps = 60;
