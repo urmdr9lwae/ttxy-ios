@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>data/Activity/exchangeBg2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{471,447}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{471,447}}</string>
+			<key>sourceSize</key>
+			<string>{471,447}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>Activity1.pvr.ccz</string>
+		<key>size</key>
+		<string>{512,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:db65d929fdb88a604333e811f0d4cca6:2/2$</string>
+		<key>textureFileName</key>
+		<string>Activity1.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

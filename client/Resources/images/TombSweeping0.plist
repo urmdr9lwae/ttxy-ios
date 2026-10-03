@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/TombSweeping/imgWorship.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,451},{79,37}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{79,37}}</string>
+			<key>sourceSize</key>
+			<string>{79,37}</string>
+		</dict>
+		<key>images/TombSweeping/sweepBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{471,447}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{471,447}}</string>
+			<key>sourceSize</key>
+			<string>{471,447}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>TombSweeping0.pvr.ccz</string>
+		<key>size</key>
+		<string>{512,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:0965a3f5b4e0edcc0ee5e90e56a8a67a:1/2$</string>
+		<key>textureFileName</key>
+		<string>TombSweeping0.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

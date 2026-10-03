@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/DFgy01/DFgy017.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{240,202}}</string>
+			<key>offset</key>
+			<string>{5,-21}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{13,48},{240,202}}</string>
+			<key>sourceSize</key>
+			<string>{256,256}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>DFgy010.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:f2e354b2b7565969fba52c0fd52c2729:1/1$</string>
+		<key>textureFileName</key>
+		<string>DFgy010.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

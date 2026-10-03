@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/UIZH03/010.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{50,90}}</string>
+			<key>offset</key>
+			<string>{0,-2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,7},{50,90}}</string>
+			<key>sourceSize</key>
+			<string>{50,100}</string>
+		</dict>
+		<key>images/Effect/UIZH03/0102.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{54,2},{43,78}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{43,78}}</string>
+			<key>sourceSize</key>
+			<string>{43,78}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>UIZH030.pvr.ccz</string>
+		<key>size</key>
+		<string>{128,128}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:ed228628eebb6f36ce18f72e5f706436:1/1$</string>
+		<key>textureFileName</key>
+		<string>UIZH030.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

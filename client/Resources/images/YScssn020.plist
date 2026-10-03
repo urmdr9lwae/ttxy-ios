@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/YScssn02/YScssn02.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{115,116}}</string>
+			<key>offset</key>
+			<string>{2,3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{9,1},{115,116}}</string>
+			<key>sourceSize</key>
+			<string>{129,124}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>YScssn020.pvr.ccz</string>
+		<key>size</key>
+		<string>{128,128}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:0c63de1b485875b97f87930c2aebf054:1/1$</string>
+		<key>textureFileName</key>
+		<string>YScssn020.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

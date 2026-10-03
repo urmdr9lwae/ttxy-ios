@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/WeChat/btnBegin.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,812},{131,131}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{131,131}}</string>
+			<key>sourceSize</key>
+			<string>{131,131}</string>
+		</dict>
+		<key>images/WeChat/desrBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{588,256}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{588,256}}</string>
+			<key>sourceSize</key>
+			<string>{588,256}</string>
+		</dict>
+		<key>images/WeChat/turnTableBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,260},{550,550}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{550,550}}</string>
+			<key>sourceSize</key>
+			<string>{550,550}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>WeChat1.pvr.ccz</string>
+		<key>size</key>
+		<string>{1024,1024}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:f9e11c1ff13dc057fdc84e1ac85648bc:2/3$</string>
+		<key>textureFileName</key>
+		<string>WeChat1.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Daily/bg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
+		</dict>
+		<key>images/Daily/imgBigTreaOpened.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,772},{105,107}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{105,107}}</string>
+			<key>sourceSize</key>
+			<string>{105,107}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>Daily1.pvr.ccz</string>
+		<key>size</key>
+		<string>{1024,1024}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:ffb55551e68915c3e08d829a70206921:2/2$</string>
+		<key>textureFileName</key>
+		<string>Daily1.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

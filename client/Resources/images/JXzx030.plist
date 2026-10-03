@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/JXzx03/JXzx031.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,132},{125,125}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{125,125}}</string>
+			<key>sourceSize</key>
+			<string>{125,125}</string>
+		</dict>
+		<key>images/Effect/JXzx03/JXzx032.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{128,128}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{128,128}}</string>
+			<key>sourceSize</key>
+			<string>{128,128}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>JXzx030.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:e063eb6420129566052b360a3fa12dac:1/1$</string>
+		<key>textureFileName</key>
+		<string>JXzx030.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

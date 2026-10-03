@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/02duoqushengli/sl_0003.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{124,124}}</string>
+			<key>offset</key>
+			<string>{1,-1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{14,14},{124,124}}</string>
+			<key>sourceSize</key>
+			<string>{150,150}</string>
+		</dict>
+		<key>images/Effect/02duoqushengli/sl_0004.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,128},{80,80}}</string>
+			<key>offset</key>
+			<string>{-1,1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{10,10},{80,80}}</string>
+			<key>sourceSize</key>
+			<string>{102,102}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>02duoqushengli0.pvr.ccz</string>
+		<key>size</key>
+		<string>{128,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:6c6e571da0b74fd6285ecfe3eeea5ad1:1/1$</string>
+		<key>textureFileName</key>
+		<string>02duoqushengli0.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

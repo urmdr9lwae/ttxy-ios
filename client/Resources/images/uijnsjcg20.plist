@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/uijnsjcg2/uijnsjcg21.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{212,257}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{212,257}}</string>
+			<key>sourceSize</key>
+			<string>{212,257}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>uijnsjcg20.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:d96d8a2eebf6d7833f7cffa59f06e12a:1/1$</string>
+		<key>textureFileName</key>
+		<string>uijnsjcg20.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

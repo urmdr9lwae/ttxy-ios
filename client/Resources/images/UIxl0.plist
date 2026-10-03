@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/UIxl/uixl2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{206,236}}</string>
+			<key>offset</key>
+			<string>{0,-10}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{79,65},{206,236}}</string>
+			<key>sourceSize</key>
+			<string>{364,346}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>UIxl0.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:706209622b51693d9e2291f6ea34bbf9:1/1$</string>
+		<key>textureFileName</key>
+		<string>UIxl0.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

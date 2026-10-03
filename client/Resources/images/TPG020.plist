@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/TPG02/1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{60,60}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{60,60}}</string>
+			<key>sourceSize</key>
+			<string>{60,60}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>TPG020.pvr.ccz</string>
+		<key>size</key>
+		<string>{64,64}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:1c19d81f9cfa618a21a75abc1b9375c2:1/1$</string>
+		<key>textureFileName</key>
+		<string>TPG020.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

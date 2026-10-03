@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/GJ02/1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{90,250}}</string>
+			<key>offset</key>
+			<string>{-1,-2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{71,4},{90,250}}</string>
+			<key>sourceSize</key>
+			<string>{234,254}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>GJ020.pvr.ccz</string>
+		<key>size</key>
+		<string>{128,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:3b81744e40bf48ffaa119b8267d4bef7:1/1$</string>
+		<key>textureFileName</key>
+		<string>GJ020.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

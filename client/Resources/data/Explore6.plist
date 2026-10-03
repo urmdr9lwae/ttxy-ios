@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>data/Explore/place3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{139,128}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{139,128}}</string>
+			<key>sourceSize</key>
+			<string>{139,128}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>Explore6.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:3a020c8538c10bfbb7b28f4ad39aacf0:7/9$</string>
+		<key>textureFileName</key>
+		<string>Explore6.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

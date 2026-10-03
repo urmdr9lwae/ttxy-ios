@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/Uinew/uibxtx2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{192,174}}</string>
+			<key>offset</key>
+			<string>{7,2}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{43,4},{192,174}}</string>
+			<key>sourceSize</key>
+			<string>{264,186}</string>
+		</dict>
+		<key>images/Effect/Uinew/uibxtx21.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{196,2},{36,44}}</string>
+			<key>offset</key>
+			<string>{6,-3}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{17,10},{36,44}}</string>
+			<key>sourceSize</key>
+			<string>{58,58}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>Uinew0.pvr.ccz</string>
+		<key>size</key>
+		<string>{256,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:95122ac3ab923f51b8f95d0e7885cb4c:1/1$</string>
+		<key>textureFileName</key>
+		<string>Uinew0.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>
