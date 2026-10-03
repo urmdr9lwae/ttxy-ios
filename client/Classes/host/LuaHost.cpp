@@ -219,6 +219,22 @@ bool LuaHostStart(const EnvInfo& env) {
         return false;
     }
     Log("HostAdapter 已加载，调用 OnSysStartup");
+    // 高屏上 design/frame 比例不是 1，原脚本会把整层缩向左下角。
+    // 分辨率仍是 640x960 铺满，这里只把这一层缩放改回 1。
+    RunString(L, R"LUA(
+local mod = package.loaded["Tw.Controller"]
+if mod and mod.loadAsScene then
+  local rawLoad = mod.loadAsScene
+  function mod:loadAsScene(ccb, owner)
+    local scene = rawLoad(self, ccb, owner)
+    if scene then
+      local root = scene:getChildByTag(999)
+      if root then root:setScale(1) end
+    end
+    return scene
+  end
+end
+)LUA", "=scene_scale");
     const bool ok = CallGlobal("OnSysStartup");
     Log("OnSysStartup 返回 %d", ok ? 1 : 0);
     return ok;
