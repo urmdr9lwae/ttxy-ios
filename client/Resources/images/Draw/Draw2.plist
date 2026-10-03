@@ -4,18 +4,18 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Draw/arrow.png</key>
+		<key>images/Draw/turntableBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{160,225}}</string>
+			<string>{{2,2},{512,768}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{160,225}}</string>
+			<string>{{0,0},{512,768}}</string>
 			<key>sourceSize</key>
-			<string>{160,225}</string>
+			<string>{512,768}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -25,9 +25,9 @@
 		<key>realTextureFileName</key>
 		<string>Draw2.png</string>
 		<key>size</key>
-		<string>{256,256}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:657111e6ab3a98cc48c177e67bf1a696:3/3$</string>
+		<string>$TexturePacker:SmartUpdate:9bbbed961118d89d17234ba9cfc6e2ca:3/3$</string>
 		<key>textureFileName</key>
 		<string>Draw2.png</string>
 	</dict>

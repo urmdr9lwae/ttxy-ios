@@ -7,7 +7,7 @@
 		<key>data/bg/3_1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{644,644},{640,170}}</string>
+			<string>{{650,650},{640,170}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -20,7 +20,7 @@
 		<key>data/bg/3_2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{640,960}}</string>
+			<string>{{4,4},{640,960}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -33,7 +33,7 @@
 		<key>data/bg/3_3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,644},{640,430}}</string>
+			<string>{{4,650},{640,430}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -53,7 +53,7 @@
 		<key>size</key>
 		<string>{1024,2048}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:73ea4c7f38cb8d29b405f4ba60b7b63c:1/1$</string>
+		<string>$TexturePacker:SmartUpdate:1be1baad6a193570d3f7ae7e228b322c:1/1$</string>
 		<key>textureFileName</key>
 		<string>bg_1.png</string>
 	</dict>

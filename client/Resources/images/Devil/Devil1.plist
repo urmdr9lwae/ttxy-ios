@@ -7,7 +7,7 @@
 		<key>images/Devil/btnAttNormal.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{201,2},{166,165}}</string>
+			<string>{{805,2},{166,165}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -20,7 +20,7 @@
 		<key>images/Devil/btnAttSelect.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,46},{166,165}}</string>
+			<string>{{606,46},{166,165}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -33,7 +33,7 @@
 		<key>images/Devil/btnDrawNormal.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{170,169},{150,150}}</string>
+			<string>{{774,169},{150,150}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -46,7 +46,7 @@
 		<key>images/Devil/btnDrawSelect.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,213},{150,150}}</string>
+			<string>{{606,213},{150,150}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -59,7 +59,7 @@
 		<key>images/Devil/btnReinLock.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{154,321},{150,150}}</string>
+			<string>{{758,321},{150,150}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -72,7 +72,7 @@
 		<key>images/Devil/btnReinNormal.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,365},{150,150}}</string>
+			<string>{{606,365},{150,150}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -85,7 +85,7 @@
 		<key>images/Devil/btnReinSelect.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{154,473},{150,150}}</string>
+			<string>{{758,473},{150,150}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -98,7 +98,7 @@
 		<key>images/Devil/damageRankReward.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{197,42}}</string>
+			<string>{{606,2},{197,42}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -111,11 +111,11 @@
 		<key>images/Devil/featReward.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{369,2},{113,30}}</string>
+			<string>{{973,2},{113,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{113,30}}</string>
 			<key>sourceSize</key>
@@ -124,7 +124,7 @@
 		<key>images/Devil/progress_bg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{484,2},{510,15}}</string>
+			<string>{{1005,2},{510,15}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -137,7 +137,7 @@
 		<key>images/Devil/rankItemBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{369,34},{553,80}}</string>
+			<string>{{910,321},{553,80}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -147,6 +147,19 @@
 			<key>sourceSize</key>
 			<string>{553,80}</string>
 		</dict>
+		<key>images/Devil/rewardBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{602,564}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{602,564}}</string>
+			<key>sourceSize</key>
+			<string>{602,564}</string>
+		</dict>
 	</dict>
 	<key>metadata</key>
 	<dict>
@@ -155,9 +168,9 @@
 		<key>realTextureFileName</key>
 		<string>Devil1.png</string>
 		<key>size</key>
-		<string>{512,1024}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:dd9c6679a6abfe19a44e8dcc92546966:2/2$</string>
+		<string>$TexturePacker:SmartUpdate:bc4161ebfc5416d9adb0a473f8684af0:2/5$</string>
 		<key>textureFileName</key>
 		<string>Devil1.png</string>
 	</dict>

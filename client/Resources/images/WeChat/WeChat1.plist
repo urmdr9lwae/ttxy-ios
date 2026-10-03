@@ -4,10 +4,36 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/WeChat/turnTable.png</key>
+		<key>images/WeChat/btnBegin.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{550,550}}</string>
+			<string>{{2,812},{131,131}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{131,131}}</string>
+			<key>sourceSize</key>
+			<string>{131,131}</string>
+		</dict>
+		<key>images/WeChat/desrBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{588,256}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{588,256}}</string>
+			<key>sourceSize</key>
+			<string>{588,256}</string>
+		</dict>
+		<key>images/WeChat/turnTableBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,260},{550,550}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -27,7 +53,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:bd616bbf1d5cec2685d2eb56de3c9913:2/3$</string>
+		<string>$TexturePacker:SmartUpdate:f9e11c1ff13dc057fdc84e1ac85648bc:2/3$</string>
 		<key>textureFileName</key>
 		<string>WeChat1.png</string>
 	</dict>

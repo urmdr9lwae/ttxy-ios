@@ -4,36 +4,10 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/WeChat/btnBegin.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{41,812},{131,131}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{131,131}}</string>
-			<key>sourceSize</key>
-			<string>{131,131}</string>
-		</dict>
-		<key>images/WeChat/desrBg.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,2},{588,256}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{588,256}}</string>
-			<key>sourceSize</key>
-			<string>{588,256}</string>
-		</dict>
 		<key>images/WeChat/fntLuckyDraw.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{592,369},{368,54}}</string>
+			<string>{{350,961},{368,54}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -46,11 +20,11 @@
 		<key>images/WeChat/fox.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{592,2},{323,422}}</string>
+			<string>{{516,537},{323,422}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{323,422}}</string>
 			<key>sourceSize</key>
@@ -59,11 +33,11 @@
 		<key>images/WeChat/mouse.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{41,945},{71,95}}</string>
+			<string>{{2,851},{71,95}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{71,95}}</string>
 			<key>sourceSize</key>
@@ -72,11 +46,11 @@
 		<key>images/WeChat/mouseHead.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{962,369},{346,57}}</string>
+			<string>{{2,961},{346,57}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{346,57}}</string>
 			<key>sourceSize</key>
@@ -85,7 +59,7 @@
 		<key>images/WeChat/share.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{554,407},{67,35}}</string>
+			<string>{{75,851},{67,35}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -98,7 +72,7 @@
 		<key>images/WeChat/share2WeChat.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{591,425},{148,37}}</string>
+			<string>{{720,961},{148,37}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -111,11 +85,11 @@
 		<key>images/WeChat/share2facebook.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,812},{148,37}}</string>
+			<string>{{870,537},{148,37}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{148,37}}</string>
 			<key>sourceSize</key>
@@ -124,11 +98,11 @@
 		<key>images/WeChat/shareJade.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{592,327},{398,40}}</string>
+			<string>{{870,614},{398,40}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{398,40}}</string>
 			<key>sourceSize</key>
@@ -137,11 +111,11 @@
 		<key>images/WeChat/shareReward.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{554,260},{145,36}}</string>
+			<string>{{870,576},{145,36}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{145,36}}</string>
 			<key>sourceSize</key>
@@ -150,28 +124,41 @@
 		<key>images/WeChat/titleBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{554,476},{512,77}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{512,77}}</string>
-			<key>sourceSize</key>
-			<string>{512,77}</string>
-		</dict>
-		<key>images/WeChat/turnTableBg.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,260},{550,550}}</string>
+			<string>{{2,772},{512,77}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{550,550}}</string>
+			<string>{{0,0},{512,77}}</string>
 			<key>sourceSize</key>
-			<string>{550,550}</string>
+			<string>{512,77}</string>
+		</dict>
+		<key>images/WeChat/turnTableShade.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{516,2},{488,533}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{488,533}}</string>
+			<key>sourceSize</key>
+			<string>{488,533}</string>
+		</dict>
+		<key>images/WeChat/weChatBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -183,7 +170,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:bd616bbf1d5cec2685d2eb56de3c9913:1/3$</string>
+		<string>$TexturePacker:SmartUpdate:f9e11c1ff13dc057fdc84e1ac85648bc:1/3$</string>
 		<key>textureFileName</key>
 		<string>WeChat0.png</string>
 	</dict>

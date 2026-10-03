@@ -4,70 +4,18 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Draw/btnDrawNormal.png</key>
+		<key>images/Draw/welcome.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,312},{187,79}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{187,79}}</string>
-			<key>sourceSize</key>
-			<string>{187,79}</string>
-		</dict>
-		<key>images/Draw/btnDrawStartNormal.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{83,312},{163,164}}</string>
+			<string>{{2,2},{512,768}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{163,164}}</string>
+			<string>{{0,0},{512,768}}</string>
 			<key>sourceSize</key>
-			<string>{163,164}</string>
-		</dict>
-		<key>images/Draw/btnDrawStartSelect.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{248,312},{163,164}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{163,164}}</string>
-			<key>sourceSize</key>
-			<string>{163,164}</string>
-		</dict>
-		<key>images/Draw/rewardIpad.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,2},{351,308}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{351,308}}</string>
-			<key>sourceSize</key>
-			<string>{351,308}</string>
-		</dict>
-		<key>images/Draw/rouleIpad.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{83,478},{258,28}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{258,28}}</string>
-			<key>sourceSize</key>
-			<string>{258,28}</string>
+			<string>{512,768}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -77,9 +25,9 @@
 		<key>realTextureFileName</key>
 		<string>Draw1.png</string>
 		<key>size</key>
-		<string>{512,512}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:657111e6ab3a98cc48c177e67bf1a696:2/3$</string>
+		<string>$TexturePacker:SmartUpdate:9bbbed961118d89d17234ba9cfc6e2ca:2/3$</string>
 		<key>textureFileName</key>
 		<string>Draw1.png</string>
 	</dict>

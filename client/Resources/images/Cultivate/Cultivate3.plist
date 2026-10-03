@@ -4,179 +4,10 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Cultivate/P_RATE_HURT_CRIT.png</key>
+		<key>images/Cultivate/RATE_UNHARM_M_UP.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{148,406},{108,69}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{108,69}}</string>
-			<key>sourceSize</key>
-			<string>{108,69}</string>
-		</dict>
-		<key>images/Cultivate/P_RATE_UNHARM_M.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{258,406},{108,69}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{108,69}}</string>
-			<key>sourceSize</key>
-			<string>{108,69}</string>
-		</dict>
-		<key>images/Cultivate/P_RATE_UNHARM_P.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{368,406},{108,69}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{108,69}}</string>
-			<key>sourceSize</key>
-			<string>{108,69}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HARM_M_OFF.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{40,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HARM_P.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{79,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HARM_P_OFF.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{118,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HIT.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{157,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HIT_OFF.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{196,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HURT_CRIT.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{235,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_HURT_CRIT_OFF.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{274,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_UNHARM_M.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{313,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_UNHARM_M_OFF.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{352,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_UNHARM_P.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{391,948},{73,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
-			<key>sourceSize</key>
-			<string>{73,37}</string>
-		</dict>
-		<key>images/Cultivate/RATE_UNHARM_P_DOWN.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{754,516},{281,100}}</string>
+			<string>{{48,609},{281,100}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -186,23 +17,114 @@
 			<key>sourceSize</key>
 			<string>{281,100}</string>
 		</dict>
-		<key>images/Cultivate/RATE_UNHARM_P_OFF.png</key>
+		<key>images/Cultivate/RATE_UNHARM_P_DOWN.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{430,948},{73,37}}</string>
+			<string>{{150,609},{281,100}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{73,37}}</string>
+			<string>{{0,0},{281,100}}</string>
 			<key>sourceSize</key>
-			<string>{73,37}</string>
+			<string>{281,100}</string>
+		</dict>
+		<key>images/Cultivate/RATE_UNHARM_P_UP.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{252,609},{281,100}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{281,100}}</string>
+			<key>sourceSize</key>
+			<string>{281,100}</string>
+		</dict>
+		<key>images/Cultivate/RATE_UNHURT_CRIT_DOWN.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{354,609},{281,100}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{281,100}}</string>
+			<key>sourceSize</key>
+			<string>{281,100}</string>
+		</dict>
+		<key>images/Cultivate/attrAdd.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{573,899},{91,31}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{91,31}}</string>
+			<key>sourceSize</key>
+			<string>{91,31}</string>
+		</dict>
+		<key>images/Cultivate/beibao.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{985,936},{76,37}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{76,37}}</string>
+			<key>sourceSize</key>
+			<string>{76,37}</string>
+		</dict>
+		<key>images/Cultivate/bt_diaoluo.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{691,899},{121,36}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{121,36}}</string>
+			<key>sourceSize</key>
+			<string>{121,36}</string>
+		</dict>
+		<key>images/Cultivate/bt_reset.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{987,865},{69,34}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{69,34}}</string>
+			<key>sourceSize</key>
+			<string>{69,34}</string>
+		</dict>
+		<key>images/Cultivate/bt_resttimes.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{990,367},{115,32}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{115,32}}</string>
+			<key>sourceSize</key>
+			<string>{115,32}</string>
 		</dict>
 		<key>images/Cultivate/bt_skip.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{446,819},{127,35}}</string>
+			<string>{{987,484},{127,35}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -212,196 +134,183 @@
 			<key>sourceSize</key>
 			<string>{127,35}</string>
 		</dict>
-		<key>images/Cultivate/btnClose.png</key>
+		<key>images/Cultivate/bt_tili.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{446,350},{54,115}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{54,115}}</string>
-			<key>sourceSize</key>
-			<string>{54,115}</string>
-		</dict>
-		<key>images/Cultivate/chongxiuCost.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,350},{125,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{125,37}}</string>
-			<key>sourceSize</key>
-			<string>{125,37}</string>
-		</dict>
-		<key>images/Cultivate/chongxiuFree.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{41,350},{125,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{125,37}}</string>
-			<key>sourceSize</key>
-			<string>{125,37}</string>
-		</dict>
-		<key>images/Cultivate/chongxiukapai.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{483,819},{202,40}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{202,40}}</string>
-			<key>sourceSize</key>
-			<string>{202,40}</string>
-		</dict>
-		<key>images/Cultivate/dj_chenggong.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{580,477},{340,131}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{340,131}}</string>
-			<key>sourceSize</key>
-			<string>{340,131}</string>
-		</dict>
-		<key>images/Cultivate/exchangeBg.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{564,2},{473,447}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{473,447}}</string>
-			<key>sourceSize</key>
-			<string>{473,447}</string>
-		</dict>
-		<key>images/Cultivate/fb_baita.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{698,819},{132,200}}</string>
+			<string>{{170,899},{115,32}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{132,200}}</string>
+			<string>{{0,0},{115,32}}</string>
 			<key>sourceSize</key>
-			<string>{132,200}</string>
+			<string>{115,32}</string>
 		</dict>
-		<key>images/Cultivate/fb_camp_lian.png</key>
+		<key>images/Cultivate/bt_xinkaiqi.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{567,819},{201,129}}</string>
+			<string>{{866,899},{72,29}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{72,29}}</string>
+			<key>sourceSize</key>
+			<string>{72,29}</string>
+		</dict>
+		<key>images/Cultivate/composeLine_4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,609},{410,44}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{201,129}}</string>
+			<string>{{0,0},{410,44}}</string>
 			<key>sourceSize</key>
-			<string>{201,129}</string>
+			<string>{410,44}</string>
 		</dict>
-		<key>images/Cultivate/fb_camp_node.png</key>
+		<key>images/Cultivate/danyaoshuliang.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{856,588},{148,100}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{148,100}}</string>
-			<key>sourceSize</key>
-			<string>{148,100}</string>
-		</dict>
-		<key>images/Cultivate/fb_camp_nodedark.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{856,690},{148,100}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{148,100}}</string>
-			<key>sourceSize</key>
-			<string>{148,100}</string>
-		</dict>
-		<key>images/Cultivate/fb_fight_dis.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{148,350},{55,52}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{55,52}}</string>
-			<key>sourceSize</key>
-			<string>{55,52}</string>
-		</dict>
-		<key>images/Cultivate/fb_fight_sel.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{205,350},{55,52}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{55,52}}</string>
-			<key>sourceSize</key>
-			<string>{55,52}</string>
-		</dict>
-		<key>images/Cultivate/fb_title8.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{754,477},{244,37}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{244,37}}</string>
-			<key>sourceSize</key>
-			<string>{244,37}</string>
-		</dict>
-		<key>images/Cultivate/fntAutoRefresh.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{446,614},{203,29}}</string>
+			<string>{{486,609},{93,28}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{203,29}}</string>
+			<string>{{0,0},{93,28}}</string>
 			<key>sourceSize</key>
-			<string>{203,29}</string>
+			<string>{93,28}</string>
+		</dict>
+		<key>images/Cultivate/fb_camp_dis.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{516,2},{479,109}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{479,109}}</string>
+			<key>sourceSize</key>
+			<string>{479,109}</string>
+		</dict>
+		<key>images/Cultivate/fb_next.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{259,936},{142,86}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{142,86}}</string>
+			<key>sourceSize</key>
+			<string>{142,86}</string>
+		</dict>
+		<key>images/Cultivate/fb_prev.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{403,936},{142,86}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{142,86}}</string>
+			<key>sourceSize</key>
+			<string>{142,86}</string>
+		</dict>
+		<key>images/Cultivate/fb_prev_dis.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{547,936},{142,86}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{142,86}}</string>
+			<key>sourceSize</key>
+			<string>{142,86}</string>
+		</dict>
+		<key>images/Cultivate/fb_xiuxingta.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{48,936},{209,86}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{209,86}}</string>
+			<key>sourceSize</key>
+			<string>{209,86}</string>
+		</dict>
+		<key>images/Cultivate/font_compose.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{486,704},{69,28}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{69,28}}</string>
+			<key>sourceSize</key>
+			<string>{69,28}</string>
+		</dict>
+		<key>images/Cultivate/font_cross.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{486,775},{69,28}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{69,28}}</string>
+			<key>sourceSize</key>
+			<string>{69,28}</string>
+		</dict>
+		<key>images/Cultivate/fuben.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,605}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,605}}</string>
+			<key>sourceSize</key>
+			<string>{512,605}</string>
+		</dict>
+		<key>images/Cultivate/job3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{456,609},{272,28}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{272,28}}</string>
+			<key>sourceSize</key>
+			<string>{272,28}</string>
 		</dict>
 		<key>images/Cultivate/kehechengdanyao.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{856,792},{147,34}}</string>
+			<string>{{987,613},{147,34}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{147,34}}</string>
 			<key>sourceSize</key>
@@ -410,202 +319,111 @@
 		<key>images/Cultivate/light_2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{446,477},{68,30}}</string>
+			<string>{{729,899},{68,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{68,30}}</string>
 			<key>sourceSize</key>
 			<string>{68,30}</string>
 		</dict>
-		<key>images/Cultivate/light_4.png</key>
+		<key>images/Cultivate/pack_bg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{832,828},{145,29}}</string>
+			<string>{{516,113},{472,340}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{145,29}}</string>
+			<string>{{0,0},{472,340}}</string>
 			<key>sourceSize</key>
-			<string>{145,29}</string>
+			<string>{472,340}</string>
 		</dict>
-		<key>images/Cultivate/maxStateTip.png</key>
+		<key>images/Cultivate/pack_cailiaodengji.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{713,477},{326,39}}</string>
+			<string>{{48,899},{120,33}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{120,33}}</string>
+			<key>sourceSize</key>
+			<string>{120,33}</string>
+		</dict>
+		<key>images/Cultivate/pack_shuliang.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{287,899},{67,32}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{67,32}}</string>
+			<key>sourceSize</key>
+			<string>{67,32}</string>
+		</dict>
+		<key>images/Cultivate/pack_stuffsel.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{802,931},{90,41}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{326,39}}</string>
+			<string>{{0,0},{90,41}}</string>
 			<key>sourceSize</key>
-			<string>{326,39}</string>
+			<string>{90,41}</string>
 		</dict>
-		<key>images/Cultivate/pack_rightsel.png</key>
+		<key>images/Cultivate/state_9.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{478,406},{307,76}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{307,76}}</string>
-			<key>sourceSize</key>
-			<string>{307,76}</string>
-		</dict>
-		<key>images/Cultivate/state3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{262,350},{144,41}}</string>
+			<string>{{845,931},{138,75}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{144,41}}</string>
+			<string>{{0,0},{138,75}}</string>
 			<key>sourceSize</key>
-			<string>{144,41}</string>
+			<string>{138,75}</string>
 		</dict>
-		<key>images/Cultivate/state3_dark.png</key>
+		<key>images/Cultivate/swallowTip.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{979,828},{144,41}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{144,41}}</string>
-			<key>sourceSize</key>
-			<string>{144,41}</string>
-		</dict>
-		<key>images/Cultivate/state7.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{832,859},{144,41}}</string>
+			<string>{{356,899},{215,31}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{144,41}}</string>
+			<string>{{0,0},{215,31}}</string>
 			<key>sourceSize</key>
-			<string>{144,41}</string>
-		</dict>
-		<key>images/Cultivate/state7_dark.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{832,902},{144,41}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{144,41}}</string>
-			<key>sourceSize</key>
-			<string>{144,41}</string>
-		</dict>
-		<key>images/Cultivate/state_10.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{856,516},{149,70}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{149,70}}</string>
-			<key>sourceSize</key>
-			<string>{149,70}</string>
-		</dict>
-		<key>images/Cultivate/state_2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{832,945},{134,76}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{134,76}}</string>
-			<key>sourceSize</key>
-			<string>{134,76}</string>
-		</dict>
-		<key>images/Cultivate/tunshi_nor.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,948},{74,36}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{74,36}}</string>
-			<key>sourceSize</key>
-			<string>{74,36}</string>
+			<string>{215,31}</string>
 		</dict>
 		<key>images/Cultivate/xiuxingjingjie.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{446,547},{65,30}}</string>
+			<string>{{799,899},{65,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{65,30}}</string>
 			<key>sourceSize</key>
 			<string>{65,30}</string>
 		</dict>
-		<key>images/Cultivate/xiuxingkapai.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{525,819},{202,40}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{202,40}}</string>
-			<key>sourceSize</key>
-			<string>{202,40}</string>
-		</dict>
-		<key>images/Cultivate/xq_drop_bgdis.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,2},{560,68}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{560,68}}</string>
-			<key>sourceSize</key>
-			<string>{560,68}</string>
-		</dict>
-		<key>images/Cultivate/xq_drop_bgnor.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,72},{560,68}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{560,68}}</string>
-			<key>sourceSize</key>
-			<string>{560,68}</string>
-		</dict>
 		<key>images/Cultivate/xq_drop_didiandis.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{80,350},{125,32}}</string>
+			<string>{{990,113},{125,32}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -618,7 +436,7 @@
 		<key>images/Cultivate/xq_drop_didiannor.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{114,350},{125,32}}</string>
+			<string>{{990,240},{125,32}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -628,44 +446,44 @@
 			<key>sourceSize</key>
 			<string>{125,32}</string>
 		</dict>
-		<key>images/Cultivate/xq_kuang.png</key>
+		<key>images/Cultivate/xq_dy_cailiao.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,142},{557,206}}</string>
+			<string>{{987,762},{101,34}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{101,34}}</string>
+			<key>sourceSize</key>
+			<string>{101,34}</string>
+		</dict>
+		<key>images/Cultivate/xx_bg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{516,455},{469,442}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{557,206}}</string>
-			<key>sourceSize</key>
-			<string>{557,206}</string>
-		</dict>
-		<key>images/Cultivate/xx_bg.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,477},{469,442}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<true/>
-			<key>sourceColorRect</key>
 			<string>{{0,0},{469,442}}</string>
 			<key>sourceSize</key>
 			<string>{469,442}</string>
 		</dict>
-		<key>images/Cultivate/xx_icon_zi.png</key>
+		<key>images/Cultivate/xx_icon_lock.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{477,715},{102,101}}</string>
+			<string>{{729,936},{81,71}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{102,101}}</string>
+			<string>{{0,0},{81,71}}</string>
 			<key>sourceSize</key>
-			<string>{102,101}</string>
+			<string>{81,71}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -677,7 +495,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:c83d41f13da098bd19612495b5e01883:4/6$</string>
+		<string>$TexturePacker:SmartUpdate:d1036144800837b5525a8b4e5d0ac074:4/7$</string>
 		<key>textureFileName</key>
 		<string>Cultivate3.png</string>
 	</dict>

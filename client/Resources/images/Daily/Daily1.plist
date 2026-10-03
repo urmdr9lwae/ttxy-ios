@@ -4,10 +4,23 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>images/Daily/bg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
+		</dict>
 		<key>images/Daily/imgBigTreaOpened.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{105,107}}</string>
+			<string>{{2,772},{105,107}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -25,9 +38,9 @@
 		<key>realTextureFileName</key>
 		<string>Daily1.png</string>
 		<key>size</key>
-		<string>{128,128}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:8dcf4141cbbc5cc68331b1c276c04caf:2/2$</string>
+		<string>$TexturePacker:SmartUpdate:ffb55551e68915c3e08d829a70206921:2/2$</string>
 		<key>textureFileName</key>
 		<string>Daily1.png</string>
 	</dict>

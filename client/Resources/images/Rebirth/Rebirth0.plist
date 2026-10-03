@@ -4,10 +4,23 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>images/Rebirth/firstRecordBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{601,567}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{601,567}}</string>
+			<key>sourceSize</key>
+			<string>{601,567}</string>
+		</dict>
 		<key>images/Rebirth/fontBestAttSmall.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{135,35},{97,27}}</string>
+			<string>{{708,39},{97,27}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -20,7 +33,7 @@
 		<key>images/Rebirth/fontBestAttack.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{131,35}}</string>
+			<string>{{605,2},{131,35}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -33,11 +46,11 @@
 		<key>images/Rebirth/fontChampion.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,151},{83,34}}</string>
+			<string>{{895,39},{83,34}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{83,34}}</string>
 			<key>sourceSize</key>
@@ -46,7 +59,7 @@
 		<key>images/Rebirth/fontFirstRecord.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,39},{131,35}}</string>
+			<string>{{738,2},{131,35}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -59,7 +72,7 @@
 		<key>images/Rebirth/fontFirstRecordS.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{135,2},{101,31}}</string>
+			<string>{{605,39},{101,31}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -72,7 +85,7 @@
 		<key>images/Rebirth/fontHonor.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{135,64},{86,32}}</string>
+			<string>{{807,39},{86,32}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -85,11 +98,11 @@
 		<key>images/Rebirth/fontNext.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{223,64},{85,30}}</string>
+			<string>{{708,68},{85,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{85,30}}</string>
 			<key>sourceSize</key>
@@ -98,7 +111,7 @@
 		<key>images/Rebirth/fontPrev.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{132,98},{85,30}}</string>
+			<string>{{605,72},{85,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -111,20 +124,7 @@
 		<key>images/Rebirth/fontSecond.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,113},{83,34}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{83,34}}</string>
-			<key>sourceSize</key>
-			<string>{83,34}</string>
-		</dict>
-		<key>images/Rebirth/fontThird.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{87,113},{83,34}}</string>
+			<string>{{980,39},{83,34}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -134,10 +134,23 @@
 			<key>sourceSize</key>
 			<string>{83,34}</string>
 		</dict>
+		<key>images/Rebirth/fontThird.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{795,73},{83,34}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{83,34}}</string>
+			<key>sourceSize</key>
+			<string>{83,34}</string>
+		</dict>
 		<key>images/Rebirth/limitChallenge.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,76},{128,35}}</string>
+			<string>{{871,2},{128,35}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -155,9 +168,9 @@
 		<key>realTextureFileName</key>
 		<string>Rebirth0.png</string>
 		<key>size</key>
-		<string>{256,256}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:7726519c0bf633b663381e0cb9e9fedf:1/1$</string>
+		<string>$TexturePacker:SmartUpdate:a3d7dba3f075be99cad8819dc55b92c8:1/2$</string>
 		<key>textureFileName</key>
 		<string>Rebirth0.png</string>
 	</dict>

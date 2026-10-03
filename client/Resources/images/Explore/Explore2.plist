@@ -4,31 +4,83 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Explore/selectBg.png</key>
+		<key>images/Explore/conditionSingleBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{511,609}}</string>
+			<string>{{2,2},{627,71}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{627,71}}</string>
+			<key>sourceSize</key>
+			<string>{627,71}</string>
+		</dict>
+		<key>images/Explore/fntFriendDesr.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{913,2},{511,65}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{511,65}}</string>
+			<key>sourceSize</key>
+			<string>{511,65}</string>
+		</dict>
+		<key>images/Explore/fntNpcDesr.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,588},{425,27}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{425,27}}</string>
+			<key>sourceSize</key>
+			<string>{425,27}</string>
+		</dict>
+		<key>images/Explore/selectBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,75},{511,609}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{511,609}}</string>
 			<key>sourceSize</key>
 			<string>{511,609}</string>
 		</dict>
-		<key>images/Explore/selectItemBg.png</key>
+		<key>images/Explore/successBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,613},{565,114}}</string>
+			<string>{{631,2},{514,139}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{565,114}}</string>
+			<string>{{0,0},{514,139}}</string>
 			<key>sourceSize</key>
-			<string>{565,114}</string>
+			<string>{514,139}</string>
+		</dict>
+		<key>images/Explore/successBg2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{772,2},{514,139}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{514,139}}</string>
+			<key>sourceSize</key>
+			<string>{514,139}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -40,7 +92,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:7d31cf603f6eca308c52b9b770d614e4:3/3$</string>
+		<string>$TexturePacker:SmartUpdate:ba2e2d0c479c7d3684518b0dbea282bd:3/3$</string>
 		<key>textureFileName</key>
 		<string>Explore2.png</string>
 	</dict>

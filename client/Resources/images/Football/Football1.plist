@@ -4,10 +4,23 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>images/Football/gray.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
+		</dict>
 		<key>images/Football/ruleBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{483,578}}</string>
+			<string>{{516,2},{483,578}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -25,9 +38,9 @@
 		<key>realTextureFileName</key>
 		<string>Football1.png</string>
 		<key>size</key>
-		<string>{512,1024}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:cc2a228590f5641ce48e8c48cb027013:2/2$</string>
+		<string>$TexturePacker:SmartUpdate:f617cf4c9cbca120c93eeb4bcd84836d:2/2$</string>
 		<key>textureFileName</key>
 		<string>Football1.png</string>
 	</dict>

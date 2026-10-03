@@ -4,57 +4,18 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Skill/11.png</key>
+		<key>images/Skill/skillBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{100,100}}</string>
+			<string>{{2,2},{598,566}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{100,100}}</string>
+			<string>{{0,0},{598,566}}</string>
 			<key>sourceSize</key>
-			<string>{100,100}</string>
-		</dict>
-		<key>images/Skill/2.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,104},{100,100}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{100,100}}</string>
-			<key>sourceSize</key>
-			<string>{100,100}</string>
-		</dict>
-		<key>images/Skill/22.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{104,2},{100,100}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{100,100}}</string>
-			<key>sourceSize</key>
-			<string>{100,100}</string>
-		</dict>
-		<key>images/Skill/3.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{104,104},{100,100}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{100,100}}</string>
-			<key>sourceSize</key>
-			<string>{100,100}</string>
+			<string>{598,566}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -64,9 +25,9 @@
 		<key>realTextureFileName</key>
 		<string>Skill1.png</string>
 		<key>size</key>
-		<string>{256,256}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:f0c0bd345bda8cac862c609206628ee3:2/3$</string>
+		<string>$TexturePacker:SmartUpdate:8602c589e3aa041b4f3b6f1361fc0f73:2/2$</string>
 		<key>textureFileName</key>
 		<string>Skill1.png</string>
 	</dict>

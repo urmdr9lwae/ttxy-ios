@@ -7,11 +7,11 @@
 		<key>images/Slot/arrow1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{40,860},{74,144}}</string>
+			<string>{{594,945},{74,144}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{74,144}}</string>
 			<key>sourceSize</key>
@@ -20,20 +20,33 @@
 		<key>images/Slot/arrow2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{116,860},{128,243}}</string>
+			<string>{{2,772},{128,243}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,243}}</string>
 			<key>sourceSize</key>
 			<string>{128,243}</string>
 		</dict>
+		<key>images/Slot/bg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
+		</dict>
 		<key>images/Slot/btnTurn.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{512,671},{170,171}}</string>
+			<string>{{425,772},{170,171}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -46,11 +59,11 @@
 		<key>images/Slot/btnTurnDisabled.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{633,844},{170,171}}</string>
+			<string>{{740,108},{170,171}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{170,171}}</string>
 			<key>sourceSize</key>
@@ -59,7 +72,7 @@
 		<key>images/Slot/cover2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,565},{293,293}}</string>
+			<string>{{597,280},{293,293}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -69,23 +82,10 @@
 			<key>sourceSize</key>
 			<string>{293,293}</string>
 		</dict>
-		<key>images/Slot/discFrame.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,2},{560,561}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{560,561}}</string>
-			<key>sourceSize</key>
-			<string>{560,561}</string>
-		</dict>
 		<key>images/Slot/fntDiamondShop.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{116,990},{102,30}}</string>
+			<string>{{132,987},{102,30}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -98,7 +98,7 @@
 		<key>images/Slot/fntLeftTimes.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,860},{146,36}}</string>
+			<string>{{913,261},{146,36}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -111,11 +111,11 @@
 		<key>images/Slot/fntLottery.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{361,858},{95,51}}</string>
+			<string>{{913,108},{95,51}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{95,51}}</string>
 			<key>sourceSize</key>
@@ -124,7 +124,7 @@
 		<key>images/Slot/fntRule.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{512,565},{478,104}}</string>
+			<string>{{516,2},{478,104}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -137,7 +137,7 @@
 		<key>images/Slot/fntSuspend.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{361,955},{90,48}}</string>
+			<string>{{913,161},{90,48}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -150,11 +150,11 @@
 		<key>images/Slot/fntSuspendDis.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{414,858},{90,48}}</string>
+			<string>{{913,211},{90,48}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{90,48}}</string>
 			<key>sourceSize</key>
@@ -163,7 +163,7 @@
 		<key>images/Slot/fntTitle.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{464,858},{167,75}}</string>
+			<string>{{425,945},{167,75}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -176,11 +176,11 @@
 		<key>images/Slot/girl.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{297,565},{213,291}}</string>
+			<string>{{132,772},{213,291}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{213,291}}</string>
 			<key>sourceSize</key>
@@ -189,11 +189,11 @@
 		<key>images/Slot/x.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{220,990},{20,23}}</string>
+			<string>{{996,2},{20,23}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{20,23}}</string>
 			<key>sourceSize</key>
@@ -209,7 +209,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:54d976a6f194b03799863d6941d02b52:1/3$</string>
+		<string>$TexturePacker:SmartUpdate:8848d2e0ae733e8029a17abc24a5ae89:1/4$</string>
 		<key>textureFileName</key>
 		<string>Slot0.png</string>
 	</dict>

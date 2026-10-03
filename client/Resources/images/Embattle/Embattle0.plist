@@ -4,10 +4,23 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		<key>images/Embattle/battleBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{601,569}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{601,569}}</string>
+			<key>sourceSize</key>
+			<string>{601,569}</string>
+		</dict>
 		<key>images/Embattle/em_ci.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{43,819},{37,37}}</string>
+			<string>{{763,84},{37,37}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -20,7 +33,7 @@
 		<key>images/Embattle/em_liantiao.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,559},{68,37}}</string>
+			<string>{{693,84},{68,37}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -33,11 +46,11 @@
 		<key>images/Embattle/fontBattleGroup.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{72,559},{128,39}}</string>
+			<string>{{605,2},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -46,11 +59,11 @@
 		<key>images/Embattle/fontBattleGroupSel.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,598},{128,39}}</string>
+			<string>{{735,2},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -59,11 +72,11 @@
 		<key>images/Embattle/fontFirstGroup.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{43,689},{128,39}}</string>
+			<string>{{865,2},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -72,11 +85,11 @@
 		<key>images/Embattle/fontFirstGroupSel.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,728},{128,39}}</string>
+			<string>{{605,43},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -85,7 +98,7 @@
 		<key>images/Embattle/fontGroupDesr.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{555,86}}</string>
+			<string>{{605,84},{555,86}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -98,11 +111,11 @@
 		<key>images/Embattle/fontSecondGroup.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{84,689},{128,39}}</string>
+			<string>{{735,43},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -111,11 +124,11 @@
 		<key>images/Embattle/fontSecondGroupSel.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,858},{128,39}}</string>
+			<string>{{865,43},{128,39}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{128,39}}</string>
 			<key>sourceSize</key>
@@ -129,9 +142,9 @@
 		<key>realTextureFileName</key>
 		<string>Embattle0.png</string>
 		<key>size</key>
-		<string>{128,1024}</string>
+		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:eb4a5a4ab07774e51358c83fe61db984:1/1$</string>
+		<string>$TexturePacker:SmartUpdate:9dc3aa3a43ee73c0de0060b032a263c5:1/1$</string>
 		<key>textureFileName</key>
 		<string>Embattle0.png</string>
 	</dict>

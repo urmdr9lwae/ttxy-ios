@@ -121,19 +121,6 @@
 			<key>sourceSize</key>
 			<string>{139,42}</string>
 		</dict>
-		<key>images/Football/gray.png</key>
-		<dict>
-			<key>frame</key>
-			<string>{{2,2},{512,768}}</string>
-			<key>offset</key>
-			<string>{0,0}</string>
-			<key>rotated</key>
-			<false/>
-			<key>sourceColorRect</key>
-			<string>{{0,0},{512,768}}</string>
-			<key>sourceSize</key>
-			<string>{512,768}</string>
-		</dict>
 		<key>images/Football/kuang_xiao.png</key>
 		<dict>
 			<key>frame</key>
@@ -185,6 +172,19 @@
 			<string>{{0,0},{215,41}}</string>
 			<key>sourceSize</key>
 			<string>{215,41}</string>
+		</dict>
+		<key>images/Football/mainBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{512,768}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{512,768}}</string>
+			<key>sourceSize</key>
+			<string>{512,768}</string>
 		</dict>
 		<key>images/Football/return.png</key>
 		<dict>
@@ -274,7 +274,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:cc2a228590f5641ce48e8c48cb027013:1/2$</string>
+		<string>$TexturePacker:SmartUpdate:f617cf4c9cbca120c93eeb4bcd84836d:1/2$</string>
 		<key>textureFileName</key>
 		<string>Football0.png</string>
 	</dict>

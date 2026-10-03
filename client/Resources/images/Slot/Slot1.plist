@@ -4,7 +4,7 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Slot/discBg.png</key>
+		<key>images/Slot/discFrame.png</key>
 		<dict>
 			<key>frame</key>
 			<string>{{2,2},{560,561}}</string>
@@ -27,7 +27,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:54d976a6f194b03799863d6941d02b52:2/3$</string>
+		<string>$TexturePacker:SmartUpdate:8848d2e0ae733e8029a17abc24a5ae89:2/4$</string>
 		<key>textureFileName</key>
 		<string>Slot1.png</string>
 	</dict>

@@ -4,18 +4,18 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Slot/cover1.png</key>
+		<key>images/Slot/discBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,2},{553,554}}</string>
+			<string>{{2,2},{560,561}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
 			<false/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{553,554}}</string>
+			<string>{{0,0},{560,561}}</string>
 			<key>sourceSize</key>
-			<string>{553,554}</string>
+			<string>{560,561}</string>
 		</dict>
 	</dict>
 	<key>metadata</key>
@@ -27,7 +27,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:54d976a6f194b03799863d6941d02b52:3/3$</string>
+		<string>$TexturePacker:SmartUpdate:8848d2e0ae733e8029a17abc24a5ae89:3/4$</string>
 		<key>textureFileName</key>
 		<string>Slot2.png</string>
 	</dict>

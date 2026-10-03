@@ -4,23 +4,23 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>images/Artifact/hulu1.png</key>
+		<key>images/Artifact/artifactBg.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{619,2},{251,194}}</string>
+			<string>{{2,365},{598,566}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<false/>
+			<true/>
 			<key>sourceColorRect</key>
-			<string>{{0,0},{251,194}}</string>
+			<string>{{0,0},{598,566}}</string>
 			<key>sourceSize</key>
-			<string>{251,194}</string>
+			<string>{598,566}</string>
 		</dict>
 		<key>images/Artifact/hulu2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{619,198},{251,194}}</string>
+			<string>{{667,2},{251,194}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -33,7 +33,7 @@
 		<key>images/Artifact/hulu3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{104,365},{251,194}}</string>
+			<string>{{667,198},{251,194}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -46,7 +46,7 @@
 		<key>images/Artifact/hulu4.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{357,365},{251,194}}</string>
+			<string>{{667,394},{251,194}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -59,11 +59,11 @@
 		<key>images/Artifact/hulu5.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{99,561},{251,194}}</string>
+			<string>{{667,590},{251,194}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{251,194}}</string>
 			<key>sourceSize</key>
@@ -72,7 +72,7 @@
 		<key>images/Artifact/hulu6.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{104,814},{251,194}}</string>
+			<string>{{667,786},{251,194}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -98,7 +98,7 @@
 		<key>images/Artifact/middleFrame.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,365},{542,95}}</string>
+			<string>{{570,365},{542,95}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -111,7 +111,7 @@
 		<key>images/Artifact/soulStoneS1.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,909},{49,54}}</string>
+			<string>{{2,965},{49,54}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -124,7 +124,7 @@
 		<key>images/Artifact/soulStoneS2.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{2,965},{49,54}}</string>
+			<string>{{53,965},{49,54}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -137,7 +137,7 @@
 		<key>images/Artifact/soulStoneS3.png</key>
 		<dict>
 			<key>frame</key>
-			<string>{{53,909},{49,54}}</string>
+			<string>{{104,965},{49,54}}</string>
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
@@ -157,7 +157,7 @@
 		<key>size</key>
 		<string>{1024,1024}</string>
 		<key>smartupdate</key>
-		<string>$TexturePacker:SmartUpdate:4ba1fc90291aa006a5550812496bac72:1/1$</string>
+		<string>$TexturePacker:SmartUpdate:e49592c254c3c9ce33276b0319ca0605:1/2$</string>
 		<key>textureFileName</key>
 		<string>Artifact0.png</string>
 	</dict>
