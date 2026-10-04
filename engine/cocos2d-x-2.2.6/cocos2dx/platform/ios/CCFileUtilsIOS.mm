@@ -233,6 +233,16 @@ std::string CCFileUtilsIOS::getWritablePath()
     return strRet;
 }
 
+static NSString* BundleFile(const std::string& relative)
+{
+    if (relative.empty()) return nil;
+    NSString* rel = [NSString stringWithUTF8String:relative.c_str()];
+    while ([rel hasPrefix:@"./"]) rel = [rel substringFromIndex:2];
+    while ([rel hasPrefix:@"/"]) rel = [rel substringFromIndex:1];
+    NSString* full = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:rel];
+    return [s_fileManager fileExistsAtPath:full] ? full : nil;
+}
+
 bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
 {
     if (0 == strFilePath.length())
@@ -240,73 +250,26 @@ bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
         return false;
     }
 
-    bool bRet = false;
-    
-    if (strFilePath[0] != '/')
+    if (strFilePath[0] == '/')
     {
-        std::string path;
-        std::string file;
-        size_t pos = strFilePath.find_last_of("/");
-        if (pos != std::string::npos)
-        {
-            file = strFilePath.substr(pos+1);
-            path = strFilePath.substr(0, pos+1);
-        }
-        else
-        {
-            file = strFilePath;
-        }
-        
-        // pathForResource 的目录不能带末尾斜杠，data/BigCard/ 这种两层路径会直接查不到。
-        NSString* dir = path.empty() ? nil : [NSString stringWithUTF8String:path.c_str()];
-        while (dir.length > 0 && [dir hasSuffix:@"/"]) {
-            dir = [dir substringToIndex:dir.length - 1];
-        }
-        NSString* fullpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:file.c_str()]
-                                                             ofType:nil
-                                                        inDirectory:dir];
-        if (fullpath != nil) {
-            bRet = true;
-        }
+        return [s_fileManager fileExistsAtPath:[NSString stringWithUTF8String:strFilePath.c_str()]];
     }
-    else
-    {
-        // Search path is an absolute path.
-        if ([s_fileManager fileExistsAtPath:[NSString stringWithUTF8String:strFilePath.c_str()]]) {
-            bRet = true;
-        }
-    }
-    
-    return bRet;
+    // 直接按包内路径找。pathForResource 查 data/BigCard 这种两层目录会失败，卡面就建不出来。
+    return BundleFile(strFilePath) != nil;
 }
 
 std::string CCFileUtilsIOS::getFullPathForDirectoryAndFilename(const std::string& strDirectory, const std::string& strFilename)
 {
-    if (strDirectory[0] != '/')
+    if (!strDirectory.empty() && strDirectory[0] == '/')
     {
-        NSString* dir = [NSString stringWithUTF8String:strDirectory.c_str()];
-        while (dir.length > 0 && [dir hasSuffix:@"/"]) {
-            dir = [dir substringToIndex:dir.length - 1];
-        }
-        if (dir.length == 0) {
-            dir = nil;
-        }
-        NSString* fullpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:strFilename.c_str()]
-                                                             ofType:nil
-                                                        inDirectory:dir];
-        if (fullpath != nil) {
-            return [fullpath UTF8String];
-        }
-    }
-    else
-    {
-        std::string fullPath = strDirectory+strFilename;
-        // Search path is an absolute path.
+        std::string fullPath = strDirectory + strFilename;
         if ([s_fileManager fileExistsAtPath:[NSString stringWithUTF8String:fullPath.c_str()]]) {
             return fullPath;
         }
+        return "";
     }
-    return "";
+    NSString* full = BundleFile(strDirectory + strFilename);
+    return full != nil ? [full UTF8String] : "";
 }
 
 bool CCFileUtilsIOS::isAbsolutePath(const std::string& strPath)
