@@ -234,6 +234,36 @@ if mod and mod.loadAsScene then
     return scene
   end
 end
+
+-- 战斗卡面不走临时图。直接把 data/BigCard 的单张图贴到格子上。
+if not _G.__cardRequireHook then
+  _G.__cardRequireHook = true
+  local rawRequire = require
+  function require(name, ...)
+    local loaded = rawRequire(name, ...)
+    if name == "UI.BattleShowUnit" and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__cardFace then
+      local rawSet = loaded.prototype.SetUnitInfo
+      function loaded.prototype:SetUnitInfo(info, bShow)
+        pcall(rawSet, self, info, bShow)
+        local img = self.mImg
+        if not img or not info or not info.model then return end
+        self:removeChildByTag(8801, true)
+        local hero = Logic:Get("Hero")
+        local big = hero.HEROIMG_SIZE and hero.HEROIMG_SIZE.BIG or nil
+        local path = hero:GetHeroImage(info.model, big)
+        local face = path and CCSprite:create(path) or nil
+        if not face then return end
+        local fs = face:getContentSize()
+        if fs.height > 0 then face:setScale(165 / fs.height) end
+        face:setAnchorPoint(ccp(0.5, 0.5))
+        face:setPosition(ccp(img:getPosition()))
+        self:addChild(face, 20, 8801)
+      end
+      loaded.prototype.__cardFace = true
+    end
+    return loaded
+  end
+end
 )LUA", "=scene_scale");
     const bool ok = CallGlobal("OnSysStartup");
     Log("OnSysStartup 返回 %d", ok ? 1 : 0);

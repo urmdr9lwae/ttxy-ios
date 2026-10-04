@@ -57,7 +57,8 @@ bool CCTableView::initWithViewSize(CCSize size, CCNode* container/* = NULL*/)
         m_pCellsUsed      = new CCArrayForObjectSorting();
         m_pCellsFreed     = new CCArrayForObjectSorting();
         m_pIndices        = new std::set<unsigned int>();
-        m_eVordering      = kCCTableViewFillBottomUp;
+        // 商城、活动和功能列表按数据顺序从上往下排。副本列表自己会改成从下往上。
+        m_eVordering      = kCCTableViewFillTopDown;
         this->setDirection(kCCScrollViewDirectionVertical);
 
         CCScrollView::setDelegate(this);
