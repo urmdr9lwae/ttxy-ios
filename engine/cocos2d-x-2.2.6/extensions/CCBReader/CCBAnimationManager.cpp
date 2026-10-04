@@ -826,6 +826,15 @@ void CCBAnimationManager::runAnimationsForSequenceIdTweenDuration(int nSeqId, fl
 void CCBAnimationManager::runAnimationsForSequenceNamedTweenDuration(const char *pName, float fTweenDuration)
 {
     int seqId = getSequenceId(pName);
+    // 时间线名字对不上时不能往下空指针。直接回调，战斗等待才能继续。
+    if (seqId == -1)
+    {
+        if (mDelegate)
+        {
+            mDelegate->completedAnimationSequenceNamed(pName ? pName : "");
+        }
+        return;
+    }
     runAnimationsForSequenceIdTweenDuration(seqId, fTweenDuration);
 }
 

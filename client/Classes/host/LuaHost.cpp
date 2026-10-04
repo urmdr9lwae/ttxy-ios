@@ -222,6 +222,33 @@ bool LuaHostStart(const EnvInfo& env) {
     // 高屏上 design/frame 比例不是 1，原脚本会把整层缩向左下角。
     // 分辨率仍是 640x960 铺满，这里只把这一层缩放改回 1。
     RunString(L, R"LUA(
+local function nudgeButtons(node, depth)
+  if depth > 14 or node == nil or node.getChildren == nil then return end
+  local okType, kind = pcall(tolua.type, node)
+  if okType and (kind == "CCControlButton" or kind == "CCMenuItem" or kind == "CCMenuItemSprite" or kind == "CCMenuItemImage" or kind == "CCMenuItemLabel") then
+    local sz = node:getContentSize()
+    local bl = node:convertToWorldSpace(ccp(0, 0))
+    local tr = node:convertToWorldSpace(ccp(sz.width, sz.height))
+    local minx, maxx = math.min(bl.x, tr.x), math.max(bl.x, tr.x)
+    local miny, maxy = math.min(bl.y, tr.y), math.max(bl.y, tr.y)
+    local dx, dy, m = 0, 0, 20
+    if miny < m and miny > -48 then dy = m - miny end
+    if maxy > 940 and maxy < 1008 then dy = 940 - maxy end
+    if minx < m and minx > -48 then dx = m - minx end
+    if maxx > 620 and maxx < 688 then dx = 620 - maxx end
+    if dx ~= 0 or dy ~= 0 then
+      local x, y = node:getPosition()
+      node:setPosition(ccp(x + dx, y + dy))
+    end
+  end
+  local children = node:getChildren()
+  if children and children.count then
+    for i = 0, children:count() - 1 do
+      nudgeButtons(children:objectAtIndex(i), depth + 1)
+    end
+  end
+end
+
 local mod = package.loaded["Tw.Controller"]
 if mod and mod.loadAsScene then
   local rawLoad = mod.loadAsScene
@@ -229,37 +256,84 @@ if mod and mod.loadAsScene then
     local scene = rawLoad(self, ccb, owner)
     if scene then
       local root = scene:getChildByTag(999)
-      if root then root:setScale(1) end
+      if root then
+        root:setScale(1)
+        local ui = root:getChildByTag(999)
+        if ui then pcall(nudgeButtons, ui, 0) end
+      end
     end
     return scene
   end
 end
-
--- 战斗卡面不走临时图。直接把 data/BigCard 的单张图贴到格子上。
+-- ccbi 的自定义类名是 BattleShowUnit，不是 UI.BattleShowUnit。
+-- 贴卡失败不能抛出去，否则开战函数中断，回合动画不会开始。
 if not _G.__cardRequireHook then
   _G.__cardRequireHook = true
   local rawRequire = require
   function require(name, ...)
     local loaded = rawRequire(name, ...)
-    if name == "UI.BattleShowUnit" and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__cardFace then
+    if (name == "BattleShowUnit" or name == "UI.BattleShowUnit") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__cardFace and type(loaded.prototype.SetUnitInfo) == "function" then
       local rawSet = loaded.prototype.SetUnitInfo
       function loaded.prototype:SetUnitInfo(info, bShow)
         pcall(rawSet, self, info, bShow)
-        local img = self.mImg
-        if not img or not info or not info.model then return end
-        self:removeChildByTag(8801, true)
-        local hero = Logic:Get("Hero")
-        local big = hero.HEROIMG_SIZE and hero.HEROIMG_SIZE.BIG or nil
-        local path = hero:GetHeroImage(info.model, big)
-        local face = path and CCSprite:create(path) or nil
-        if not face then return end
-        local fs = face:getContentSize()
-        if fs.height > 0 then face:setScale(165 / fs.height) end
-        face:setAnchorPoint(ccp(0.5, 0.5))
-        face:setPosition(ccp(img:getPosition()))
-        self:addChild(face, 20, 8801)
+        pcall(function()
+          if not info or not info.model then return end
+          local heroMod = Logic.Hero
+          local big = heroMod and heroMod.HEROIMG_SIZE and heroMod.HEROIMG_SIZE.BIG or nil
+          local hero = Logic:Get("Hero")
+          local facePath = hero:GetHeroImage(info.model, big)
+          local bgPath, starPath = hero:GetHeroBgImage(info.model, big)
+          self:removeChildByTag(8801, true)
+          local bg = bgPath and CCSprite:create(bgPath) or nil
+          local face = facePath and CCSprite:create(facePath) or nil
+          local base = bg or face
+          if not base then return end
+          local sz = base:getContentSize()
+          if bg and face then
+            face:setAnchorPoint(ccp(0.5, 0.5))
+            face:setPosition(ccp(sz.width * 0.5, sz.height * 0.5))
+            bg:addChild(face, 1)
+          end
+          if starPath and bg then
+            local star = CCSprite:create(starPath)
+            if star then
+              star:setAnchorPoint(ccp(0, 1))
+              star:setPosition(ccp(4, sz.height - 4))
+              bg:addChild(star, 2)
+            end
+          end
+          local img = self.mImg
+          local x, y = 0, 0
+          if img then
+            x, y = img:getPosition()
+            img:setVisible(false)
+          end
+          if sz.height > 0 then base:setScale(165 / sz.height) end
+          base:setAnchorPoint(ccp(0.5, 0.5))
+          base:setPosition(ccp(x, y))
+          self:addChild(base, 20, 8801)
+          self:setVisible(true)
+        end)
       end
       loaded.prototype.__cardFace = true
+    end
+    if (name == "BattleShow" or name == "UI.BattleShow") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__battlePlay and type(loaded.prototype.Start) == "function" and type(loaded.prototype.PlayRounds) == "function" then
+      local rawStart = loaded.prototype.Start
+      function loaded.prototype:Start(...)
+        local ok = pcall(rawStart, self, ...)
+        if ok then return end
+        pcall(function()
+          Singleton(Timer):After(0, self:Event("BATTLE_WAIT", function()
+            RunInCoroutine(function()
+              self:NormalInitAction()
+              self:PlayRounds()
+              self:PlayEnd()
+              if self.listener then self.listener() end
+            end)
+          end))
+        end)
+      end
+      loaded.prototype.__battlePlay = true
     end
     return loaded
   end

@@ -40,7 +40,13 @@ static AppDelegate s_sharedApplication;
     [glView setMultipleTouchEnabled:NO];
 
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    viewController.view = glView;
+    // 控制器铺满屏幕，游戏画面放在安全区内，按钮不会被刘海和底部横条挡住。
+    UIView* container = [[[UIView alloc] initWithFrame:[self.window bounds]] autorelease];
+    container.backgroundColor = [UIColor blackColor];
+    container.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    glView.autoresizingMask = UIViewAutoresizingNone;
+    viewController.view = container;
+    [container addSubview:glView];
     [self.window setRootViewController:viewController];
     [self.window makeKeyAndVisible];
 
