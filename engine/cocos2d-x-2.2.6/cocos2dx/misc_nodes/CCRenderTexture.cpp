@@ -367,36 +367,27 @@ void CCRenderTexture::begin()
 	kmGLMatrixMode(KM_GL_MODELVIEW);
     kmGLPushMatrix();
     
-    CCDirector *director = CCDirector::sharedDirector();
-    director->setProjection(director->getProjection());
-
-#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
-    kmMat4 modifiedProjection;
-    kmGLGetMatrix(KM_GL_PROJECTION, &modifiedProjection);
-    kmMat4Multiply(&modifiedProjection, CCEGLView::sharedOpenGLView()->getReverseOrientationMatrix(), &modifiedProjection);
-    kmGLMatrixMode(KM_GL_PROJECTION);
-    kmGLLoadMatrix(&modifiedProjection);
+    // 不用屏幕投影。战斗卡面是按临时图自己的宽高来画的，
+    // 套用屏幕投影后卡会画到图外面，格子里就是空的。
+    kmGLLoadIdentity();
     kmGLMatrixMode(KM_GL_MODELVIEW);
-#endif
+    kmGLLoadIdentity();
 
-    const CCSize& texSize = m_pTexture->getContentSizeInPixels();
-
-    // Calculate the adjustment ratios based on the old and new projections
-    CCSize size = director->getWinSizeInPixels();
-    float widthRatio = size.width / texSize.width;
-    float heightRatio = size.height / texSize.height;
-
-    // Adjust the orthographic projection and viewport
-    glViewport(0, 0, (GLsizei)texSize.width, (GLsizei)texSize.height);
-
+    const CCSize texSize = m_pTexture->getContentSize();
+    const CCSize texPixels = m_pTexture->getContentSizeInPixels();
 
     kmMat4 orthoMatrix;
-    kmMat4OrthographicProjection(&orthoMatrix, (float)-1.0 / widthRatio,  (float)1.0 / widthRatio,
-        (float)-1.0 / heightRatio, (float)1.0 / heightRatio, -1,1 );
-    kmGLMultMatrix(&orthoMatrix);
+    kmMat4OrthographicProjection(&orthoMatrix, 0, texSize.width, 0, texSize.height, -1024, 1024);
+    kmGLMatrixMode(KM_GL_PROJECTION);
+    kmGLLoadMatrix(&orthoMatrix);
+    kmGLMatrixMode(KM_GL_MODELVIEW);
+
+    glViewport(0, 0, (GLsizei)texPixels.width, (GLsizei)texPixels.height);
 
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_nOldFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, m_uFBO);
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
     
     /*  Certain Qualcomm Andreno gpu's will retain data in memory after a frame buffer switch which corrupts the render to the texture. The solution is to clear the frame buffer before rendering to the texture. However, calling glClear has the unintended result of clearing the current texture. Create a temporary texture to overcome this. At the end of CCRenderTexture::begin(), switch the attached texture to the second one, call glClear, and then switch back to the original texture. This solution is unnecessary for other devices as they don't have the same issue with switching frame buffers.
      */
