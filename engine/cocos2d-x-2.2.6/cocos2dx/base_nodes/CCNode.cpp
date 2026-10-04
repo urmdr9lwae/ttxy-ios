@@ -593,7 +593,8 @@ CCNode* CCNode::getChildByTag(int aTag)
 * to override this method
 */
 void CCNode::addChild(CCNode *child, int zOrder, int tag)
-{    
+{
+    if (!child) return;
     CCAssert( child != NULL, "Argument must be non-nil");
     CCAssert( child->m_pParent == NULL, "child already added. It can't be added again");
 

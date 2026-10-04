@@ -614,7 +614,7 @@ bool CCTexturePVR::createGLTexture()
 bool CCTexturePVR::initWithContentsOfFile(const char* path)
 {
     unsigned char* pvrdata = NULL;
-    int pvrlen = 0;
+    unsigned long pvrlen = 0;
     
     std::string lowerCase(path);
     for (unsigned int i = 0; i < lowerCase.length(); ++i)
@@ -624,19 +624,30 @@ bool CCTexturePVR::initWithContentsOfFile(const char* path)
         
     if (lowerCase.find(".ccz") != std::string::npos)
     {
-        pvrlen = ZipUtils::ccInflateCCZFile(path, &pvrdata);
+        int inflated = ZipUtils::ccInflateCCZFile(path, &pvrdata);
+        if (inflated < 0) {
+            this->release();
+            return false;
+        }
+        pvrlen = static_cast<unsigned long>(inflated);
     }
     else if (lowerCase.find(".gz") != std::string::npos)
     {
-        pvrlen = ZipUtils::ccInflateGZipFile(path, &pvrdata);
+        int inflated = ZipUtils::ccInflateGZipFile(path, &pvrdata);
+        if (inflated < 0) {
+            this->release();
+            return false;
+        }
+        pvrlen = static_cast<unsigned long>(inflated);
     }
     else
     {
-        pvrdata = CCFileUtils::sharedFileUtils()->getFileData(path, "rb", (unsigned long *)(&pvrlen));
+        pvrdata = CCFileUtils::sharedFileUtils()->getFileData(path, "rb", &pvrlen);
     }
     
-    if (pvrlen < 0)
+    if (!pvrdata || pvrlen < sizeof(ccPVRv2TexHeader))
     {
+        CC_SAFE_DELETE_ARRAY(pvrdata);
         this->release();
         return false;
     }
@@ -652,7 +663,8 @@ bool CCTexturePVR::initWithContentsOfFile(const char* path)
 
     m_bRetainName = false; // cocos2d integration
 
-    if (! ((unpackPVRv2Data(pvrdata, pvrlen)  || unpackPVRv3Data(pvrdata, pvrlen)) && createGLTexture()) )
+    const unsigned int pvrBytes = static_cast<unsigned int>(pvrlen);
+    if (! ((unpackPVRv2Data(pvrdata, pvrBytes)  || unpackPVRv3Data(pvrdata, pvrBytes)) && createGLTexture()) )
     {
         CC_SAFE_DELETE_ARRAY(pvrdata);
         this->release();

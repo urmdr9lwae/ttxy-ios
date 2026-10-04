@@ -757,6 +757,7 @@ void CCScale9Sprite::updateDisplayedColor(const cocos2d::ccColor3B &color)
 
 void CCScale9Sprite::setSpriteFrame(CCSpriteFrame * spriteFrame)
 {
+    if (!spriteFrame || !spriteFrame->getTexture()) return;
     CCSpriteBatchNode * batchnode = CCSpriteBatchNode::createWithTexture(spriteFrame->getTexture(), 9);
     this->updateWithBatchNode(batchnode, spriteFrame->getRect(), spriteFrame->isRotated(), CCRectZero);
 

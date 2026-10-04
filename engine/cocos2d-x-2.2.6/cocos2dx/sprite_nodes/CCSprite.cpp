@@ -989,9 +989,12 @@ void CCSprite::updateDisplayedOpacity(GLubyte opacity)
 
 void CCSprite::setDisplayFrame(CCSpriteFrame *pNewFrame)
 {
+    // 图集帧没载入时时间线仍会把空帧设上来，这里直接跳过，避免一进界面就崩。
+    if (!pNewFrame) return;
     m_obUnflippedOffsetPositionFromCenter = pNewFrame->getOffset();
 
     CCTexture2D *pNewTexture = pNewFrame->getTexture();
+    if (!pNewTexture) return;
     // update texture before updating texture rect
     if (pNewTexture != m_pobTexture)
     {

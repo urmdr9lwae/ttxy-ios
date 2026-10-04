@@ -480,7 +480,7 @@ void CCBAnimationManager::setAnimatedProperty(const char *pPropName, CCNode *pNo
             }
             else if (strcmp(pPropName, "displayFrame") == 0)
             {
-                ((CCSprite*)pNode)->setDisplayFrame((CCSpriteFrame*)pValue);
+                if (pValue) ((CCSprite*)pNode)->setDisplayFrame((CCSpriteFrame*)pValue);
             }
             else if (strcmp(pPropName, "color") == 0)
             {
@@ -800,6 +800,7 @@ void CCBAnimationManager::runAnimationsForSequenceIdTweenDuration(int nSeqId, fl
     
     // Make callback at end of sequence
     CCBSequence *seq = getSequence(nSeqId);
+    if (!seq || !mRootNode) return;
     CCAction *completeAction = CCSequence::createWithTwoActions(CCDelayTime::create(seq->getDuration() + fTweenDuration),
                                                                 CCCallFunc::create(this, callfunc_selector(CCBAnimationManager::sequenceCompleted)));
     mRootNode->runAction(completeAction);

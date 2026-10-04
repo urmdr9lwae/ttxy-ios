@@ -319,6 +319,7 @@ CCScene* CCBReader::createSceneWithNodeGraphFromFile(const char *pCCBFileName, C
 
 void CCBReader::cleanUpNodeGraph(CCNode *pNode)
 {
+    if (!pNode) return;
     pNode->setUserObject(NULL);
     
     CCObject *pChild = NULL;
@@ -348,6 +349,7 @@ CCNode* CCBReader::readFileWithCleanUp(bool bCleanUp, CCDictionary* am)
     setAnimationManagers(am);
 
     CCNode *pNode = readNodeGraph(NULL);
+    if (!pNode) return NULL;
 
     mActionManagers->setObject(mActionManager, intptr_t(pNode));
 
@@ -732,7 +734,7 @@ CCNode * CCBReader::readNodeGraph(CCNode * pParent) {
     int numChildren = this->readInt(false);
     for(int i = 0; i < numChildren; i++) {
         CCNode * child = this->readNodeGraph(node);
-        node->addChild(child);
+        if (child) node->addChild(child);
     }
 
     // FIX ISSUE #1860: "onNodeLoaded will be called twice if ccb was added as a CCBFile".
