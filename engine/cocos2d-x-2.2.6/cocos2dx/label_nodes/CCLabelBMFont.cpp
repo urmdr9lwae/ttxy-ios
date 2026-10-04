@@ -586,7 +586,7 @@ void CCLabelBMFont::createFontChars()
 
     unsigned int quantityOfLines = 1;
     unsigned int stringLen = m_sString ? cc_wcslen(m_sString) : 0;
-    if (stringLen == 0)
+    if (!m_pConfiguration || stringLen == 0)
     {
         this->setContentSize(CC_SIZE_PIXELS_TO_POINTS(tmpSize));
         return;
@@ -1220,6 +1220,7 @@ void CCLabelBMFont::setFntFile(const char* fntFile)
         CCBMFontConfiguration *newConf = FNTConfigLoadFile(fntFile);
 
         CCAssert( newConf, "CCLabelBMFont: Impossible to create font. Please check file");
+        if (!newConf) return;
 
         m_sFntFile = fntFile;
 
@@ -1227,7 +1228,9 @@ void CCLabelBMFont::setFntFile(const char* fntFile)
         CC_SAFE_RELEASE(m_pConfiguration);
         m_pConfiguration = newConf;
 
-        this->setTexture(CCTextureCache::sharedTextureCache()->addImage(m_pConfiguration->getAtlasName()));
+        CCTexture2D* atlas = CCTextureCache::sharedTextureCache()->addImage(m_pConfiguration->getAtlasName());
+        if (!atlas) return;
+        this->setTexture(atlas);
         this->createFontChars();
     }
 }

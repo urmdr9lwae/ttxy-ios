@@ -547,7 +547,9 @@ CCScale9Sprite* CCScale9Sprite::create(const char* file)
 
 bool CCScale9Sprite::initWithSpriteFrame(CCSpriteFrame* spriteFrame, CCRect capInsets)
 {
+    if (!spriteFrame) return false;
     CCTexture2D* texture = spriteFrame->getTexture();
+    if (!texture) return false;
     CCAssert(texture != NULL, "CCTexture must be not nil");
 
     CCSpriteBatchNode *batchnode = CCSpriteBatchNode::createWithTexture(texture, 9);

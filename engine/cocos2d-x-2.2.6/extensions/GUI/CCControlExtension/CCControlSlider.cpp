@@ -64,6 +64,8 @@ CCControlSlider* CCControlSlider::create(const char* bgFile, const char* progres
     
     // Prepare thumb (menuItem) for slider
     CCSprite *thumbSprite           = CCSprite::create(thumbFile);
+
+    if (!backgroundSprite || !progressSprite || !thumbSprite) return NULL;
     
     return CCControlSlider::create(backgroundSprite, progressSprite, thumbSprite);
 }
@@ -78,6 +80,7 @@ CCControlSlider* CCControlSlider::create(CCSprite * backgroundSprite, CCSprite* 
 
  bool CCControlSlider::initWithSprites(CCSprite * backgroundSprite, CCSprite* progressSprite, CCSprite* thumbSprite)
  {
+     if (!backgroundSprite || !progressSprite || !thumbSprite) return false;
      if (CCControl::init())
      {
         CCAssert(backgroundSprite,  "Background sprite must be not nil");

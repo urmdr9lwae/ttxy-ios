@@ -479,6 +479,7 @@ CCScale9Sprite* CCControlButton::getBackgroundSpriteForState(CCControlState stat
 
 void CCControlButton::setBackgroundSpriteForState(CCScale9Sprite* sprite, CCControlState state)
 {
+    if (!sprite) return;
     CCSize oldPreferredSize = m_preferredSize;
 
     CCScale9Sprite* previousBackgroundSprite = (CCScale9Sprite*)m_backgroundSpriteDispatchTable->objectForKey(state);
