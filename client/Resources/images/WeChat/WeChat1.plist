@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/WeChat/turnTable.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{550,550}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{550,550}}</string>
+			<key>sourceSize</key>
+			<string>{550,550}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>WeChat1.png</string>
+		<key>size</key>
+		<string>{1024,1024}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:bd616bbf1d5cec2685d2eb56de3c9913:2/3$</string>
+		<key>textureFileName</key>
+		<string>WeChat1.png</string>
+	</dict>
+</dict>
+</plist>

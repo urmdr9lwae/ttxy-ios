@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/Effect/uitouzi02/003.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{72,2},{54,59}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{9,9},{54,59}}</string>
+			<key>sourceSize</key>
+			<string>{72,77}</string>
+		</dict>
+		<key>images/Effect/uitouzi02/asdh000.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{68,67}}</string>
+			<key>offset</key>
+			<string>{-4,-1}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{6,15},{68,67}}</string>
+			<key>sourceSize</key>
+			<string>{88,95}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>uitouzi020.png</string>
+		<key>size</key>
+		<string>{128,128}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:efa97e2b041777fc58d02b743f06f454:1/1$</string>
+		<key>textureFileName</key>
+		<string>uitouzi020.png</string>
+	</dict>
+</dict>
+</plist>

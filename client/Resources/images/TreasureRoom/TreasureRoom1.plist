@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>images/TreasureRoom/bgLeft.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{129,432}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{129,432}}</string>
+			<key>sourceSize</key>
+			<string>{129,432}</string>
+		</dict>
+		<key>images/TreasureRoom/isExchanged.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{296,2},{127,84}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{127,84}}</string>
+			<key>sourceSize</key>
+			<string>{127,84}</string>
+		</dict>
+		<key>images/TreasureRoom/rareBg.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{133,2},{137,161}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<true/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{137,161}}</string>
+			<key>sourceSize</key>
+			<string>{137,161}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>TreasureRoom1.png</string>
+		<key>size</key>
+		<string>{512,512}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:a10e4d4fa23d99f0a77c9b5cb92b72a2:2/2$</string>
+		<key>textureFileName</key>
+		<string>TreasureRoom1.png</string>
+	</dict>
+</dict>
+</plist>

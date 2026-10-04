@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>data/BigCard/24.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{195,235}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{195,235}}</string>
+			<key>sourceSize</key>
+			<string>{195,235}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>BigCard178.png</string>
+		<key>size</key>
+		<string>{256,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:5f3fb91ba7906f7bdbb04468d88d72d1:179/402$</string>
+		<key>textureFileName</key>
+		<string>BigCard178.png</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,5 @@
+[
+{"headId":1024,"talk":160,"isLeft":true,"timeDelay":2000,"autoNext":false},
+{"headId":3303,"talk":161,"isLeft":false,"timeDelay":2000,"autoNext":false},
+{"headId":1004,"talk":162,"isLeft":false,"timeDelay":2000,"autoNext":false}
+]
