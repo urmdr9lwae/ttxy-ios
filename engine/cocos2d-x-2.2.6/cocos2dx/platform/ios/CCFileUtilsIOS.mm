@@ -257,9 +257,14 @@ bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
             file = strFilePath;
         }
         
+        // pathForResource 的目录不能带末尾斜杠，data/BigCard/ 这种两层路径会直接查不到。
+        NSString* dir = path.empty() ? nil : [NSString stringWithUTF8String:path.c_str()];
+        while (dir.length > 0 && [dir hasSuffix:@"/"]) {
+            dir = [dir substringToIndex:dir.length - 1];
+        }
         NSString* fullpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:file.c_str()]
                                                              ofType:nil
-                                                        inDirectory:[NSString stringWithUTF8String:path.c_str()]];
+                                                        inDirectory:dir];
         if (fullpath != nil) {
             bRet = true;
         }
@@ -279,9 +284,16 @@ std::string CCFileUtilsIOS::getFullPathForDirectoryAndFilename(const std::string
 {
     if (strDirectory[0] != '/')
     {
+        NSString* dir = [NSString stringWithUTF8String:strDirectory.c_str()];
+        while (dir.length > 0 && [dir hasSuffix:@"/"]) {
+            dir = [dir substringToIndex:dir.length - 1];
+        }
+        if (dir.length == 0) {
+            dir = nil;
+        }
         NSString* fullpath = [[NSBundle mainBundle] pathForResource:[NSString stringWithUTF8String:strFilename.c_str()]
                                                              ofType:nil
-                                                        inDirectory:[NSString stringWithUTF8String:strDirectory.c_str()]];
+                                                        inDirectory:dir];
         if (fullpath != nil) {
             return [fullpath UTF8String];
         }
