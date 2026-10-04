@@ -304,26 +304,35 @@ bool CCFileUtilsIOS::isAbsolutePath(const std::string& strPath)
     return [path isAbsolutePath] ? true : false;
 }
 
+static id PlistFromFile(const std::string& filename)
+{
+    unsigned long size = 0;
+    unsigned char* bytes = CCFileUtils::sharedFileUtils()->getFileData(filename.c_str(), "rb", &size);
+    if (!bytes || size == 0)
+    {
+        delete[] bytes;
+        return nil;
+    }
+    NSData* data = [NSData dataWithBytes:bytes length:size];
+    delete[] bytes;
+    NSError* error = nil;
+    id plist = [NSPropertyListSerialization propertyListWithData:data
+                                                         options:NSPropertyListImmutable
+                                                          format:nil
+                                                           error:&error];
+    return plist;
+}
+
 CCDictionary* CCFileUtilsIOS::createCCDictionaryWithContentsOfFile(const std::string& filename)
 {
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str());
-    NSString* pPath = [NSString stringWithUTF8String:fullPath.c_str()];
-    NSDictionary* pDict = [NSDictionary dictionaryWithContentsOfFile:pPath];
-    
-    if (pDict != nil)
-    {
-        CCDictionary* pRet = new CCDictionary();
-        for (id key in [pDict allKeys]) {
-            id value = [pDict objectForKey:key];
-            addValueToCCDict(key, value, pRet);
-        }
-        
-        return pRet;
+    id plist = PlistFromFile(filename);
+    if (![plist isKindOfClass:[NSDictionary class]]) return NULL;
+    CCDictionary* pRet = new CCDictionary();
+    for (id key in [plist allKeys]) {
+        id value = [plist objectForKey:key];
+        addValueToCCDict(key, value, pRet);
     }
-    else
-    {
-        return NULL;
-    }
+    return pRet;
 }
 
 bool CCFileUtilsIOS::writeToFile(CCDictionary *dict, const std::string &fullPath)
@@ -351,15 +360,14 @@ CCArray* CCFileUtilsIOS::createCCArrayWithContentsOfFile(const std::string& file
     //    pPath = [pPath stringByDeletingPathExtension];
     //    pPath = [[NSBundle mainBundle] pathForResource:pPath ofType:pathExtension];
     //    fixing cannot read data using CCArray::createWithContentsOfFile
-    std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(filename.c_str());
-    NSString* pPath = [NSString stringWithUTF8String:fullPath.c_str()];
-    NSArray* pArray = [NSArray arrayWithContentsOfFile:pPath];
-    
+    id plist = PlistFromFile(filename);
     CCArray* pRet = new CCArray();
-    for (id value in pArray) {
-        addItemToCCArray(value, pRet);
+    if ([plist isKindOfClass:[NSArray class]])
+    {
+        for (id value in plist) {
+            addItemToCCArray(value, pRet);
+        }
     }
-    
     return pRet;
 }
 
