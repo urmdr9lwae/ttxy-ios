@@ -11,7 +11,11 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
+#if defined(ANDROID)
+extern "C" int iosScreenMaxFPS(void) { return 60; }
+#else
 extern "C" int iosScreenMaxFPS(void);
+#endif
 
 namespace {
 

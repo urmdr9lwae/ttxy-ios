@@ -108,9 +108,12 @@ void CCConfiguration::dumpInfo(void) const
 
 void CCConfiguration::gatherGPUInfo()
 {
-	m_pValueDict->setObject( CCString::create( (const char*)glGetString(GL_VENDOR)), "gl.vendor");
-	m_pValueDict->setObject( CCString::create( (const char*)glGetString(GL_RENDERER)), "gl.renderer");
-	m_pValueDict->setObject( CCString::create( (const char*)glGetString(GL_VERSION)), "gl.version");
+    const char* vendor = (const char*)glGetString(GL_VENDOR);
+    const char* renderer = (const char*)glGetString(GL_RENDERER);
+    const char* version = (const char*)glGetString(GL_VERSION);
+	m_pValueDict->setObject( CCString::create(vendor ? vendor : ""), "gl.vendor");
+	m_pValueDict->setObject( CCString::create(renderer ? renderer : ""), "gl.renderer");
+	m_pValueDict->setObject( CCString::create(version ? version : ""), "gl.version");
 
     m_pGlExtensions = (char *)glGetString(GL_EXTENSIONS);
 

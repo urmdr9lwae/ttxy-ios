@@ -181,7 +181,7 @@ const char* CCGLProgram::description()
 
 bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 {
-    GLint status;
+    GLint status = 0;
  
     if (!source)
     {
@@ -215,8 +215,9 @@ bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* sour
 
     if (! status)
     {
-        GLsizei length;
+        GLsizei length = 0;
 		glGetShaderiv(*shader, GL_SHADER_SOURCE_LENGTH, &length);
+        if (length < 1) return false;
 		GLchar* src = (GLchar *)malloc(sizeof(GLchar) * length);
 		
 		glGetShaderSource(*shader, length, NULL, src);
@@ -232,11 +233,7 @@ bool CCGLProgram::compileShader(GLuint * shader, GLenum type, const GLchar* sour
         }
         free(src);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
         return false;
-#else
-		abort();
-#endif
     }
     return (status == GL_TRUE);
 }

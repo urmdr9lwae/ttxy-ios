@@ -9,6 +9,8 @@
 #include <windows.h>
 #include <bcrypt.h>
 #pragma comment(lib, "bcrypt.lib")
+#elif defined(__ANDROID__)
+#include <stdio.h>
 #else
 #include <stdlib.h>  // arc4random_buf（iOS / macOS）
 #endif
@@ -36,6 +38,14 @@ void RandomBytes(unsigned char* buf, size_t len) {
         Log("BCryptGenRandom 失败");
         abort();  // 没有安全随机数时不能继续加密
     }
+#elif defined(__ANDROID__)
+    FILE* f = fopen("/dev/urandom", "rb");
+    if (!f || fread(buf, 1, len, f) != len) {
+        if (f) fclose(f);
+        Log("读取 /dev/urandom 失败");
+        abort();
+    }
+    fclose(f);
 #else
     arc4random_buf(buf, len);
 #endif

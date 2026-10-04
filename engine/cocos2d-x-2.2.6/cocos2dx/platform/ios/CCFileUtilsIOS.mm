@@ -35,6 +35,7 @@ THE SOFTWARE.
 #include "support/zip_support/unzip.h"
 
 #include "CCFileUtilsIOS.h"
+#include "Pfdw.h"
 
 NS_CC_BEGIN
 
@@ -233,6 +234,15 @@ std::string CCFileUtilsIOS::getWritablePath()
     return strRet;
 }
 
+static void EnsurePackRoot()
+{
+    static bool ready = false;
+    if (ready) return;
+    ready = true;
+    NSString* root = [[NSBundle mainBundle] resourcePath];
+    if (root) host::PfdwSetRoot([root UTF8String]);
+}
+
 static NSString* BundleFile(const std::string& relative)
 {
     if (relative.empty()) return nil;
@@ -254,8 +264,24 @@ bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
     {
         return [s_fileManager fileExistsAtPath:[NSString stringWithUTF8String:strFilePath.c_str()]];
     }
-    // 直接按包内路径找。pathForResource 查 data/BigCard 这种两层目录会失败，卡面就建不出来。
-    return BundleFile(strFilePath) != nil;
+    // 直接按包内路径找。没有散文件时，再看高帧安卓包里的 PFDW。
+    if (BundleFile(strFilePath) != nil) return true;
+    EnsurePackRoot();
+    return host::PfdwContains(strFilePath);
+}
+
+unsigned char* CCFileUtilsIOS::getFileData(const char* pszFileName, const char* pszMode, unsigned long* pSize)
+{
+    unsigned char* loose = CCFileUtils::getFileData(pszFileName, pszMode, pSize);
+    if (loose) return loose;
+    if (!pszFileName) return nullptr;
+    EnsurePackRoot();
+    std::string bytes;
+    if (!host::PfdwRead(pszFileName, bytes) || bytes.empty()) return nullptr;
+    unsigned char* data = new unsigned char[bytes.size()];
+    memcpy(data, bytes.data(), bytes.size());
+    if (pSize) *pSize = bytes.size();
+    return data;
 }
 
 std::string CCFileUtilsIOS::getFullPathForDirectoryAndFilename(const std::string& strDirectory, const std::string& strFilename)
