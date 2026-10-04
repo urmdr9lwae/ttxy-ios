@@ -1,0 +1,34 @@
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>images/Rebirth/firstRecordBg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{601,567}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{601,567}}</string>
+				<key>sourceSize</key>
+				<string>{601,567}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>realTextureFileName</key>
+			<string>Rebirth_0.pkm</string>
+			<key>size</key>
+			<string>{1024,1024}</string>
+			<key>smartupdate</key>
+			<string>$TexturePacker:SmartUpdate:fa35a9107e12101fa1f90f16cd9034cf:1/2$</string>
+			<key>textureFileName</key>
+			<string>Rebirth_0.pkm</string>
+		</dict>
+	</dict>
+</plist>
+

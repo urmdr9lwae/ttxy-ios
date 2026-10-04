@@ -1,0 +1,34 @@
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>images/MallRace/shopBg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2,2},{478,452}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{478,452}}</string>
+				<key>sourceSize</key>
+				<string>{478,452}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>realTextureFileName</key>
+			<string>MallRace_0.pkm</string>
+			<key>size</key>
+			<string>{512,512}</string>
+			<key>smartupdate</key>
+			<string>$TexturePacker:SmartUpdate:3c39f06708a6d089aed5469187e4dcd9:1/1$</string>
+			<key>textureFileName</key>
+			<string>MallRace_0.pkm</string>
+		</dict>
+	</dict>
+</plist>
+
