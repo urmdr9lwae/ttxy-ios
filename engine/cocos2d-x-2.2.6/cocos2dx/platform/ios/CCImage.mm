@@ -334,17 +334,6 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
                                 : (3 == uHoriFlag) ? UITextAlignmentCenter
                                 : UITextAlignmentLeft);
 
-        
-        // 本来的字，只要这行字要求描边，就加一圈细黑边。
-        if ( pInfo->hasStroke )
-        {
-            CGContextSetTextDrawingMode(context, kCGTextFillStroke);
-            CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
-            CGContextSetLineJoin(context, kCGLineJoinRound);
-            CGContextSetLineCap(context, kCGLineCapRound);
-            CGContextSetLineWidth(context, pInfo->strokeSize);
-        }
-        
         // take care of shadow if needed
         if ( pInfo->hasShadow )
         {
@@ -398,9 +387,27 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         }
         
         
-        // actually draw the text in the context
-		// XXX: ios7 casting
-        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+        // 本来的字体。要求描边的字加一圈黑边，黑边按字号比例，不把笔画涂粗。
+        if ( pInfo->hasStroke )
+        {
+            UIColor* fillColor = [UIColor colorWithRed:pInfo->tintColorR green:pInfo->tintColorG blue:pInfo->tintColorB alpha:1];
+            NSMutableParagraphStyle* paragraph = [[[NSMutableParagraphStyle alloc] init] autorelease];
+            paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+            paragraph.alignment = (NSTextAlignment)align;
+            NSDictionary* attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   font, NSFontAttributeName,
+                                   fillColor, NSForegroundColorAttributeName,
+                                   [UIColor blackColor], NSStrokeColorAttributeName,
+                                   [NSNumber numberWithFloat:-6.0f], NSStrokeWidthAttributeName,
+                                   paragraph, NSParagraphStyleAttributeName,
+                                   nil];
+            [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight)
+             withAttributes:attrs];
+        }
+        else
+        {
+            [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+        }
         
         // pop the context
         UIGraphicsPopContext();
