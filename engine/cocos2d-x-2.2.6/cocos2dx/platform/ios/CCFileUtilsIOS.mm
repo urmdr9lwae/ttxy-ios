@@ -27,6 +27,8 @@ THE SOFTWARE.
 
 #include <string>
 #include <stack>
+#include <cstring>
+#include <stdint.h>
 #include "cocoa/CCString.h"
 #include "CCFileUtils.h"
 #include "CCDirector.h"
@@ -253,6 +255,32 @@ static NSString* BundleFile(const std::string& relative)
     return [s_fileManager fileExistsAtPath:full] ? full : nil;
 }
 
+static const unsigned char kAxMagic[8] = {'A','X','E','N','C','0','0','1'};
+static const unsigned char kAxKey[16] = {
+    0xC3, 0x17, 0x9A, 0x4E, 0x62, 0xD8, 0x0B, 0x71,
+    0xA5, 0x3F, 0xE2, 0x58, 0x14, 0x96, 0xCB, 0x2D
+};
+
+static unsigned char* AxDecryptIfNeeded(unsigned char* data, unsigned long* pSize)
+{
+    if (!data || !pSize || *pSize < 8) return data;
+    if (std::memcmp(data, kAxMagic, 8) != 0) return data;
+    const unsigned long n = *pSize - 8;
+    unsigned char* plain = new unsigned char[n];
+    uint32_t s = 0xA17C0DE1u;
+    for (int i = 0; i < 16; ++i) s = s * 16777619u ^ kAxKey[i];
+    if (s == 0) s = 0xA17C0DE1u;
+    for (unsigned long i = 0; i < n; ++i) {
+        s ^= s << 13;
+        s ^= s >> 17;
+        s ^= s << 5;
+        plain[i] = data[8 + i] ^ static_cast<unsigned char>(s & 0xFF);
+    }
+    delete[] data;
+    *pSize = n;
+    return plain;
+}
+
 bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
 {
     if (0 == strFilePath.length())
@@ -273,7 +301,7 @@ bool CCFileUtilsIOS::isFileExist(const std::string& strFilePath)
 unsigned char* CCFileUtilsIOS::getFileData(const char* pszFileName, const char* pszMode, unsigned long* pSize)
 {
     unsigned char* loose = CCFileUtils::getFileData(pszFileName, pszMode, pSize);
-    if (loose) return loose;
+    if (loose) return AxDecryptIfNeeded(loose, pSize);
     if (!pszFileName) return nullptr;
     EnsurePackRoot();
     std::string bytes;
@@ -281,7 +309,7 @@ unsigned char* CCFileUtilsIOS::getFileData(const char* pszFileName, const char* 
     unsigned char* data = new unsigned char[bytes.size()];
     memcpy(data, bytes.data(), bytes.size());
     if (pSize) *pSize = bytes.size();
-    return data;
+    return AxDecryptIfNeeded(data, pSize);
 }
 
 std::string CCFileUtilsIOS::getFullPathForDirectoryAndFilename(const std::string& strDirectory, const std::string& strFilename)
