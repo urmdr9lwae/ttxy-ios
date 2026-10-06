@@ -104,8 +104,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setOpenGLView(view);
     director->setProjection(kCCDirectorProjection2D);
     CCFileUtils::sharedFileUtils()->setPopupNotify(false);
-    // 画布按宽度加高，原来的 960 界面仍居中。多出来的上下边只放木板。
-    view->setDesignResolutionSize(640, 960, kResolutionFixedWidth);
+    // 640x960 按原比例居中。黑边留着，木板单独画在黑边里，游戏里的位置不动。
+    view->setDesignResolutionSize(640, 960, kResolutionShowAll);
     int fps = iosScreenMaxFPS();
     if (fps < 30) {
         fps = 60;
