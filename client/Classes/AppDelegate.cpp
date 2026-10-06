@@ -104,7 +104,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setOpenGLView(view);
     director->setProjection(kCCDirectorProjection2D);
     CCFileUtils::sharedFileUtils()->setPopupNotify(false);
-    // 640x960 按原比例居中。黑边留着，木板单独画在黑边里，游戏里的位置不动。
+    // 640x960 整幅都留在屏幕里。高屏如果铺满裁切，左右卡牌会被切出画面。
     view->setDesignResolutionSize(640, 960, kResolutionShowAll);
     int fps = iosScreenMaxFPS();
     if (fps < 30) {

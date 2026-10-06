@@ -310,7 +310,7 @@ CCPoint CCTableView::_offsetFromIndex(unsigned int index)
     CCPoint offset = this->__offsetFromIndex(index);
 
     const CCSize cellSize = m_pDataSource->tableCellSizeForIndex(this, index);
-    if (m_eVordering == kCCTableViewFillTopDown && this->getDirection() != kCCScrollViewDirectionHorizontal)
+    if (m_eVordering == kCCTableViewFillTopDown)
     {
         offset.y = this->getContainer()->getContentSize().height - offset.y - cellSize.height;
     }
@@ -340,7 +340,7 @@ unsigned int CCTableView::_indexFromOffset(CCPoint offset)
     int index = 0;
     const int maxIdx = m_pDataSource->numberOfCellsInTableView(this)-1;
 
-    if (m_eVordering == kCCTableViewFillTopDown && this->getDirection() != kCCScrollViewDirectionHorizontal)
+    if (m_eVordering == kCCTableViewFillTopDown)
     {
         offset.y = this->getContainer()->getContentSize().height - offset.y;
     }
@@ -465,7 +465,7 @@ void CCTableView::scrollViewDidScroll(CCScrollView* view)
     CCPoint offset = ccpMult(this->getContentOffset(), -1);
     maxIdx = MAX(uCountOfItems-1, 0);
 
-    if (m_eVordering == kCCTableViewFillTopDown && this->getDirection() != kCCScrollViewDirectionHorizontal)
+    if (m_eVordering == kCCTableViewFillTopDown)
     {
         offset.y = offset.y + m_tViewSize.height/this->getContainer()->getScaleY();
     }
@@ -475,7 +475,7 @@ void CCTableView::scrollViewDidScroll(CCScrollView* view)
 		startIdx = uCountOfItems - 1;
 	}
 
-    if (m_eVordering == kCCTableViewFillTopDown && this->getDirection() != kCCScrollViewDirectionHorizontal)
+    if (m_eVordering == kCCTableViewFillTopDown)
     {
         offset.y -= m_tViewSize.height/this->getContainer()->getScaleY();
     }

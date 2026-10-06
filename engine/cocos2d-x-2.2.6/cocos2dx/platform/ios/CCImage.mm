@@ -222,10 +222,6 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         // create the font   
         id font = [UIFont fontWithName:fntName size:nSize];
-        if (!font)
-        {
-            font = [UIFont fontWithName:@"YaHei" size:nSize];
-        }
         
         if (font)
         {
@@ -334,6 +330,15 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
                                 : (3 == uHoriFlag) ? UITextAlignmentCenter
                                 : UITextAlignmentLeft);
 
+        
+        // take care of stroke if needed
+        if ( pInfo->hasStroke )
+        {
+            CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+            CGContextSetRGBStrokeColor(context, pInfo->strokeColorR, pInfo->strokeColorG, pInfo->strokeColorB, 1);
+            CGContextSetLineWidth(context, pInfo->strokeSize);
+        }
+        
         // take care of shadow if needed
         if ( pInfo->hasShadow )
         {
@@ -387,20 +392,9 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         }
         
         
-        // 本来的字体，全部加一圈细黑边。
-        UIColor* fillColor = [UIColor colorWithRed:pInfo->tintColorR green:pInfo->tintColorG blue:pInfo->tintColorB alpha:1];
-        NSMutableParagraphStyle* paragraph = [[[NSMutableParagraphStyle alloc] init] autorelease];
-        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        paragraph.alignment = (NSTextAlignment)align;
-        NSDictionary* attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                               font, NSFontAttributeName,
-                               fillColor, NSForegroundColorAttributeName,
-                               [UIColor blackColor], NSStrokeColorAttributeName,
-                               [NSNumber numberWithFloat:-10.0f], NSStrokeWidthAttributeName,
-                               paragraph, NSParagraphStyleAttributeName,
-                               nil];
-        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight)
-         withAttributes:attrs];
+        // actually draw the text in the context
+		// XXX: ios7 casting
+        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
         
         // pop the context
         UIGraphicsPopContext();
