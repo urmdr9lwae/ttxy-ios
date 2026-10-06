@@ -160,7 +160,7 @@ local labelStyles = setmetatable({}, { __mode = "k" })
 CCLabelTTF.setStyle = function(self, style, ...)
     labelStyles[self] = style
     if style == kCCLabelTTFStyleOutline and self.enableStroke then
-        pcall(self.enableStroke, self, ccc3(0, 0, 0), 1, true)
+        pcall(self.enableStroke, self, ccc3(0, 0, 0), 3, true)
     elseif style == kCCLabelTTFStyleShadow and self.enableShadow then
         pcall(self.enableShadow, self, CCSizeMake(1, -1), 1, 0, true)
     end

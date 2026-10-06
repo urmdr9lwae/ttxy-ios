@@ -383,10 +383,14 @@ static EAGLView *view = 0;
             if ([view isFirstResponder])
             {
                 [view resignFirstResponder];
-                return;
             }
         }
     }
+    if ([self isFirstResponder])
+    {
+        [self resignFirstResponder];
+    }
+    isKeyboardShown_ = NO;
 }
 
 // Pass the touches to the superview
@@ -396,7 +400,6 @@ static EAGLView *view = 0;
     if (isKeyboardShown_)
     {
         [self handleTouchesAfterKeyboardShow];
-        return;
     }
     
     int ids[IOS_MAX_TOUCHES_COUNT] = {0};
@@ -417,7 +420,7 @@ static EAGLView *view = 0;
 {
     if (isKeyboardShown_)
     {
-        return;
+        [self handleTouchesAfterKeyboardShow];
     }
     int ids[IOS_MAX_TOUCHES_COUNT] = {0};
     float xs[IOS_MAX_TOUCHES_COUNT] = {0.0f};
@@ -437,7 +440,7 @@ static EAGLView *view = 0;
 {
     if (isKeyboardShown_)
     {
-        return;
+        [self handleTouchesAfterKeyboardShow];
     }
     
     int ids[IOS_MAX_TOUCHES_COUNT] = {0};
@@ -458,7 +461,7 @@ static EAGLView *view = 0;
 {
     if (isKeyboardShown_)
     {
-        return;
+        [self handleTouchesAfterKeyboardShow];
     }
     
     int ids[IOS_MAX_TOUCHES_COUNT] = {0};

@@ -8,13 +8,10 @@
     [super viewDidLayoutSubviews];
     if (self.view.subviews.count == 0) return;
     UIView* gl = [self.view.subviews objectAtIndex:0];
-    UIEdgeInsets inset = UIEdgeInsetsZero;
-    if (@available(iOS 11.0, *)) {
-        inset = self.view.safeAreaInsets;
-    }
-    CGRect safe = UIEdgeInsetsInsetRect(self.view.bounds, inset);
-    if (CGRectEqualToRect(gl.frame, safe)) return;
-    gl.frame = safe;
+    // 整幅 640x960 画在全屏里，保持比例。缩进安全区会把上下木框切掉。
+    CGRect full = self.view.bounds;
+    if (CGRectEqualToRect(gl.frame, full)) return;
+    gl.frame = full;
     if (cocos2d::CCDirector::sharedDirector()->getOpenGLView() == nullptr) return;
     float w = [(EAGLView*)gl getWidth];
     float h = [(EAGLView*)gl getHeight];

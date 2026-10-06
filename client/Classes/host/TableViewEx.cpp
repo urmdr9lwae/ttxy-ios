@@ -199,7 +199,7 @@ CCTableViewEx::~CCTableViewEx() {
 }
 
 void CCTableViewEx::setDirection(CCScrollViewDirection dir) {
-    pageTurn_ = dir == kCCScrollViewDirectionBoth;
+    pageTurn_ = dir == kCCScrollViewDirectionBoth || dir == kCCScrollViewDirectionHorizontal;
     CCTableView::setDirection(pageTurn_ ? kCCScrollViewDirectionVertical : dir);
 }
 

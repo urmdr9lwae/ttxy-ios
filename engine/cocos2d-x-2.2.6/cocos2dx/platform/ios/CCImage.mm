@@ -222,6 +222,10 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         // create the font   
         id font = [UIFont fontWithName:fntName size:nSize];
+        if (!font)
+        {
+            font = [UIFont fontWithName:@"YaHei" size:nSize];
+        }
         
         if (font)
         {
@@ -277,11 +281,13 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         float shadowStrokePaddingX = 0.0f;
         float shadowStrokePaddingY = 0.0f;
         
-        if ( pInfo->hasStroke )
+        float strokeWidth = pInfo->hasStroke ? pInfo->strokeSize : 0.0f;
+        if (strokeWidth < 2.0f)
         {
-            shadowStrokePaddingX = ceilf(pInfo->strokeSize);
-            shadowStrokePaddingY = ceilf(pInfo->strokeSize);
+            strokeWidth = 2.0f;
         }
+        shadowStrokePaddingX = ceilf(strokeWidth);
+        shadowStrokePaddingY = ceilf(strokeWidth);
         
         if ( pInfo->hasShadow )
         {
@@ -331,13 +337,12 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
                                 : UITextAlignmentLeft);
 
         
-        // take care of stroke if needed
-        if ( pInfo->hasStroke )
-        {
-            CGContextSetTextDrawingMode(context, kCGTextFillStroke);
-            CGContextSetRGBStrokeColor(context, pInfo->strokeColorR, pInfo->strokeColorG, pInfo->strokeColorB, 1);
-            CGContextSetLineWidth(context, pInfo->strokeSize);
-        }
+        // 安卓字有黑边。iOS 这里统一描一圈，避免细字融进背景。
+        CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+        CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
+        CGContextSetLineJoin(context, kCGLineJoinRound);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, strokeWidth);
         
         // take care of shadow if needed
         if ( pInfo->hasShadow )
