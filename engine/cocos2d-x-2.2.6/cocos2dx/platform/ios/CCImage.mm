@@ -281,13 +281,11 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         float shadowStrokePaddingX = 0.0f;
         float shadowStrokePaddingY = 0.0f;
         
-        float strokeWidth = pInfo->hasStroke ? pInfo->strokeSize : 0.0f;
-        if (strokeWidth < 2.0f)
+        if ( pInfo->hasStroke )
         {
-            strokeWidth = 2.0f;
+            shadowStrokePaddingX = ceilf(pInfo->strokeSize);
+            shadowStrokePaddingY = ceilf(pInfo->strokeSize);
         }
-        shadowStrokePaddingX = ceilf(strokeWidth);
-        shadowStrokePaddingY = ceilf(strokeWidth);
         
         if ( pInfo->hasShadow )
         {
@@ -337,12 +335,15 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
                                 : UITextAlignmentLeft);
 
         
-        // 安卓字有黑边。iOS 这里统一描一圈，避免细字融进背景。
-        CGContextSetTextDrawingMode(context, kCGTextFillStroke);
-        CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
-        CGContextSetLineJoin(context, kCGLineJoinRound);
-        CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextSetLineWidth(context, strokeWidth);
+        // 本来的字，只要这行字要求描边，就加一圈细黑边。
+        if ( pInfo->hasStroke )
+        {
+            CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+            CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
+            CGContextSetLineJoin(context, kCGLineJoinRound);
+            CGContextSetLineCap(context, kCGLineCapRound);
+            CGContextSetLineWidth(context, pInfo->strokeSize);
+        }
         
         // take care of shadow if needed
         if ( pInfo->hasShadow )

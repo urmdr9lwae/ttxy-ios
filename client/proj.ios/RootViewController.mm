@@ -18,7 +18,7 @@
     if (w < 1.0f || h < 1.0f) return;
     cocos2d::CCEGLView* view = cocos2d::CCEGLView::sharedOpenGLView();
     view->setFrameSize(w, h);
-    view->setDesignResolutionSize(640, 960, kResolutionShowAll);
+    view->setDesignResolutionSize(640, 960, kResolutionFixedWidth);
 }
 
 // 游戏是竖屏（设计分辨率 640x960）

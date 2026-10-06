@@ -104,8 +104,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setOpenGLView(view);
     director->setProjection(kCCDirectorProjection2D);
     CCFileUtils::sharedFileUtils()->setPopupNotify(false);
-    // 640x960 整幅都留在屏幕里。高屏如果铺满裁切，左右卡牌会被切出画面。
-    view->setDesignResolutionSize(640, 960, kResolutionShowAll);
+    // 按宽度适配，画面不变形。多出来的高度用来露出上下木框。
+    view->setDesignResolutionSize(640, 960, kResolutionFixedWidth);
     int fps = iosScreenMaxFPS();
     if (fps < 30) {
         fps = 60;
