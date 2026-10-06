@@ -100,6 +100,8 @@ protected:
 protected:
     bool m_isPushed;
     bool m_bParentInited;
+    bool m_touchMoved;
+    CCPoint m_touchStart;
 public:
     bool isPushed() { return m_isPushed; }
 

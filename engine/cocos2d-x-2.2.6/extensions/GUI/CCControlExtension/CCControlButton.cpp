@@ -26,6 +26,7 @@
  */
 
 #include "CCControlButton.h"
+#include <math.h>
 #include "CCScale9Sprite.h"
 #include "support/CCPointExtension.h"
 #include "label_nodes/CCLabelTTF.h"
@@ -51,6 +52,8 @@ CCControlButton::CCControlButton()
 , m_zoomOnTouchDown(false)
 , m_isPushed(false)
 , m_bParentInited(false)
+, m_touchMoved(false)
+, m_touchStart(CCPointZero)
 , m_titleDispatchTable(NULL)
 , m_titleColorDispatchTable(NULL)
 , m_titleLabelDispatchTable(NULL)
@@ -648,13 +651,20 @@ bool CCControlButton::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     }
     
     m_isPushed = true;
+    m_touchMoved = false;
+    m_touchStart = pTouch->getLocation();
     this->setHighlighted(true);
     sendActionsForControlEvents(CCControlEventTouchDown);
     return true;
 }
 
 void CCControlButton::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
-{    
+{
+    CCPoint loc = pTouch->getLocation();
+    if (fabsf(loc.x - m_touchStart.x) > 7.f || fabsf(loc.y - m_touchStart.y) > 7.f)
+    {
+        m_touchMoved = true;
+    }
     if (!isEnabled() || !isPushed() || isSelected())
     {
         if (isHighlighted())
@@ -691,7 +701,7 @@ void CCControlButton::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     setHighlighted(false);
     
     
-    if (isTouchInside(pTouch))
+    if (!m_touchMoved && isTouchInside(pTouch))
     {
         sendActionsForControlEvents(CCControlEventTouchUpInside);        
     }
