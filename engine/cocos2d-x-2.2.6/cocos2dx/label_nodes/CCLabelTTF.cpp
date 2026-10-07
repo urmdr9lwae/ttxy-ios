@@ -339,6 +339,29 @@ bool CCLabelTTF::updateTexture()
     CCRect rect =CCRectZero;
     rect.size   = m_pobTexture->getContentSize();
     this->setTextureRect(rect);
+
+    // 描边会把字图画大一圈。显示区域缩回没描边时的字号，黑边算在原来的大小里面。
+    if (m_strokeEnabled && m_strokeSize > 0.f && rect.size.width > 1.f && rect.size.height > 1.f)
+    {
+        float pad = ceilf(m_strokeSize) * 2.f;
+        float sx = (rect.size.width - pad) / rect.size.width;
+        float sy = (rect.size.height - pad) / rect.size.height;
+        float fit = sx < sy ? sx : sy;
+        if (fit > 0.f && fit < 1.f)
+        {
+            CCSize points = CCSizeMake(rect.size.width * fit, rect.size.height * fit);
+            this->setContentSize(points);
+            m_obRect.size = points;
+            float x1 = m_obOffsetPosition.x;
+            float y1 = m_obOffsetPosition.y;
+            float x2 = x1 + points.width;
+            float y2 = y1 + points.height;
+            m_sQuad.bl.vertices = vertex3(x1, y1, 0);
+            m_sQuad.br.vertices = vertex3(x2, y1, 0);
+            m_sQuad.tl.vertices = vertex3(x1, y2, 0);
+            m_sQuad.tr.vertices = vertex3(x2, y2, 0);
+        }
+    }
     
     //ok
     return true;
