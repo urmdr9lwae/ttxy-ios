@@ -401,30 +401,61 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         
         // actually draw the text in the context
-        // 预览图右边是实心黑边：先把黑字往四周错开画一圈，再在中间填原来的颜色。
+        // 字只画一遍，保持原来的笔画粗细。黑边只写在原来透明、挨着字的像素上。
         CGRect textRect = CGRectMake(textOriginX, textOrigingY, textWidth, textHeight);
+        [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+
         if (pInfo->hasStroke && pInfo->strokeSize > 0.f)
         {
+            int width = (int)dim.width;
+            int height = (int)dim.height;
             int radius = (int)ceilf(pInfo->strokeSize);
             if (radius < 1)
                 radius = 1;
-            CGContextSetRGBFillColor(context, pInfo->strokeColorR, pInfo->strokeColorG, pInfo->strokeColorB, 1);
+            int count = width * height;
+            unsigned char* srcAlpha = new unsigned char[count];
+            for (int i = 0; i < count; ++i)
+                srcAlpha[i] = data[i * 4 + 3];
             int radiusSq = radius * radius;
-            for (int dy = -radius; dy <= radius; ++dy)
+            for (int y = 0; y < height; ++y)
             {
-                for (int dx = -radius; dx <= radius; ++dx)
+                for (int x = 0; x < width; ++x)
                 {
-                    if (dx == 0 && dy == 0)
+                    int idx = y * width + x;
+                    if (srcAlpha[idx] > 16)
                         continue;
-                    if (dx * dx + dy * dy > radiusSq)
-                        continue;
-                    CGRect strokeRect = CGRectMake(textRect.origin.x + dx, textRect.origin.y + dy, textRect.size.width, textRect.size.height);
-                    [str drawInRect:strokeRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+                    unsigned char nearA = 0;
+                    for (int dy = -radius; dy <= radius; ++dy)
+                    {
+                        int ny = y + dy;
+                        if (ny < 0 || ny >= height)
+                            continue;
+                        for (int dx = -radius; dx <= radius; ++dx)
+                        {
+                            if (dx == 0 && dy == 0)
+                                continue;
+                            if (dx * dx + dy * dy > radiusSq)
+                                continue;
+                            int nx = x + dx;
+                            if (nx < 0 || nx >= width)
+                                continue;
+                            unsigned char a = srcAlpha[ny * width + nx];
+                            if (a > nearA)
+                                nearA = a;
+                        }
+                    }
+                    if (nearA > 16)
+                    {
+                        int p = idx * 4;
+                        data[p] = 0;
+                        data[p + 1] = 0;
+                        data[p + 2] = 0;
+                        data[p + 3] = 255;
+                    }
                 }
             }
-            CGContextSetRGBFillColor(context, pInfo->tintColorR, pInfo->tintColorG, pInfo->tintColorB, 1);
+            delete[] srcAlpha;
         }
-        [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
         
         // pop the context
         UIGraphicsPopContext();
