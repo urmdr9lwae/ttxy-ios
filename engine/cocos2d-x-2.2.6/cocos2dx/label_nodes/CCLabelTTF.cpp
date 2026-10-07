@@ -24,33 +24,10 @@ THE SOFTWARE.
 ****************************************************************************/
 #include "CCLabelTTF.h"
 #include "CCDirector.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "CCEGLView.h"
-#endif
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "CCApplication.h"
 #include <string.h>
-
-// ShowAll 会把设计分辨率放大到屏幕。字按这个倍数画，再把显示区域缩回界面字号。
-// 贴图坐标必须盖住整张字。不能把缩小后的尺寸拿去设贴图矩形，否则只会露出左上角。
-static float IosLabelPixelScale()
-{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    cocos2d::CCDirector* director = cocos2d::CCDirector::sharedDirector();
-    cocos2d::CCEGLView* view = director ? director->getOpenGLView() : NULL;
-    if (!view)
-        return 1.f;
-    float s = view->getScaleX();
-    if (s < 1.f)
-        s = 1.f;
-    if (s > 3.f)
-        s = 3.f;
-    return s;
-#else
-    return 1.f;
-#endif
-}
 
 static const char* ResolvedFontName(const char* fontName)
 {
@@ -337,27 +314,9 @@ bool CCLabelTTF::updateTexture()
     if (!tex)
         return false;
     
-    float pixelScale = IosLabelPixelScale();
-
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     
         ccFontDefinition texDef = _prepareTextDefinition(true);
-        if (pixelScale > 1.01f)
-        {
-            texDef.m_fontSize = (int)(texDef.m_fontSize * pixelScale + 0.5f);
-            if (texDef.m_dimensions.width > 0)
-                texDef.m_dimensions.width *= pixelScale;
-            if (texDef.m_dimensions.height > 0)
-                texDef.m_dimensions.height *= pixelScale;
-            if (texDef.m_stroke.m_strokeEnabled)
-                texDef.m_stroke.m_strokeSize *= pixelScale;
-            if (texDef.m_shadow.m_shadowEnabled)
-            {
-                texDef.m_shadow.m_shadowOffset.width *= pixelScale;
-                texDef.m_shadow.m_shadowOffset.height *= pixelScale;
-                texDef.m_shadow.m_shadowBlur *= pixelScale;
-            }
-        }
         tex->initWithString( m_string.c_str(), &texDef );
     
     #else
@@ -380,23 +339,6 @@ bool CCLabelTTF::updateTexture()
     CCRect rect =CCRectZero;
     rect.size   = m_pobTexture->getContentSize();
     this->setTextureRect(rect);
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    if (pixelScale > 1.01f && rect.size.width > 0.f && rect.size.height > 0.f)
-    {
-        CCSize points = CCSizeMake(rect.size.width / pixelScale, rect.size.height / pixelScale);
-        this->setContentSize(points);
-        m_obRect.size = points;
-        float x1 = m_obOffsetPosition.x;
-        float y1 = m_obOffsetPosition.y;
-        float x2 = x1 + points.width;
-        float y2 = y1 + points.height;
-        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
-        m_sQuad.br.vertices = vertex3(x2, y1, 0);
-        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
-        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
-    }
-#endif
     
     //ok
     return true;
