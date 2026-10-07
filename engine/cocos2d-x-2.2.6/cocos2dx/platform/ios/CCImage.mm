@@ -279,8 +279,8 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         if ( pInfo->hasStroke )
         {
-            shadowStrokePaddingX = ceilf(pInfo->strokeSize);
-            shadowStrokePaddingY = ceilf(pInfo->strokeSize);
+            shadowStrokePaddingX = ceilf(pInfo->strokeSize) * 2.f;
+            shadowStrokePaddingY = ceilf(pInfo->strokeSize) * 2.f;
         }
         
         if ( pInfo->hasShadow )
@@ -392,9 +392,40 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         }
         
         
-        // actually draw the text in the context
-		// XXX: ios7 casting
-        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+        if (pInfo->hasStroke && pInfo->strokeSize > 0.f)
+        {
+            float inset = ceilf(pInfo->strokeSize);
+            textOriginX = inset;
+            textOrigingY = startH - inset;
+        }
+        
+        
+        // 预览图：黑边先画在外圈，再把原来的颜色填回正中。
+        CGRect textRect = CGRectMake(textOriginX, textOrigingY, textWidth, textHeight);
+        if (pInfo->hasStroke && pInfo->strokeSize > 0.f)
+        {
+            int radius = (int)ceilf(pInfo->strokeSize);
+            if (radius < 1)
+                radius = 1;
+            UIColor* strokeColor = [UIColor colorWithRed:pInfo->strokeColorR green:pInfo->strokeColorG blue:pInfo->strokeColorB alpha:1];
+            [strokeColor set];
+            CGContextSetRGBFillColor(context, pInfo->strokeColorR, pInfo->strokeColorG, pInfo->strokeColorB, 1);
+            int radiusSq = radius * radius;
+            for (int dy = -radius; dy <= radius; ++dy)
+            {
+                for (int dx = -radius; dx <= radius; ++dx)
+                {
+                    if (dx * dx + dy * dy > radiusSq)
+                        continue;
+                    CGRect strokeRect = CGRectMake(textRect.origin.x + dx, textRect.origin.y + dy, textRect.size.width, textRect.size.height);
+                    [str drawInRect:strokeRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+                }
+            }
+        }
+        UIColor* fillColor = [UIColor colorWithRed:pInfo->tintColorR green:pInfo->tintColorG blue:pInfo->tintColorB alpha:1];
+        [fillColor set];
+        CGContextSetRGBFillColor(context, pInfo->tintColorR, pInfo->tintColorG, pInfo->tintColorB, 1);
+        [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
         
         // pop the context
         UIGraphicsPopContext();
