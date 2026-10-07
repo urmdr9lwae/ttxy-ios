@@ -27,21 +27,6 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "CCApplication.h"
-#include <string.h>
-
-static const char* ResolvedFontName(const char* fontName)
-{
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    // 界面文件里的 Helvetica 是占位名。iOS 按 font.ini 用雅黑，和安卓一致。
-    if (fontName == NULL || fontName[0] == '\0'
-        || strcmp(fontName, "Helvetica") == 0
-        || strcmp(fontName, "Helvetica-Bold") == 0)
-    {
-        return "YaHei";
-    }
-#endif
-    return fontName ? fontName : "";
-}
 
 NS_CC_BEGIN
 
@@ -152,7 +137,7 @@ bool CCLabelTTF::initWithString(const char *string, const char *fontName, float 
         m_tDimensions = CCSizeMake(dimensions.width, dimensions.height);
         m_hAlignment  = hAlignment;
         m_vAlignment  = vAlignment;
-        m_pFontName   = new std::string(ResolvedFontName(fontName));
+        m_pFontName   = new std::string(fontName);
         m_fFontSize   = fontSize;
         
         this->setString(string);
@@ -291,7 +276,6 @@ const char* CCLabelTTF::getFontName()
 
 void CCLabelTTF::setFontName(const char *fontName)
 {
-    fontName = ResolvedFontName(fontName);
     if (m_pFontName->compare(fontName))
     {
         delete m_pFontName;
@@ -317,22 +301,6 @@ bool CCLabelTTF::updateTexture()
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     
         ccFontDefinition texDef = _prepareTextDefinition(true);
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        // 预览图是字号放大 2 倍、黑边 2 像素。显示时除回 2 倍，外框等于没加描边的大小。
-        const float kPreviewScale = 2.f;
-        const float kPreviewPad = 4.f;
-        bool previewStroke = m_strokeEnabled && m_strokeSize > 0.f;
-        if (previewStroke)
-        {
-            texDef.m_fontSize = (int)(texDef.m_fontSize * kPreviewScale + 0.5f);
-            if (texDef.m_dimensions.width > 0)
-                texDef.m_dimensions.width *= kPreviewScale;
-            if (texDef.m_dimensions.height > 0)
-                texDef.m_dimensions.height *= kPreviewScale;
-            texDef.m_stroke.m_strokeEnabled = true;
-            texDef.m_stroke.m_strokeSize = kPreviewScale;
-        }
-#endif
         tex->initWithString( m_string.c_str(), &texDef );
     
     #else
@@ -355,24 +323,6 @@ bool CCLabelTTF::updateTexture()
     CCRect rect =CCRectZero;
     rect.size   = m_pobTexture->getContentSize();
     this->setTextureRect(rect);
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    if (m_strokeEnabled && m_strokeSize > 0.f && rect.size.width > 4.f && rect.size.height > 4.f)
-    {
-        CCSize points = CCSizeMake((rect.size.width - 4.f) / 2.f,
-                                   (rect.size.height - 4.f) / 2.f);
-        this->setContentSize(points);
-        m_obRect.size = points;
-        float x1 = m_obOffsetPosition.x;
-        float y1 = m_obOffsetPosition.y;
-        float x2 = x1 + points.width;
-        float y2 = y1 + points.height;
-        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
-        m_sQuad.br.vertices = vertex3(x2, y1, 0);
-        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
-        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
-    }
-#endif
     
     //ok
     return true;
