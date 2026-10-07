@@ -279,8 +279,9 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         if ( pInfo->hasStroke )
         {
-            shadowStrokePaddingX = ceilf(pInfo->strokeSize);
-            shadowStrokePaddingY = ceilf(pInfo->strokeSize);
+            // 上下左右都要留出黑边，和预览图里描在字外面的那一圈一样。
+            shadowStrokePaddingX = ceilf(pInfo->strokeSize) * 2.f;
+            shadowStrokePaddingY = ceilf(pInfo->strokeSize) * 2.f;
         }
         
         if ( pInfo->hasShadow )
@@ -390,30 +391,40 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         {
             textOrigingY = startH - shadowStrokePaddingY;
         }
+
+        if (pInfo->hasStroke && pInfo->strokeSize > 0.f)
+        {
+            float inset = ceilf(pInfo->strokeSize);
+            textOriginX = inset;
+            textOrigingY = startH - inset;
+        }
         
         
         // actually draw the text in the context
-        // drawInRect:withFont: 不会把 CGContext 的描边画出来。脚本要的黑边改用属性字符串。
+        // 预览图右边是实心黑边：先把黑字往四周错开画一圈，再在中间填原来的颜色。
         CGRect textRect = CGRectMake(textOriginX, textOrigingY, textWidth, textHeight);
-        UIColor* fillColor = [UIColor colorWithRed:pInfo->tintColorR green:pInfo->tintColorG blue:pInfo->tintColorB alpha:1];
-        if (pInfo->hasStroke && pInfo->strokeSize > 0.f && nSize > 0)
+        if (pInfo->hasStroke && pInfo->strokeSize > 0.f)
         {
-            CGFloat strokePercent = -(pInfo->strokeSize / (CGFloat)nSize) * 100.f;
-            UIColor* strokeColor = [UIColor colorWithRed:pInfo->strokeColorR green:pInfo->strokeColorG blue:pInfo->strokeColorB alpha:1];
-            NSDictionary* attrs = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   font, NSFontAttributeName,
-                                   fillColor, NSForegroundColorAttributeName,
-                                   strokeColor, NSStrokeColorAttributeName,
-                                   [NSNumber numberWithFloat:strokePercent], NSStrokeWidthAttributeName,
-                                   nil];
-            NSAttributedString* attr = [[NSAttributedString alloc] initWithString:str attributes:attrs];
-            [attr drawInRect:textRect];
-            [attr release];
+            int radius = (int)ceilf(pInfo->strokeSize);
+            if (radius < 1)
+                radius = 1;
+            CGContextSetRGBFillColor(context, pInfo->strokeColorR, pInfo->strokeColorG, pInfo->strokeColorB, 1);
+            int radiusSq = radius * radius;
+            for (int dy = -radius; dy <= radius; ++dy)
+            {
+                for (int dx = -radius; dx <= radius; ++dx)
+                {
+                    if (dx == 0 && dy == 0)
+                        continue;
+                    if (dx * dx + dy * dy > radiusSq)
+                        continue;
+                    CGRect strokeRect = CGRectMake(textRect.origin.x + dx, textRect.origin.y + dy, textRect.size.width, textRect.size.height);
+                    [str drawInRect:strokeRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+                }
+            }
+            CGContextSetRGBFillColor(context, pInfo->tintColorR, pInfo->tintColorG, pInfo->tintColorB, 1);
         }
-        else
-        {
-            [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
-        }
+        [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
         
         // pop the context
         UIGraphicsPopContext();
