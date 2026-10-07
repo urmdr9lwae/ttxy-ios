@@ -317,6 +317,22 @@ bool CCLabelTTF::updateTexture()
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     
         ccFontDefinition texDef = _prepareTextDefinition(true);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        // 预览图是字号放大 2 倍、黑边 2 像素。显示时除回 2 倍，外框等于没加描边的大小。
+        const float kPreviewScale = 2.f;
+        const float kPreviewPad = 4.f;
+        bool previewStroke = m_strokeEnabled && m_strokeSize > 0.f;
+        if (previewStroke)
+        {
+            texDef.m_fontSize = (int)(texDef.m_fontSize * kPreviewScale + 0.5f);
+            if (texDef.m_dimensions.width > 0)
+                texDef.m_dimensions.width *= kPreviewScale;
+            if (texDef.m_dimensions.height > 0)
+                texDef.m_dimensions.height *= kPreviewScale;
+            texDef.m_stroke.m_strokeEnabled = true;
+            texDef.m_stroke.m_strokeSize = kPreviewScale;
+        }
+#endif
         tex->initWithString( m_string.c_str(), &texDef );
     
     #else
@@ -340,28 +356,23 @@ bool CCLabelTTF::updateTexture()
     rect.size   = m_pobTexture->getContentSize();
     this->setTextureRect(rect);
 
-    // 描边会把字图画大一圈。显示区域缩回没描边时的字号，黑边算在原来的大小里面。
-    if (m_strokeEnabled && m_strokeSize > 0.f && rect.size.width > 1.f && rect.size.height > 1.f)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    if (m_strokeEnabled && m_strokeSize > 0.f && rect.size.width > 4.f && rect.size.height > 4.f)
     {
-        float pad = ceilf(m_strokeSize) * 2.f;
-        float sx = (rect.size.width - pad) / rect.size.width;
-        float sy = (rect.size.height - pad) / rect.size.height;
-        float fit = sx < sy ? sx : sy;
-        if (fit > 0.f && fit < 1.f)
-        {
-            CCSize points = CCSizeMake(rect.size.width * fit, rect.size.height * fit);
-            this->setContentSize(points);
-            m_obRect.size = points;
-            float x1 = m_obOffsetPosition.x;
-            float y1 = m_obOffsetPosition.y;
-            float x2 = x1 + points.width;
-            float y2 = y1 + points.height;
-            m_sQuad.bl.vertices = vertex3(x1, y1, 0);
-            m_sQuad.br.vertices = vertex3(x2, y1, 0);
-            m_sQuad.tl.vertices = vertex3(x1, y2, 0);
-            m_sQuad.tr.vertices = vertex3(x2, y2, 0);
-        }
+        CCSize points = CCSizeMake((rect.size.width - 4.f) / 2.f,
+                                   (rect.size.height - 4.f) / 2.f);
+        this->setContentSize(points);
+        m_obRect.size = points;
+        float x1 = m_obOffsetPosition.x;
+        float y1 = m_obOffsetPosition.y;
+        float x2 = x1 + points.width;
+        float y2 = y1 + points.height;
+        m_sQuad.bl.vertices = vertex3(x1, y1, 0);
+        m_sQuad.br.vertices = vertex3(x2, y1, 0);
+        m_sQuad.tl.vertices = vertex3(x1, y2, 0);
+        m_sQuad.tr.vertices = vertex3(x2, y2, 0);
     }
+#endif
     
     //ok
     return true;
