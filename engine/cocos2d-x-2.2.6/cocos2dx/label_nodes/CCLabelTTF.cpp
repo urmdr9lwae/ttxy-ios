@@ -27,6 +27,21 @@ THE SOFTWARE.
 #include "shaders/CCGLProgram.h"
 #include "shaders/CCShaderCache.h"
 #include "CCApplication.h"
+#include <string.h>
+
+static const char* ResolvedFontName(const char* fontName)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    // 界面文件里的 Helvetica 是占位名。iOS 按 font.ini 用雅黑，和安卓一致。
+    if (fontName == NULL || fontName[0] == '\0'
+        || strcmp(fontName, "Helvetica") == 0
+        || strcmp(fontName, "Helvetica-Bold") == 0)
+    {
+        return "YaHei";
+    }
+#endif
+    return fontName ? fontName : "";
+}
 
 NS_CC_BEGIN
 
@@ -137,7 +152,7 @@ bool CCLabelTTF::initWithString(const char *string, const char *fontName, float 
         m_tDimensions = CCSizeMake(dimensions.width, dimensions.height);
         m_hAlignment  = hAlignment;
         m_vAlignment  = vAlignment;
-        m_pFontName   = new std::string(fontName);
+        m_pFontName   = new std::string(ResolvedFontName(fontName));
         m_fFontSize   = fontSize;
         
         this->setString(string);
@@ -276,6 +291,7 @@ const char* CCLabelTTF::getFontName()
 
 void CCLabelTTF::setFontName(const char *fontName)
 {
+    fontName = ResolvedFontName(fontName);
     if (m_pFontName->compare(fontName))
     {
         delete m_pFontName;

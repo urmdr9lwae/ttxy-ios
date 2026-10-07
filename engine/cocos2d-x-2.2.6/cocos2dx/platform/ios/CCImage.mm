@@ -393,8 +393,27 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         
         // actually draw the text in the context
-		// XXX: ios7 casting
-        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+        // drawInRect:withFont: 不会把 CGContext 的描边画出来。脚本要的黑边改用属性字符串。
+        CGRect textRect = CGRectMake(textOriginX, textOrigingY, textWidth, textHeight);
+        UIColor* fillColor = [UIColor colorWithRed:pInfo->tintColorR green:pInfo->tintColorG blue:pInfo->tintColorB alpha:1];
+        if (pInfo->hasStroke && pInfo->strokeSize > 0.f && nSize > 0)
+        {
+            CGFloat strokePercent = -(pInfo->strokeSize / (CGFloat)nSize) * 100.f;
+            UIColor* strokeColor = [UIColor colorWithRed:pInfo->strokeColorR green:pInfo->strokeColorG blue:pInfo->strokeColorB alpha:1];
+            NSDictionary* attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   font, NSFontAttributeName,
+                                   fillColor, NSForegroundColorAttributeName,
+                                   strokeColor, NSStrokeColorAttributeName,
+                                   [NSNumber numberWithFloat:strokePercent], NSStrokeWidthAttributeName,
+                                   nil];
+            NSAttributedString* attr = [[NSAttributedString alloc] initWithString:str attributes:attrs];
+            [attr drawInRect:textRect];
+            [attr release];
+        }
+        else
+        {
+            [str drawInRect:textRect withFont:font lineBreakMode:NSLineBreakByWordWrapping alignment:(NSTextAlignment)align];
+        }
         
         // pop the context
         UIGraphicsPopContext();
