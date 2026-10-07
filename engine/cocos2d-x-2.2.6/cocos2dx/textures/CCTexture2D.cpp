@@ -42,7 +42,6 @@ THE SOFTWARE.
 #include "textures/CCTexturePVR.h"
 #include "textures/CCTextureETC.h"
 #include "CCDirector.h"
-#include "CCEGLView.h"
 #include "shaders/CCGLProgram.h"
 #include "shaders/ccGLStateCache.h"
 #include "shaders/CCShaderCache.h"
@@ -575,38 +574,6 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
             strokeSize   = textDefinition->m_stroke.m_strokeSize;
         }
         
-        // iOS 字图按屏幕放大倍数来画，画完再缩回原来的显示大小，避免整屏放大后发虚。
-        float textScale = 1.f;
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-        if (CCEGLViewProtocol* glview = CCDirector::sharedDirector()->getOpenGLView())
-        {
-            const float designW = glview->getDesignResolutionSize().width;
-            const float viewW = glview->getViewPortRect().size.width;
-            if (designW > 1.f && viewW > designW)
-                textScale = MIN(viewW / designW, 3.f);
-        }
-#endif
-        ccFontDefinition scaledDef = *textDefinition;
-        if (textScale > 1.01f)
-        {
-            scaledDef.m_fontSize *= textScale;
-            scaledDef.m_dimensions.width *= textScale;
-            scaledDef.m_dimensions.height *= textScale;
-            if (scaledDef.m_stroke.m_strokeEnabled)
-                scaledDef.m_stroke.m_strokeSize *= textScale;
-            if (scaledDef.m_shadow.m_shadowEnabled)
-            {
-                scaledDef.m_shadow.m_shadowOffset.width *= textScale;
-                scaledDef.m_shadow.m_shadowOffset.height *= textScale;
-                scaledDef.m_shadow.m_shadowBlur *= textScale;
-            }
-            textDefinition = &scaledDef;
-            strokeSize *= textScale;
-            shadowDX *= textScale;
-            shadowDY *= textScale;
-            shadowBlur *= textScale;
-        }
-
         CCImage* pImage = new CCImage();
         do
         {
@@ -635,15 +602,6 @@ bool CCTexture2D::initWithString(const char *text, ccFontDefinition *textDefinit
             
             CC_BREAK_IF(!bRet);
             bRet = initWithImage(pImage);
-            if (bRet && textScale > 1.01f)
-            {
-                m_tContentSize.width /= textScale;
-                m_tContentSize.height /= textScale;
-                m_fMaxS *= textScale;
-                m_fMaxT *= textScale;
-                if (m_fMaxS > 1.f) m_fMaxS = 1.f;
-                if (m_fMaxT > 1.f) m_fMaxT = 1.f;
-            }
             
         } while (0);
         
