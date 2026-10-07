@@ -37,8 +37,8 @@ THE SOFTWARE.
 static float IosLabelPixelScale()
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    CCDirector* director = CCDirector::sharedDirector();
-    CCEGLView* view = director ? director->getOpenGLView() : NULL;
+    cocos2d::CCDirector* director = cocos2d::CCDirector::sharedDirector();
+    cocos2d::CCEGLView* view = director ? director->getOpenGLView() : NULL;
     if (!view)
         return 1.f;
     float s = view->getScaleX();
