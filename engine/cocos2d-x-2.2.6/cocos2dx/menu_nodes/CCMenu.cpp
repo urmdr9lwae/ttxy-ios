@@ -607,7 +607,7 @@ CCMenuItem* CCMenu::itemForTouch(CCTouch *touch)
     if (m_pChildren && m_pChildren->count() > 0)
     {
         CCObject* pObject = NULL;
-        CCARRAY_FOREACH(m_pChildren, pObject)
+        CCARRAY_FOREACH_REVERSE(m_pChildren, pObject)
         {
             CCMenuItem* pChild = dynamic_cast<CCMenuItem*>(pObject);
             if (pChild && pChild->isVisible() && pChild->isEnabled())

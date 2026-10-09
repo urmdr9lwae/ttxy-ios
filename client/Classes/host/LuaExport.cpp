@@ -100,9 +100,9 @@ enum Reflect {
 enum { NETWORK_NONE, NETWORK_WIFI, NETWORK_MOBILE, NETWORK_OTHER };
 
 // 平台编号：原版枚举顺序 WIN32/MAC/ANDROID/WP8。
-// 这套 Lua 和资源来自安卓包，服务器也按安卓渠道配置，所以所有平台都报 ANDROID。
+// iOS 安装包报 MAC，热更新地址走 Platform 表的 ios 列（ios），不再走安卓的 ard。
 enum { E_TP_WIN32, E_TP_MAC, E_TP_ANDROID, E_TP_WP8 };
-const int kReportedPlatform = E_TP_ANDROID;
+const int kReportedPlatform = E_TP_MAC;
 
 void SetEnum(lua_State* L, const char* const* names, size_t n) {
     for (size_t i = 0; i < n; ++i) {

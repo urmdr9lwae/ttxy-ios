@@ -394,10 +394,7 @@ void CCScrollView::deaccelerateScrolling(float dt)
     newX     = MAX(newX, minInset.x);
     newY     = MIN(m_pContainer->getPosition().y, maxInset.y);
     newY     = MAX(newY, minInset.y);
-    
-    newX = m_pContainer->getPosition().x;
-    newY = m_pContainer->getPosition().y;
-    
+
     m_tScrollDistance     = ccpSub(m_tScrollDistance, ccp(newX - m_pContainer->getPosition().x, newY - m_pContainer->getPosition().y));
     m_tScrollDistance     = ccpMult(m_tScrollDistance, SCROLL_DEACCEL_RATE);
     this->setContentOffset(ccp(newX,newY));
