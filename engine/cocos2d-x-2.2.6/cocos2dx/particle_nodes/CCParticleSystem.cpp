@@ -605,7 +605,8 @@ void CCParticleSystem::update(float dt)
 {
     CC_PROFILER_START_CATEGORY(kCCProfilerCategoryParticles , "CCParticleSystem - update");
 
-    if (m_bIsActive && m_fEmissionRate)
+    // 发射速率不是正数时，1/速率会变成负数，循环会一直加粒子，战斗画面卡在这一帧。
+    if (m_bIsActive && m_fEmissionRate > 0)
     {
         float rate = 1.0f / m_fEmissionRate;
         //issue #1201, prevent bursts of particles, due to too high emitCounter
@@ -616,7 +617,10 @@ void CCParticleSystem::update(float dt)
         
         while (m_uParticleCount < m_uTotalParticles && m_fEmitCounter > rate) 
         {
-            this->addParticle();
+            if (!this->addParticle())
+            {
+                break;
+            }
             m_fEmitCounter -= rate;
         }
 
