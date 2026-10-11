@@ -138,6 +138,22 @@ void CCScrollView::registerWithTouchDispatcher()
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, CCLayer::getTouchPriority(), false);
 }
 
+bool CCScrollView::isPointInsideClip(const CCPoint& worldPoint)
+{
+    if (!m_bClippingToBounds)
+    {
+        return true;
+    }
+    const CCPoint origin = this->convertToWorldSpace(CCPointZero);
+    const CCPoint far = this->convertToWorldSpace(ccp(m_tViewSize.width, m_tViewSize.height));
+    const CCRect view = CCRectMake(
+        MIN(origin.x, far.x),
+        MIN(origin.y, far.y),
+        fabsf(far.x - origin.x),
+        fabsf(far.y - origin.y));
+    return view.containsPoint(worldPoint);
+}
+
 bool CCScrollView::isNodeVisible(CCNode* node)
 {
     const CCPoint offset = this->getContentOffset();

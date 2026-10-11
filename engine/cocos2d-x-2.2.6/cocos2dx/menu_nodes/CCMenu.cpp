@@ -237,6 +237,10 @@ bool CCMenu::ccTouchBegan(CCTouch* touch, CCEvent* event)
         {
             return false;
         }
+        if (!c->isPointInsideClip(touch->getLocation()))
+        {
+            return false;
+        }
     }
 
     m_pSelectedItem = this->itemForTouch(touch);

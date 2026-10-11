@@ -206,6 +206,7 @@ public:
      */
     bool isClippingToBounds() { return m_bClippingToBounds; }
     void setClippingToBounds(bool bClippingToBounds) { m_bClippingToBounds = bClippingToBounds; }
+    virtual bool isPointInsideClip(const CCPoint& worldPoint);
     /**
      *  @js NA
      */

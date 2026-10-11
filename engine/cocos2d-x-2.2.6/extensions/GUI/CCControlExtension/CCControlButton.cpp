@@ -648,6 +648,10 @@ bool CCControlButton::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         {
             return false;
         }
+        if (!c->isPointInsideClip(pTouch->getLocation()))
+        {
+            return false;
+        }
     }
     
     m_isPushed = true;

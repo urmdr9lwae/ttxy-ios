@@ -100,9 +100,9 @@ enum Reflect {
 enum { NETWORK_NONE, NETWORK_WIFI, NETWORK_MOBILE, NETWORK_OTHER };
 
 // 平台编号：原版枚举顺序 WIN32/MAC/ANDROID/WP8。
-// iOS 安装包报 MAC，热更新地址走 Platform 表的 ios 列（ios），不再走安卓的 ard。
+// 这套安装包继续报 ANDROID。报 MAC 会关掉每 30 秒的清内存，列表和按钮修正在此基础上做。
 enum { E_TP_WIN32, E_TP_MAC, E_TP_ANDROID, E_TP_WP8 };
-const int kReportedPlatform = E_TP_MAC;
+const int kReportedPlatform = E_TP_ANDROID;
 
 void SetEnum(lua_State* L, const char* const* names, size_t n) {
     for (size_t i = 0; i < n; ++i) {

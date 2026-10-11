@@ -452,7 +452,13 @@ public:
      */
     virtual bool isVisible();
 
-    
+    /**
+     * 手指是否落在这个节点的可见窗口里。
+     * 列表会裁掉窗口外的画面，子按钮仍可能接到那一下。
+     * 默认不裁剪；滚动列表改成只认自己的窗口。
+     */
+    virtual bool isPointInsideClip(const CCPoint& /*worldPoint*/) { return true; }
+
     /** 
      * Sets the rotation (angle) of the node in degrees. 
      * 
