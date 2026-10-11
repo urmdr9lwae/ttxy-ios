@@ -100,9 +100,9 @@ enum Reflect {
 enum { NETWORK_NONE, NETWORK_WIFI, NETWORK_MOBILE, NETWORK_OTHER };
 
 // 平台编号：原版枚举顺序 WIN32/MAC/ANDROID/WP8。
-// 这套安装包继续报 ANDROID。报 MAC 会关掉每 30 秒的清内存，列表和按钮修正在此基础上做。
+// 安装包报 MAC，热更新走 ios。清内存定时器在 LuaHost 里照旧每 30 秒启动。
 enum { E_TP_WIN32, E_TP_MAC, E_TP_ANDROID, E_TP_WP8 };
-const int kReportedPlatform = E_TP_ANDROID;
+const int kReportedPlatform = E_TP_MAC;
 
 void SetEnum(lua_State* L, const char* const* names, size_t n) {
     for (size_t i = 0; i < n; ++i) {

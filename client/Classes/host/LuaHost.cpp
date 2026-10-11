@@ -341,6 +341,15 @@ end
 )LUA", "=scene_scale");
     const bool ok = CallGlobal("OnSysStartup");
     Log("OnSysStartup 返回 %d", ok ? 1 : 0);
+    // 报 iOS 时 GameRoot 不会自己开清内存。这里照旧每 30 秒清一次，和报安卓时一样。
+    if (ok) {
+        RunString(L, R"LUA(
+local root = Singleton(GameRoot)
+if root and root.CheckMemory and root.Event then
+  Singleton(Timer):Repeat(30000, root:Event("CheckMemory"))
+end
+)LUA", "=keep_memory");
+    }
     return ok;
 }
 
