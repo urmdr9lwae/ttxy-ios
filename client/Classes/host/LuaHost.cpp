@@ -272,6 +272,88 @@ if not _G.__cardRequireHook then
   local rawRequire = require
   function require(name, ...)
     local loaded = rawRequire(name, ...)
+    -- 血条和盾条共用 Progress.createProgress。安卓能建出黄盾条；iOS 上
+    -- CCControlSlider:create 拿不到 progress_ft.png 会返回空，随后 getPositionLua
+    -- 把开战协程打死。所有加盾卡都走 CreateShield，这里按安卓把条建出来。
+    if (name == "Progress" or name == "base.UI.Progress") and type(loaded) == "table" and loaded.prototype and type(loaded.prototype.createProgress) == "function" and not loaded.prototype.__shieldSlider then
+      local THUMB = "images/public/progress_thumb.png"
+      local function makeSprite(path)
+        if path == nil or path == "" then return nil end
+        local spr = CCSprite:create(path)
+        if spr then return spr end
+        local cache = CCSpriteFrameCache:sharedSpriteFrameCache()
+        local frame = cache:spriteFrameByName(path)
+        if not frame then
+          pcall(function()
+            cache:addSpriteFramesWithFile("images/public/public2.plist")
+            cache:addSpriteFramesWithFile("images/public/public1.plist")
+            cache:addSpriteFramesWithFile("images/public/public0.plist")
+            cache:addSpriteFramesWithFile("images/public/public4.plist")
+          end)
+          frame = cache:spriteFrameByName(path)
+        end
+        if frame then return CCSprite:createWithSpriteFrame(frame) end
+        return nil
+      end
+      function loaded.prototype:createProgress(bg, front, node)
+        node = node or self.rootNode
+        if node == nil then return end
+        bg = bg or "images/public/progress1.png"
+        front = front or "images/public/progress2.png"
+        local slider = CCControlSlider:create(bg, front, THUMB)
+        if slider == nil then
+          local bgS, ftS, thS = makeSprite(bg), makeSprite(front), makeSprite(THUMB)
+          if bgS and ftS and thS then
+            slider = CCControlSlider:create(bgS, ftS, thS)
+          end
+        end
+        if slider == nil then return end
+        local nodeSize = node:getContentSize()
+        local proSize = slider:getContentSize()
+        local scaleW = 1
+        local scaleH = 1
+        if proSize.width > 0 then scaleW = nodeSize.width / proSize.width end
+        if proSize.height > 0 then scaleH = nodeSize.height / proSize.height end
+        slider:setScaleX(scaleW)
+        slider:setScaleY(scaleH)
+        slider:setContentSize(nodeSize)
+        slider:setAnchorPoint(CCPoint(0, 0))
+        slider:ignoreAnchorPointForPosition(true)
+        slider:setPosition(CCPoint(0, 0))
+        slider:setMinimumValue(0)
+        slider:setMaximumValue(100)
+        slider:setValue(0)
+        slider:setEnabled(false)
+        slider:setOpacity(255)
+        self.slider = slider
+        node:addChild(slider)
+      end
+      loaded.prototype.__shieldSlider = true
+    end
+    if (name == "BattleShowUnit" or name == "UI.BattleShowUnit") and type(loaded) == "table" and loaded.prototype and type(loaded.prototype.CreateShield) == "function" and not loaded.prototype.__shieldBar then
+      local rawShield = loaded.prototype.CreateShield
+      function loaded.prototype:CreateShield(shield)
+        pcall(function()
+          local cache = CCSpriteFrameCache:sharedSpriteFrameCache()
+          cache:addSpriteFramesWithFile("images/public/public2.plist")
+          cache:addSpriteFramesWithFile("images/public/public1.plist")
+          cache:addSpriteFramesWithFile("images/public/public0.plist")
+          cache:addSpriteFramesWithFile("images/public/public4.plist")
+        end)
+        if not pcall(rawShield, self, shield) then
+          pcall(function()
+            if self.mPrgSp == nil then return end
+            self.info.shieldMax = shield
+            self.info.shield = shield
+            self.mPrgSp:removeAllChildrenWithCleanup(true)
+            self.mPrgSp:createProgress("images/public/progress_blood_bg.png", "images/public/progress_ft.png", "images/public/progress_blood_bg2.png")
+            self.mPrgSp:setVisible(true)
+            if self.SetProgValueAnimat then self:SetProgValueAnimat("mPrgSp", 100, false) end
+          end)
+        end
+      end
+      loaded.prototype.__shieldBar = true
+    end
     if (name == "BattleShowUnit" or name == "UI.BattleShowUnit") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__cardFace and type(loaded.prototype.SetUnitInfo) == "function" then
       local rawSet = loaded.prototype.SetUnitInfo
       function loaded.prototype:SetUnitInfo(info, bShow)

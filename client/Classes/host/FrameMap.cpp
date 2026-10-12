@@ -49,9 +49,9 @@ CCSpriteFrame* ResolveFrame(const char* frameName) {
 }
 
 static CCSpriteFrame* ResolverHook(const char* file) {
-    // 真实存在的文件不走图集
-    if (CCFileUtils::sharedFileUtils()->isFileExist(CCFileUtils::sharedFileUtils()->fullPathForFilename(file)))
-        return nullptr;
+    // 先按 framemap 取图集帧。isFileExist 会把 PFDW 里的名字也算成文件，
+    // 黄条 progress_ft.png 会被跳过图集，CCControlSlider 拿不到贴图。
+    // 没有图集记录时返回空，CCSprite::initWithFile 再走散文件 addImage。
     return ResolveFrame(file);
 }
 
