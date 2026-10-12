@@ -324,13 +324,11 @@ void CCDirector::calculateDeltaTime(void)
         m_fDeltaTime = MAX(0, m_fDeltaTime);
     }
 
-#ifdef DEBUG
-    // If we are debugging our code, prevent big delta time
+    // 正式包也要收住过长的一帧。战斗倍速是 6 或 12，再乘上一帧停很久的时间，点继续回到战斗会卡死。
     if(m_fDeltaTime > 0.2f)
     {
         m_fDeltaTime = 1 / 60.0f;
     }
-#endif
 
     *m_pLastUpdate = now;
 }

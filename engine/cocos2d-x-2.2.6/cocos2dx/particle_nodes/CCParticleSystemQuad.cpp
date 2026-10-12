@@ -493,9 +493,9 @@ void CCParticleSystemQuad::setupVBOandVAO()
     glBindBuffer(GL_ARRAY_BUFFER, m_pBuffersVBO[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(m_pQuads[0]) * m_uTotalParticles, m_pQuads, GL_DYNAMIC_DRAW);
 
-    // vertices
+    // 顶点是 x,y,z 三个数。写成 2 时，iOS 这一帧画完技能粒子就出不去。安卓按 3 个数画。
     glEnableVertexAttribArray(kCCVertexAttrib_Position);
-    glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( ccV3F_C4B_T2F, vertices));
+    glVertexAttribPointer(kCCVertexAttrib_Position, 3, GL_FLOAT, GL_FALSE, kQuadSize, (GLvoid*) offsetof( ccV3F_C4B_T2F, vertices));
 
     // colors
     glEnableVertexAttribArray(kCCVertexAttrib_Color);

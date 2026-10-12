@@ -335,6 +335,29 @@ if not _G.__cardRequireHook then
       end
       loaded.prototype.__battlePlay = true
     end
+    local function resetBattleClock()
+      local director = CCDirector and CCDirector.sharedDirector and CCDirector:sharedDirector()
+      local scheduler = director and director.getScheduler and director:getScheduler()
+      if scheduler and scheduler.setTimeScale then
+        scheduler:setTimeScale(1)
+      end
+    end
+    if (name == "Logic.BattleShow" or name == "BattleShow") and type(loaded) == "table" and loaded.class and not loaded.class.__resetAccOnResult and type(loaded.class.ShowBattleResult) == "function" then
+      local rawShow = loaded.class.ShowBattleResult
+      function loaded.class:ShowBattleResult(...)
+        resetBattleClock()
+        return rawShow(self, ...)
+      end
+      loaded.class.__resetAccOnResult = true
+    end
+    if (name == "UI.BattleShowResult" or name == "BattleShowResult") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__resetAccOnClose and type(loaded.prototype.Close) == "function" then
+      local rawClose = loaded.prototype.Close
+      function loaded.prototype:Close(...)
+        resetBattleClock()
+        return rawClose(self, ...)
+      end
+      loaded.prototype.__resetAccOnClose = true
+    end
     return loaded
   end
 end
