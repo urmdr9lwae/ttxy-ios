@@ -29,6 +29,11 @@ THE SOFTWARE.
 
 #include  "CCParticleSystem.h"
 
+// 安卓粒子不走 VAO。这个类和安卓同一条 VBO 直画，头文件和实现必须同一套成员。
+#ifndef CC_PARTICLE_QUAD_USE_VAO
+#define CC_PARTICLE_QUAD_USE_VAO 0
+#endif
+
 NS_CC_BEGIN
 
 class CCSpriteFrame;
@@ -56,7 +61,7 @@ protected:
     ccV3F_C4B_T2F_Quad    *m_pQuads;        // quads to be rendered
     GLushort            *m_pIndices;    // indices
 
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
     GLuint                m_uVAOname;
 #endif
 
@@ -134,7 +139,7 @@ public:
     static CCParticleSystemQuad * create();
     static CCParticleSystemQuad * createWithTotalParticles(unsigned int numberOfParticles);
 private:
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
     void setupVBOandVAO();
 #else
     void setupVBO();

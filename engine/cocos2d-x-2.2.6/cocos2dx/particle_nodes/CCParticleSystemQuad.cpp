@@ -42,9 +42,10 @@ THE SOFTWARE.
 #include "kazmath/GL/matrix.h"
 
 // 安卓粒子不走 VAO。圣诞玉面公主放技能时 iOS 走顶点数组画，战斗停在这一帧。
-// 这个文件按安卓同一条：VBO 直画。
-#undef CC_TEXTURE_ATLAS_USE_VAO
-#define CC_TEXTURE_ATLAS_USE_VAO 0
+// 这个文件按安卓同一条：VBO 直画。头文件也必须走同一套，否则 setupVBO 没有声明。
+#ifndef CC_PARTICLE_QUAD_USE_VAO
+#define CC_PARTICLE_QUAD_USE_VAO 0
+#endif
 
 NS_CC_BEGIN
 
@@ -62,7 +63,7 @@ bool CCParticleSystemQuad::initWithTotalParticles(unsigned int numberOfParticles
         }
 
         initIndices();
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
         setupVBOandVAO();
 #else
         setupVBO();
@@ -87,7 +88,7 @@ bool CCParticleSystemQuad::initWithTotalParticles(unsigned int numberOfParticles
 CCParticleSystemQuad::CCParticleSystemQuad()
 :m_pQuads(NULL)
 ,m_pIndices(NULL)
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
 ,m_uVAOname(0)
 #endif
 {
@@ -101,7 +102,7 @@ CCParticleSystemQuad::~CCParticleSystemQuad()
         CC_SAFE_FREE(m_pQuads);
         CC_SAFE_FREE(m_pIndices);
         glDeleteBuffers(2, &m_pBuffersVBO[0]);
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
         glDeleteVertexArrays(1, &m_uVAOname);
         ccGLBindVAO(0);
 #endif
@@ -367,7 +368,7 @@ void CCParticleSystemQuad::draw()
 
     CCAssert( m_uParticleIdx == m_uParticleCount, "Abnormal error in particle quad");
 
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
     //
     // Using VBO and VAO
     //
@@ -466,7 +467,7 @@ void CCParticleSystemQuad::setTotalParticles(unsigned int tp)
         }
 
         initIndices();
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
         setupVBOandVAO();
 #else
         setupVBO();
@@ -480,7 +481,7 @@ void CCParticleSystemQuad::setTotalParticles(unsigned int tp)
     resetSystem();
 }
 
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
 void CCParticleSystemQuad::setupVBOandVAO()
 {
     // clean VAO
@@ -543,7 +544,7 @@ void CCParticleSystemQuad::setupVBO()
 
 void CCParticleSystemQuad::listenBackToForeground(CCObject *obj)
 {
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
         setupVBOandVAO();
 #else
         setupVBO();
@@ -590,7 +591,7 @@ void CCParticleSystemQuad::setBatchNode(CCParticleBatchNode * batchNode)
             allocMemory();
             initIndices();
             setTexture(oldBatch->getTexture());
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
             setupVBOandVAO();
 #else
             setupVBO();
@@ -609,7 +610,7 @@ void CCParticleSystemQuad::setBatchNode(CCParticleBatchNode * batchNode)
 
             glDeleteBuffers(2, &m_pBuffersVBO[0]);
             memset(m_pBuffersVBO, 0, sizeof(m_pBuffersVBO));
-#if CC_TEXTURE_ATLAS_USE_VAO
+#if CC_PARTICLE_QUAD_USE_VAO
             glDeleteVertexArrays(1, &m_uVAOname);
             ccGLBindVAO(0);
             m_uVAOname = 0;
