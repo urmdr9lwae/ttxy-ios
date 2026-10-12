@@ -417,6 +417,57 @@ if not _G.__cardRequireHook then
       end
       loaded.prototype.__battlePlay = true
     end
+    -- 出售卡牌选一张会弹确认框，列表会回顶。上阵已用 reloadDataEx 保住偏移；
+    -- 出售点选不走 RequireUpdate，这里按同样方式把偏移还原。
+    local function restoreSaleOffset(tv, off)
+      if tv == nil or off == nil or tv.setContentOffset == nil then return end
+      local mn = tv:minContainerOffset()
+      local mx = tv:maxContainerOffset()
+      local x, y = off.x, off.y
+      if x < mn.x then x = mn.x elseif x > mx.x then x = mx.x end
+      if y < mn.y then y = mn.y elseif y > mx.y then y = mx.y end
+      tv:setContentOffset(ccp(x, y), false)
+    end
+    local function wrapKeepSale(proto, funcName, getTv)
+      local raw = proto[funcName]
+      if type(raw) ~= "function" then return end
+      proto[funcName] = function(self, ...)
+        local tv = getTv(self)
+        local off
+        if tv and tv.getContentOffset then off = tv:getContentOffset() end
+        raw(self, ...)
+        restoreSaleOffset(tv, off)
+        pcall(function()
+          Singleton(Timer):After(0, function() restoreSaleOffset(tv, off) end)
+        end)
+      end
+    end
+    local function saleOwnerTv(self)
+      return self.tableViewControl and self.tableViewControl.tableView
+    end
+    local function saleItemTv(self)
+      local p = self.parent
+      return p and p.tableViewControl and p.tableViewControl.tableView
+    end
+    if (name == "HeroSale" or name == "UI.HeroSale") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepSaleList then
+      wrapKeepSale(loaded.prototype, "OnOptHeroSale", saleOwnerTv)
+      wrapKeepSale(loaded.prototype, "onBtnAutoCheckSale", saleOwnerTv)
+      wrapKeepSale(loaded.prototype, "OnSellHero", saleOwnerTv)
+      loaded.prototype.__keepSaleList = true
+    end
+    if (name == "HeroSaleItem" or name == "UI.HeroSaleItem") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepSaleItem then
+      wrapKeepSale(loaded.prototype, "onBtnSelect", saleItemTv)
+      loaded.prototype.__keepSaleItem = true
+    end
+    if (name == "ComposeSale" or name == "UI.ComposeSale") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepSaleList then
+      wrapKeepSale(loaded.prototype, "RefreshConfig", saleOwnerTv)
+      wrapKeepSale(loaded.prototype, "RefrashItem", saleOwnerTv)
+      loaded.prototype.__keepSaleList = true
+    end
+    if (name == "ComposeSaleItem" or name == "UI.ComposeSaleItem") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepSaleItem then
+      wrapKeepSale(loaded.prototype, "onMeunItem", saleItemTv)
+      loaded.prototype.__keepSaleItem = true
+    end
     return loaded
   end
 end
