@@ -41,6 +41,11 @@ THE SOFTWARE.
 // extern
 #include "kazmath/GL/matrix.h"
 
+// 安卓粒子不走 VAO。圣诞玉面公主放技能时 iOS 走顶点数组画，战斗停在这一帧。
+// 这个文件按安卓同一条：VBO 直画。
+#undef CC_TEXTURE_ATLAS_USE_VAO
+#define CC_TEXTURE_ATLAS_USE_VAO 0
+
 NS_CC_BEGIN
 
 //implementation CCParticleSystemQuad

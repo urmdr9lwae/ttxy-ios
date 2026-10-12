@@ -335,6 +335,24 @@ if not _G.__cardRequireHook then
       end
       loaded.prototype.__battlePlay = true
     end
+    if name == "Logic.BattleShow" and type(loaded) == "table" and loaded.class and type(loaded.class.ShowBattleResult) == "function" and not loaded.class.__dropBattleUi then
+      local rawShow = loaded.class.ShowBattleResult
+      function loaded.class:ShowBattleResult(...)
+        rawShow(self, ...)
+        pcall(function()
+          local stack = SceneHelper and SceneHelper.layerStack
+          if type(stack) ~= "table" then return end
+          for i = #stack, 1, -1 do
+            local s = stack[i]
+            if s and s.name == "BattleShow" then
+              if s.scene then s.scene:removeFromParentAndCleanup(true) end
+              table.remove(stack, i)
+            end
+          end
+        end)
+      end
+      loaded.class.__dropBattleUi = true
+    end
     return loaded
   end
 end
