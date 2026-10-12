@@ -204,10 +204,15 @@ void CCTableViewEx::setDirection(CCScrollViewDirection dir) {
 }
 
 void CCTableViewEx::reloadDataEx(bool animate) {
+    // 安卓选卡刷新走 reloadData，不把已经拉下去的列表拉回上沿。
+    // 第一次还没有格子时，仍由表格自己的初次排版决定位置。
+    const bool keep = m_pCellsUsed && m_pCellsUsed->count() > 0;
+    const CCPoint off = getContentOffset();
     CCTableView::reloadData();
-    // 内容比窗口短时，坐标 0 会贴在底部。从上往下的列表回到上沿，
-    // 从下往上的普通副本仍留在下沿。
-    resetOffsetPositon();
+    if (keep) {
+        const CCPoint mn = minContainerOffset(), mx = maxContainerOffset();
+        setContentOffset(ccp(std::min(mx.x, std::max(mn.x, off.x)), std::min(mx.y, std::max(mn.y, off.y))), false);
+    }
     scrollBar_.Update(this);
     if (animate) runUIAnimat(true);
 }
