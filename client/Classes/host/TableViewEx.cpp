@@ -260,15 +260,18 @@ void CCTableViewEx::runUIAnimat(bool open) {
     const float w = getViewSize().width;
     for (unsigned int i = 0; i < cells->count(); ++i) {
         CCTableViewCell* c = static_cast<CCTableViewCell*>(cells->objectAtIndex(i));
-        const CCPoint target = c->getPosition();
+        const int idx = c->getIdx();
+        // 滑出后格子停在 x-w。再用 getPosition 当终点会把列表滑出屏幕（活动助战返回空列表）。
+        // 按表格排版坐标滑，和安卓/普通副本刷新后的位置一致。
+        const CCPoint home = idx >= 0 ? _offsetFromIndex(static_cast<unsigned int>(idx)) : c->getPosition();
         c->stopAllActions();
-        if (open) c->setPosition(ccp(target.x + w, target.y));
+        if (open) c->setPosition(ccp(home.x + w, home.y));
         CCFiniteTimeAction* move =
-            CCEaseSineOut::create(CCMoveTo::create(animBase_, open ? target : ccp(target.x - w, target.y)));
+            CCEaseSineOut::create(CCMoveTo::create(animBase_, open ? home : ccp(home.x - w, home.y)));
         c->runAction(CCSequence::create(CCDelayTime::create(animDelta_ * i), move,
                                         CCCallFuncN::create(this, callfuncN_selector(CCTableViewEx::OnCellAnimDone)),
                                         nullptr));
-        if (!open) c->setPosition(target);
+        if (!open) c->setPosition(home);
     }
 }
 

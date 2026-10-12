@@ -468,6 +468,92 @@ if not _G.__cardRequireHook then
       wrapKeepSale(loaded.prototype, "onMeunItem", saleItemTv)
       loaded.prototype.__keepSaleItem = true
     end
+    -- 活动副本对照普通副本：返回保住列表位置，结算拆掉布阵/助战，不要空列表。
+    local function keepListPlace(self)
+      local ctrl = self.tableViewControl
+      local tv = ctrl and ctrl.tableView
+      if tv == nil then return end
+      local off
+      if tv.getContentOffset then off = tv:getContentOffset() end
+      if ctrl.RequireUpdateWithoutAnimat then
+        pcall(function() ctrl:RequireUpdateWithoutAnimat() end)
+      end
+      restoreSaleOffset(tv, off)
+    end
+    if (name == "ActivityTemp" or name == "UI.ActivityTemp") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepActivityCopy then
+      local rawInit = loaded.prototype.initialize
+      if type(rawInit) == "function" then
+        function loaded.prototype:initialize(...)
+          rawInit(self, ...)
+          pcall(function()
+            Logic:Get("BattleShow"):On(Logic.BattleShow.EVT.INEND, self:Event("actInEnd", function()
+              SceneHelper:removeScene("Embattle")
+              SceneHelper:removeScene("BattleCopyFriend")
+            end))
+          end)
+        end
+      end
+      local rawCreate = loaded.prototype.createList
+      if type(rawCreate) == "function" then
+        function loaded.prototype:createList(...)
+          if self.tableViewControl and self.tableViewControl.tableView then
+            keepListPlace(self)
+            return
+          end
+          rawCreate(self, ...)
+        end
+      end
+      function loaded.prototype:onBattleFriendSceneReturn(...)
+        keepListPlace(self)
+      end
+      function loaded.prototype:reFrashFightTimes(...)
+        pcall(function()
+          self.titleinfo = self:getAllBattleInfo()
+          self.data = { self.titleinfo }
+        end)
+        keepListPlace(self)
+      end
+      loaded.prototype.__keepActivityCopy = true
+    end
+    if (name == "Activity" or name == "UI.Activity") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepActivityList then
+      local rawCreate = loaded.prototype.createList
+      if type(rawCreate) == "function" then
+        function loaded.prototype:createList(...)
+          if self.tableViewControl and self.tableViewControl.tableView then
+            keepListPlace(self)
+            return
+          end
+          rawCreate(self, ...)
+        end
+      end
+      loaded.prototype.__keepActivityList = true
+    end
+    if (name == "BattleCopyFriend" or name == "UI.BattleCopyFriend") and type(loaded) == "table" and loaded.prototype and not loaded.prototype.__keepFriendList then
+      local rawCreate = loaded.prototype.createList
+      if type(rawCreate) == "function" then
+        function loaded.prototype:createList(...)
+          if self.tableViewControl and self.tableViewControl.tableView then
+            keepListPlace(self)
+            return
+          end
+          rawCreate(self, ...)
+        end
+      end
+      function loaded.prototype:reOpen(...)
+        keepListPlace(self)
+      end
+      loaded.prototype.__keepFriendList = true
+    end
+    if (name == "BattleShowResult" or name == "UI.BattleShowResult") and type(loaded) == "table" and loaded.prototype and type(loaded.prototype.onEnter) == "function" and not loaded.prototype.__forceInEnd then
+      local rawEnter = loaded.prototype.onEnter
+      function loaded.prototype:onEnter(...)
+        rawEnter(self, ...)
+        pcall(function()
+          Logic:Get("BattleShow"):BattleShowInEnd()
+        end)
+      end
+      loaded.prototype.__forceInEnd = true
+    end
     return loaded
   end
 end
